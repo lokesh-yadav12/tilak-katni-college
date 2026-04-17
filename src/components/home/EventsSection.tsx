@@ -24,7 +24,7 @@ const EventsSection: React.FC = () => {
 				className="mb-8 max-w-7xl mx-auto text-center"
 			>
 				<h2 className="text-3xl sm:text-4xl font-bold text-[#1e3a8a] mb-2">
-					Quick <span className="text-[#B8860B]">Information</span>
+					Quick <span className="text-[#1e3a8a]">Information</span>
 				</h2>
 				<p className="sm:text-lg text-md text-gray-700 max-w-3xl mx-auto border-t-2 border-gray-300 pt-4">
 					Access important resources and information about our institute's administration, policies, and

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/tilaklogo1.png';
@@ -11,11 +11,7 @@ interface NavLink {
 }
 
 const navLinks: NavLink[] = [
-	{
-		label: 'Home',
-		href: '/',
-		hasDropdown: false,
-	},
+	{ label: 'Home', href: '/', hasDropdown: false },
 	{
 		label: 'College',
 		hasDropdown: true,
@@ -54,14 +50,8 @@ const navLinks: NavLink[] = [
 			{ label: 'Innovation', href: '/research/innovation' },
 		],
 	},
-	{
-		label: 'staff',
-		href: '/careers',
-	},
-	{
-		label: 'Research',
-		href: '/careers',
-	},
+	{ label: 'Staff', href: '/careers' },
+	{ label: 'Research', href: '/careers' },
 	{
 		label: 'Committee',
 		hasDropdown: true,
@@ -87,40 +77,19 @@ const navLinks: NavLink[] = [
 		dropdownItems: [
 			{ label: 'Admission Form', href: '/admission-form' },
 			{ label: 'Admission Process', href: '/admission/process' },
-			{ label: 'Eligibility', href: '/admission/eligibility' },
-			{ label: 'Fee Structure', href: '/admission/fees' },
 		],
 	},
 	{
 		label: 'Gallery',
 		hasDropdown: true,
 		dropdownItems: [
-			{ label: 'Admission Form', href: '/admission-form' },
-			{ label: 'Admission Process', href: '/admission/process' },
-			{ label: 'Eligibility', href: '/admission/eligibility' },
-			{ label: 'Fee Structure', href: '/admission/fees' },
+			{ label: 'Photos', href: '/gallery/photos' },
+			{ label: 'Videos', href: '/gallery/videos' },
 		],
 	},
-	{
-		label: 'Student corner',
-		href: '/careers',
-	},
-
-	// {
-	// 	label: 'Committee',
-	// 	href: '/careers',
-	// },
-	// {
-	// 	label: 'Placements',
-	// 	href: '/placements',
-	// },
-	// {
-	// 	label: 'Contact Us',
-	// 	href: '/contact',
-	// },
+	{ label: 'Student Corner', href: '/careers' },
 ];
 
-// Announcements for the ticker
 const announcements = [
 	'🎓 Admissions Open for 2025-26 — Apply Now!',
 	'📢 Exam Schedule for Semester IV Released — Check Now',
@@ -131,26 +100,183 @@ const announcements = [
 	'🎉 Annual Cultural Fest "Utsav 2025" — 15th to 17th May',
 ];
 
-// 9 capsule action buttons in 3x3 grid
-const capsuleButtons: { label: string; href: string; color: 'gold' | 'blue' }[] = [
-	{ label: 'World Bank', href: '/examinations/results', color: 'gold' },
-	{ label: 'RTI', href: '/ugc-deb', color: 'blue' },
-	{ label: 'AISE Portal', href: '/admission-form', color: 'gold' },
-	{ label: 'Janbhagidari Samiti', href: '/aicte', color: 'blue' },
-	{ label: 'Tender', href: '/about/accreditations', color: 'gold' },
-	{ label: 'Recruitment', href: '/admission/fees', color: 'blue' },
-	{ label: 'Scholarships', href: '/scholarships', color: 'gold' },
-	{ label: 'Alumni', href: '/e-library', color: 'blue' },
-	{ label: 'Mous', href: '/student-portal', color: 'gold' },
+const quickLinks: {
+	label: string;
+	href: string;
+	icon: React.ReactNode;
+	color: string;
+	bg: string;
+}[] = [
+	{
+		label: 'World Bank',
+		href: '/world-bank',
+		color: '#1e3a8a',
+		bg: '#EFF6FF',
+		icon: (
+			<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8">
+				<circle cx="12" cy="12" r="10" />
+				<line x1="2" y1="12" x2="22" y2="12" />
+				<path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z" />
+			</svg>
+		),
+	},
+	{
+		label: 'RTI',
+		href: '/rti',
+		color: '#7C3AED',
+		bg: '#F3EFFE',
+		icon: (
+			<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8">
+				<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+				<polyline points="14 2 14 8 20 8" />
+				<line x1="9" y1="13" x2="15" y2="13" />
+				<line x1="9" y1="17" x2="15" y2="17" />
+			</svg>
+		),
+	},
+	{
+		label: 'AISE Portal',
+		href: '/aise-portal',
+		color: '#B45309',
+		bg: '#FFFBEB',
+		icon: (
+			<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8">
+				<rect x="2" y="3" width="20" height="14" rx="2" />
+				<line x1="8" y1="21" x2="16" y2="21" />
+				<line x1="12" y1="17" x2="12" y2="21" />
+			</svg>
+		),
+	},
+	{
+		label: 'Janbhagidari',
+		href: '/janbhagidari',
+		color: '#065F46',
+		bg: '#ECFDF5',
+		icon: (
+			<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8">
+				<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+				<circle cx="9" cy="7" r="4" />
+				<path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+				<path d="M16 3.13a4 4 0 0 1 0 7.75" />
+			</svg>
+		),
+	},
+	{
+		label: 'Tender',
+		href: '/tender',
+		color: '#9D174D',
+		bg: '#FDF2F8',
+		icon: (
+			<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8">
+				<polyline points="9 11 12 14 22 4" />
+				<path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+			</svg>
+		),
+	},
+	{
+		label: 'Recruitment',
+		href: '/recruitment',
+		color: '#1D4ED8',
+		bg: '#EFF6FF',
+		icon: (
+			<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8">
+				<rect x="2" y="7" width="20" height="14" rx="2" />
+				<path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+				<line x1="12" y1="12" x2="12" y2="16" />
+				<line x1="10" y1="14" x2="14" y2="14" />
+			</svg>
+		),
+	},
+	{
+		label: 'Scholarships',
+		href: '/scholarships',
+		color: '#B45309',
+		bg: '#FFFBEB',
+		icon: (
+			<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8">
+				<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+			</svg>
+		),
+	},
+	{
+		label: 'Alumni',
+		href: '/alumni',
+		color: '#065F46',
+		bg: '#ECFDF5',
+		icon: (
+			<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8">
+				<path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+				<path d="M6 12v5c3 3 9 3 12 0v-5" />
+			</svg>
+		),
+	},
+	{
+		label: 'MOUs',
+		href: '/mous',
+		color: '#7C3AED',
+		bg: '#F3EFFE',
+		icon: (
+			<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8">
+				<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+				<path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+			</svg>
+		),
+	},
+];
+
+// Social media links
+const socialLinks = [
+	{
+		label: 'Facebook',
+		href: 'https://facebook.com',
+		icon: (
+			<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+				<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+			</svg>
+		),
+	},
+	{
+		label: 'LinkedIn',
+		href: 'https://linkedin.com',
+		icon: (
+			<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+				<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+				<rect x="2" y="9" width="4" height="12" />
+				<circle cx="4" cy="4" r="2" />
+			</svg>
+		),
+	},
+	{
+		label: 'Twitter',
+		href: 'https://twitter.com',
+		icon: (
+			<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+				<path d="M4 4l16 16M4 20L20 4" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" fill="none"/>
+			</svg>
+		),
+	},
+	{
+		label: 'Instagram',
+		href: 'https://instagram.com',
+		icon: (
+			<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+				<rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+				<path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+				<line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+			</svg>
+		),
+	},
 ];
 
 export default function Header() {
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 	const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 	const [isScrolled, setIsScrolled] = useState(false);
-	const handleLogoClick = () => {
-		window.scrollTo({ top: 0, behavior: 'smooth' });
-	};
+	const [isQuickLinksOpen, setIsQuickLinksOpen] = useState(false);
+	const panelRef = useRef<HTMLDivElement>(null);
+	const triggerRef = useRef<HTMLButtonElement>(null);
+
+	const handleLogoClick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
 	useEffect(() => {
 		const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -158,119 +284,334 @@ export default function Header() {
 		return () => window.removeEventListener('scroll', handleScroll);
 	}, []);
 
-	// Ticker animation using CSS
+	useEffect(() => {
+		const handleClickOutside = (e: MouseEvent) => {
+			if (
+				panelRef.current &&
+				!panelRef.current.contains(e.target as Node) &&
+				triggerRef.current &&
+				!triggerRef.current.contains(e.target as Node)
+			) {
+				setIsQuickLinksOpen(false);
+			}
+		};
+		if (isQuickLinksOpen) {
+			document.addEventListener('mousedown', handleClickOutside);
+		}
+		return () => document.removeEventListener('mousedown', handleClickOutside);
+	}, [isQuickLinksOpen]);
+
+	// Calculate nav height for the spacer
+	// ticker ~48px + logo row ~72px + nav bar ~44px = ~164px
+	// On mobile without bottom nav bar: ticker ~48px + logo row ~60px = ~108px
+
 	const tickerText = announcements.join('     ●     ');
 
 	return (
 		<>
-			{/* CSS for ticker animation */}
 			<style>{`
 				@keyframes ticker-scroll {
 					0% { transform: translateX(0%); }
 					100% { transform: translateX(-50%); }
 				}
-				.ticker-container {
-					overflow: hidden;
-					position: relative;
-					width: 100%;
-				}
+				.ticker-container { overflow: hidden; position: relative; width: 100%; }
 				.ticker-track {
 					display: inline-flex;
 					white-space: nowrap;
 					animation: ticker-scroll 60s linear infinite;
 					will-change: transform;
 				}
-				.ticker-track:hover {
-					animation-play-state: paused;
+				.ticker-track:hover { animation-play-state: paused; }
+				.ticker-item { display: inline-block; padding-right: 100px; }
+
+				/* Quick links panel */
+				.ql-panel {
+					position: absolute;
+					top: calc(100% + 10px);
+					right: 0;
+					width: 280px;
+					background: #fff;
+					border-radius: 16px;
+					border: 1px solid rgba(30,58,138,0.1);
+					box-shadow: 0 20px 60px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.06);
+					overflow: hidden;
+					z-index: 100;
+					transform-origin: top right;
+					transform: scale(0.92) translateY(-8px);
+					opacity: 0;
+					pointer-events: none;
+					transition: transform 0.22s cubic-bezier(0.34,1.56,0.64,1), opacity 0.18s ease;
 				}
-				.ticker-item {
-					display: inline-block;
-					padding-right: 100px;
+				.ql-panel.open {
+					transform: scale(1) translateY(0);
+					opacity: 1;
+					pointer-events: all;
+				}
+				.ql-panel-header {
+					background: #1e3a8a;
+					padding: 14px 18px;
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+				}
+				.ql-panel-header h3 {
+					color: #fff;
+					font-size: 13px;
+					font-weight: 600;
+					letter-spacing: 0.06em;
+					text-transform: uppercase;
+					margin: 0;
+				}
+				.ql-grid {
+					display: grid;
+					grid-template-columns: 1fr 1fr 1fr;
+					gap: 0;
+				}
+				.ql-item {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					gap: 8px;
+					padding: 16px 10px 14px;
+					text-decoration: none;
+					border-right: 0.5px solid #f0f0f0;
+					border-bottom: 0.5px solid #f0f0f0;
+					transition: background 0.15s;
+					position: relative;
+				}
+				.ql-item:nth-child(3n) { border-right: none; }
+				.ql-item:nth-last-child(-n+3) { border-bottom: none; }
+				.ql-item:hover { background: #f8faff; }
+				.ql-icon {
+					width: 44px;
+					height: 44px;
+					border-radius: 12px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					transition: transform 0.15s;
+				}
+				.ql-item:hover .ql-icon { transform: translateY(-2px); }
+				.ql-label {
+					font-size: 10.5px;
+					font-weight: 600;
+					text-align: center;
+					line-height: 1.3;
+					color: #374151;
+				}
+
+				/* Quick Links trigger button */
+				.ql-trigger {
+					display: flex;
+					align-items: center;
+					gap: 8px;
+					padding: 8px 14px;
+					background: rgba(255,255,255,0.1);
+					border: 1px solid rgba(255,255,255,0.2);
+					border-radius: 10px;
+					color: #fff;
+					font-size: 13px;
+					font-weight: 500;
+					cursor: pointer;
+					transition: background 0.15s, border-color 0.15s;
+					position: relative;
+				}
+				.ql-trigger:hover { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.35); }
+				.ql-trigger.active { background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.4); }
+				.ql-trigger-dots {
+					display: flex;
+					flex-direction: column;
+					gap: 3.5px;
+				}
+				.ql-trigger-dots span {
+					display: block;
+					width: 18px;
+					height: 2px;
+					background: #fff;
+					border-radius: 2px;
+					transition: width 0.2s;
+				}
+				.ql-trigger.active .ql-trigger-dots span:nth-child(1) { width: 14px; }
+				.ql-trigger.active .ql-trigger-dots span:nth-child(3) { width: 14px; }
+
+				/* Social icons */
+				.social-icon {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					width: 34px;
+					height: 34px;
+					border-radius: 8px;
+					color: #1e3a8a;
+					background: #EFF6FF;
+					border: 1px solid #BFDBFE;
+					transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.15s;
+					text-decoration: none;
+					flex-shrink: 0;
+				}
+				.social-icon:hover {
+					background: #1e3a8a;
+					color: #fff;
+					border-color: #1e3a8a;
+					transform: translateY(-2px);
+				}
+
+				/* Mobile menu improvements */
+				.mobile-nav-item {
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+					width: 100%;
+					padding: 11px 12px;
+					border-radius: 8px;
+					color: #374151;
+					font-size: 14px;
+					font-weight: 500;
+					background: none;
+					border: none;
+					cursor: pointer;
+					transition: background 0.15s, color 0.15s;
+					text-align: left;
+				}
+				.mobile-nav-item:hover, .mobile-nav-item:active {
+					background: #EFF6FF;
+					color: #1e3a8a;
+				}
+				.mobile-nav-sub-item {
+					display: block;
+					padding: 9px 12px;
+					border-radius: 8px;
+					color: #6B7280;
+					font-size: 13px;
+					text-decoration: none;
+					transition: background 0.15s, color 0.15s;
+				}
+				.mobile-nav-sub-item:hover {
+					background: #EFF6FF;
+					color: #1e3a8a;
 				}
 			`}</style>
 
-			<nav
-				className={`fixed top-0 left-0 right-0 w-full z-30 transition-all duration-300 ${
-					isScrolled ? 'shadow-lg' : ''
-				}`}
-			>
-				{/* ── TOP ANNOUNCEMENT TICKER ONLY ── */}
+			{/* Fixed nav */}
+			<nav className={`fixed top-0 left-0 right-0 w-full z-30 transition-all duration-300 ${isScrolled ? 'shadow-lg' : ''}`}>
+
+				{/* ── TOP ANNOUNCEMENT TICKER ── */}
 				<div className="bg-[#1e3a8a] text-white">
 					<div className="max-w-full mx-auto px-4 lg:px-16">
 						<div className="flex items-center h-10 sm:h-12 gap-3 overflow-hidden">
-							<span className="bg-white text-[#B8860B] font-bold text-sm sm:text-base px-3 py-1 rounded flex-shrink-0 uppercase tracking-wide">
-								📣 News / Announcement
+							<span className="bg-white text-[#B8860B] font-bold text-sm px-3 py-1 rounded flex-shrink-0 uppercase tracking-wide">
+								📣 News
 							</span>
 							<div className="ticker-container flex-1">
 								<div className="ticker-track">
-									<span className="ticker-item text-sm sm:text-base lg:text-lg font-semibold text-white">
-										{tickerText}
-									</span>
-									<span className="ticker-item text-sm sm:text-base lg:text-lg font-semibold text-white">
-										{tickerText}
-									</span>
+									<span className="ticker-item text-sm lg:text-base font-semibold text-white">{tickerText}</span>
+									<span className="ticker-item text-sm lg:text-base font-semibold text-white">{tickerText}</span>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 
-				{/* ── MIDDLE SECTION — Logo (50%) + 9 Capsules (50%) ── */}
-				<div className="bg-white">
+				{/* ── MIDDLE — Logo + Social Icons + Quick Links trigger ── */}
+				<div className="bg-white border-b border-gray-100">
 					<div className="max-w-full mx-auto px-4 sm:px-6 lg:px-16">
-						<div className="flex items-center justify-between py-1.5 sm:py-3 gap-2">
-							{/* LEFT HALF — Logo */}
-							<div className="w-3/4 sm:w-1/2 flex items-center">
-								<Link to="/" onClick={handleLogoClick} className="flex items-center">
+						<div className="flex items-center justify-between py-2 sm:py-3 gap-4">
+
+							{/* Logo */}
+							<div className="flex items-center flex-shrink-0">
+								<Link to="/" onClick={handleLogoClick}>
 									<img
 										src={logo}
-										className="
-											w-full max-w-[260px] sm:max-w-[800px]
-											h-auto 
-											object-contain 
-											block
-										"
+										className="w-full max-w-[200px] sm:max-w-[420px] h-auto object-contain block"
+										alt="Tilak College Logo"
 									/>
 								</Link>
 							</div>
 
-							{/* RIGHT HALF — 9 Capsule Buttons (3×3 grid), hidden on mobile */}
-							<div className="hidden lg:grid w-1/2 grid-cols-3 gap-2">
-								{capsuleButtons.map((btn) => (
-									<Link
-										key={btn.label}
-										to={btn.href}
-										className={`
-											text-center text-white text-sm font-semibold hover:text-white
-											px-1 py-3 rounded-full transition-all duration-200
-											hover:scale-105 hover:shadow-md whitespace-nowrap
-											${btn.color === 'gold' ? 'bg-[#B8860B] hover:bg-[#A0750A]' : 'bg-[#4F46E5] hover:bg-[#4338CA]'}
-										`}
-									>
-										{btn.label}
-									</Link>
-								))}
-							</div>
+							{/* Right side */}
+							<div className="flex items-center gap-4">
 
-							{/* Mobile Menu Button */}
-							<button
-								onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-								className="lg:hidden p-2 rounded-lg bg-[#1e3a8a] hover:bg-[#1e40af] transition-colors"
-							>
-								{isMobileMenuOpen ? (
-									<X className="w-6 h-6 text-white" />
-								) : (
-									<Menu className="w-6 h-6 text-white" />
-								)}
-							</button>
+								{/* Social Icons — desktop only */}
+								<div className="hidden lg:flex items-center gap-2">
+									{socialLinks.map((s) => (
+										<a
+											key={s.label}
+											href={s.href}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="social-icon"
+											title={s.label}
+										>
+											{s.icon}
+										</a>
+									))}
+								</div>
+
+								{/* Divider */}
+								<div className="hidden lg:block w-px h-8 bg-gray-200" />
+
+								{/* Quick Links trigger — desktop only */}
+								<div className="hidden lg:block relative">
+									<button
+										ref={triggerRef}
+										onClick={() => setIsQuickLinksOpen((p) => !p)}
+										className={`ql-trigger ${isQuickLinksOpen ? 'active' : ''}`}
+										style={{ background: '#1e3a8a' }}
+									>
+										<div className="ql-trigger-dots">
+											<span />
+											<span />
+											<span />
+										</div>
+										<span>Quick Links</span>
+									</button>
+
+									{/* Floating panel */}
+									<div ref={panelRef} className={`ql-panel ${isQuickLinksOpen ? 'open' : ''}`}>
+										<div className="ql-panel-header">
+											<h3>Quick Links</h3>
+											<button
+												onClick={() => setIsQuickLinksOpen(false)}
+												style={{ background: 'rgba(255,255,255,0.15)', border: 'none', borderRadius: '6px', width: '24px', height: '24px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '14px' }}
+											>
+												✕
+											</button>
+										</div>
+										<div className="ql-grid">
+											{quickLinks.map((ql) => (
+												<Link
+													key={ql.label}
+													to={ql.href}
+													className="ql-item"
+													onClick={() => setIsQuickLinksOpen(false)}
+												>
+													<div className="ql-icon" style={{ background: ql.bg, color: ql.color }}>
+														{ql.icon}
+													</div>
+													<span className="ql-label">{ql.label}</span>
+												</Link>
+											))}
+										</div>
+									</div>
+								</div>
+
+								{/* Mobile hamburger */}
+								<button
+									onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+									className="lg:hidden p-2 mr-4 rounded-lg bg-[#1e3a8a] hover:bg-[#1e40af] transition-colors"
+									aria-label="Toggle menu"
+								>
+									{isMobileMenuOpen ? <X className="w-6 h-6 text-white" /> : <Menu className="w-6 h-6 text-white" />}
+								</button>
+							</div>
 						</div>
 					</div>
 				</div>
 
-				{/* ── BOTTOM NAVIGATION BAR ── */}
-				<div className="bg-[#1e3a8a]">
+				{/* ── BOTTOM NAV BAR — desktop only ── */}
+				<div className="hidden lg:block bg-[#1e3a8a]">
 					<div className="max-w-full mx-auto px-4 sm:px-6 lg:px-16">
-						<div className="hidden lg:flex items-center justify-between">
+						<div className="flex items-center justify-between">
 							{navLinks.map((link) => (
 								<div
 									key={link.label}
@@ -280,18 +621,18 @@ export default function Header() {
 								>
 									{link.hasDropdown ? (
 										<>
-											<button className="text-white hover:text-white hover:bg-[#2563eb] px-1 py-4 font-medium transition-colors flex items-center space-x-0 text-sm uppercase tracking-wide">
+											<button className="text-white hover:bg-[#2563eb] px-2 py-4 font-medium transition-colors flex items-center gap-0.5 text-xs uppercase tracking-wide">
 												<span>{link.label}</span>
-												<ChevronDown className="w-4 h-4" />
+												<ChevronDown className="w-3.5 h-3.5" />
 											</button>
 											{activeDropdown === link.label && (
-												<div className="absolute top-full left-0 pt-0 w-56 z-50">
-													<div className="bg-white text-black rounded-md shadow-lg py-2">
+												<div className="absolute top-full left-0 pt-0 w-52 z-50">
+													<div className="bg-white rounded-md shadow-lg py-2">
 														{link.dropdownItems?.map((item) => (
 															<Link
 																key={item.label}
 																to={item.href}
-																className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-[#1e3a8a] transition-colors"
+																className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-[#1e3a8a] transition-colors"
 															>
 																{item.label}
 															</Link>
@@ -303,7 +644,7 @@ export default function Header() {
 									) : (
 										<Link
 											to={link.href || '#'}
-											className="text-white hover:bg-[#2563eb] px-4 py-4 font-medium transition-colors block text-sm uppercase tracking-wide"
+											className="text-white hover:bg-[#2563eb] px-2 py-4 font-medium transition-colors block text-xs uppercase tracking-wide"
 										>
 											{link.label}
 										</Link>
@@ -316,71 +657,72 @@ export default function Header() {
 
 				{/* ── MOBILE MENU ── */}
 				{isMobileMenuOpen && (
-					<div className="lg:hidden bg-white border-t max-h-[calc(100vh-12rem)] overflow-y-auto shadow-lg">
-						{/* Mobile Ticker */}
-						<div className="px-4 py-2 bg-[#B8860B] overflow-hidden">
-							<div className="flex items-center gap-2">
-								<span className="bg-white text-[#B8860B] font-bold text-sm px-2 py-0.5 rounded flex-shrink-0 uppercase">
-									📣
-								</span>
-								<div className="ticker-container flex-1">
-									<div className="ticker-track">
-										<span className="ticker-item text-sm font-semibold text-white">
-											{tickerText}
-										</span>
-										<span className="ticker-item text-sm font-semibold text-white">
-											{tickerText}
-										</span>
-									</div>
-								</div>
+					<div className="lg:hidden bg-white border-t border-gray-100 max-h-[calc(100vh-108px)] overflow-y-clip">
+
+						{/* Mobile Quick Links grid */}
+						<div className="px-4 pt-4 pb-3 border-b border-gray-100 bg-gray-50">
+							<p className="text-[11px] font-semibold text-gray-400 uppercase tracking-widest mb-3">Quick Links</p>
+							<div className="grid grid-cols-3 gap-2">
+								{quickLinks.map((ql) => (
+									<Link
+										key={ql.label}
+										to={ql.href}
+										onClick={() => setIsMobileMenuOpen(false)}
+										className="flex flex-col items-center gap-1.5 p-2.5 rounded-xl bg-white border border-gray-100 active:bg-blue-50 transition-colors"
+									>
+										<div
+											className="w-9 h-9 rounded-xl flex items-center justify-center"
+											style={{ background: ql.bg, color: ql.color }}
+										>
+											{ql.icon}
+										</div>
+										<span className="text-[10px] font-semibold text-gray-600 text-center leading-tight">{ql.label}</span>
+									</Link>
+								))}
 							</div>
 						</div>
 
-						{/* Mobile Capsule Buttons — 3 column grid */}
-						<div className="px-4 py-3 bg-gray-50 border-b grid grid-cols-3 gap-2">
-							{capsuleButtons.map((btn) => (
-								<Link
-									key={btn.label}
-									to={btn.href}
-									onClick={() => setIsMobileMenuOpen(false)}
-									className={`
-										text-center text-white text-[10px] font-semibold
-										px-2 py-1.5 rounded-full transition-colors whitespace-nowrap
-										${btn.color === 'gold' ? 'bg-[#B8860B] hover:bg-[#A0750A]' : 'bg-[#4F46E5] hover:bg-[#4338CA]'}
-									`}
+						{/* Mobile Social Icons */}
+						<div className="px-4 py-3 border-b border-gray-100 bg-gray-50 flex items-center gap-2">
+							<span className="text-[11px] font-semibold text-gray-400 uppercase tracking-widest mr-1">Follow Us</span>
+							{socialLinks.map((s) => (
+								<a
+									key={s.label}
+									href={s.href}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="social-icon"
+									title={s.label}
 								>
-									{btn.label}
-								</Link>
+									{s.icon}
+								</a>
 							))}
 						</div>
 
-						{/* Mobile Navigation Links */}
-						<div className="px-4 py-4 space-y-2">
+						{/* Mobile Nav Links */}
+						<div className="px-3 py-3 space-y-0.5">
 							{navLinks.map((link) => (
 								<div key={link.label}>
 									{link.hasDropdown ? (
 										<div>
 											<button
-												onClick={() =>
-													setActiveDropdown(activeDropdown === link.label ? null : link.label)
-												}
-												className="w-full flex items-center justify-between py-2 text-gray-700 hover:text-[#1e3a8a] font-medium transition-colors"
+												onClick={() => setActiveDropdown(activeDropdown === link.label ? null : link.label)}
+												className="mobile-nav-item"
 											>
 												<span>{link.label}</span>
 												<ChevronDown
-													className={`w-4 h-4 transition-transform ${
-														activeDropdown === link.label ? 'rotate-180' : ''
-													}`}
+													className="w-4 h-4 transition-transform flex-shrink-0"
+													style={{ transform: activeDropdown === link.label ? 'rotate(180deg)' : 'rotate(0deg)' }}
 												/>
 											</button>
 											{activeDropdown === link.label && (
-												<div className="pl-4 space-y-1 mt-1">
+												<div className="pl-3 pt-0.5 pb-1 space-y-0.5">
 													{link.dropdownItems?.map((item) => (
 														<Link
 															key={item.label}
 															to={item.href}
 															onClick={() => setIsMobileMenuOpen(false)}
-															className="block py-2 text-sm text-gray-600 hover:text-[#1e3a8a] transition-colors"
+															className="mobile-nav-sub-item"
 														>
 															{item.label}
 														</Link>
@@ -392,7 +734,8 @@ export default function Header() {
 										<Link
 											to={link.href || '#'}
 											onClick={() => setIsMobileMenuOpen(false)}
-											className="block py-2 text-gray-700 hover:text-[#1e3a8a] font-medium transition-colors"
+											className="mobile-nav-item"
+											style={{ display: 'flex' }}
 										>
 											{link.label}
 										</Link>
@@ -403,9 +746,32 @@ export default function Header() {
 					</div>
 				)}
 			</nav>
+
+			{/*
+			  ── NAVBAR SPACER ──
+			  Add this right after <Header /> in your layout/page file.
+			  Adjust heights to match your actual rendered nav height:
+			    Desktop: ticker(48px) + logo row(72px) + nav bar(44px) = 164px
+			    Mobile:  ticker(48px) + logo row(60px) = 108px
+			*/}
+			{/* <div className="lg:h-[164px] h-[108px]" aria-hidden="true" /> */}
 		</>
 	);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // import React, { useState, useEffect } from 'react';
 // import { Menu, X, ChevronDown, Search } from 'lucide-react';

@@ -106,7 +106,7 @@ const QuickLinks: React.FC = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-10 to-blue-10 relative overflow-hidden">
+    <section className="py-12 bg-gradient-to-br from-gray-10 to-blue-10 relative overflow-hidden">
       {/* Decorative background */}
       {/* <div className="absolute top-0 right-0 w-96 h-96 bg-orange-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div> */}
@@ -122,7 +122,7 @@ const QuickLinks: React.FC = () => {
         >
           <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
             <span className="text-[#1e3a8a]">Quick </span>
-            <span className="text-[#B8860B]">Links</span>
+            <span className="text-[#1e3a8a] ">Links</span>
           </h2>
           {/* <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             Excellent is governed by a board comprising of eminent educationists and administrators.

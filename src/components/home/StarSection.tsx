@@ -163,7 +163,7 @@ const StarSection: React.FC = () => {
           transition={{ duration: 0.7 }}
           className="text-center mb-14"
         >
-          <h2 className="text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-blue-900 via-blue-600 to-blue-900 bg-clip-text text-transparent mb-3">
+          <h2 className="text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-blue-900 via-blue-900 to-blue-900 bg-clip-text text-transparent mb-3">
             GTC Stars
           </h2>
           <p className="text-lg text-gray-500 max-w-xl mx-auto">

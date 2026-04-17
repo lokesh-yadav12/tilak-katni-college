@@ -113,7 +113,7 @@ const HeroSection = () => {
   return (
     <div className="relative w-full">
       {/* Full Width Image Slider */}
-      <div className="relative h-[400px] md:h-[550px] lg:h-[700px] overflow-hidden mt-36">
+      <div className="relative h-[400px] md:h-[550px] lg:h-[700px] overflow-hidden mt-10 sm:mt-28">
         {/* Slider Container */}
         <div className="absolute inset-0">
           {slides.map((slide, index) => (

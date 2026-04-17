@@ -54,7 +54,7 @@ const [hoveredId, setHoveredId] = useState<string | null>(null);
         {/* Main Grid View */}
         <div className="mb-20">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-3" style={{ color: '#1e3a8a' }}>Quick Access</h2>
+            <h2 className="text-4xl font-bold mb-3" style={{ color: '#1e3a8a' }}>Quick Links</h2>
             <div className="w-24 h-1 mx-auto rounded-full" style={{ background: 'linear-gradient(to right, #1e3a8a, #B8860B)' }}></div>
             <p className="mt-3" style={{ color: '#1e3a8a' }}>Explore our educational resources</p>
           </div>

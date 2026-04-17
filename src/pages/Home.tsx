@@ -1,20 +1,22 @@
-import EventsSection from '@/components/home/EventsSection'
+//import EventsSection from '@/components/home/EventsSection'
 import HeroSection from '@/components/home/HeroSection'
 import StatsSection from '@/components/home/StatsSection'
 import React from 'react'
-import News from '@/components/home/News'
-import ImpLinks from '@/components/home/ImpLinks'
+//import News from '@/components/home/News'
+//import ImpLinks from '@/components/home/ImpLinks'
 import About from '@/components/home/About'
-import UniversitySongs from '@/components/home/UniversitySongs'
-import GalleryPreview from '@/components/home/GalleryPreview'
+// import UniversitySongs from '@/components/home/UniversitySongs'
+// import GalleryPreview from '@/components/home/GalleryPreview'
 import ChancellorNoticesSection from '@/components/home/ChancellorNoticesSection'
 import StarSection from '@/components/home/StarSection'
 import QuickLinks from '@/components/home/QuickLinks'
-import Mission from '@/components/home/Mission'
-import TestimonialCard from '@/components/home/TestimonialCard'
-import Testimonials from '@/components/home/Testimonials'
+import Mission from '@/components/home/Mission';
+// import TestimonialCard from '@/components/home/TestimonialCard'
+// import Testimonials from '@/components/home/Testimonials'
+import TestimonialsSection from '@/components/home/TestimonialsSection'
+import ImpLinks from '@/components/home/ImpLinks'
 //import ViceChancellorNoticesSection from '@/components/home/ViceChancellorNoticesSection'
-
+import EventsSection from '@/components/home/EventsSection'
 
 const Home = () => {
   return (
@@ -30,12 +32,13 @@ const Home = () => {
       <StarSection/>
       <QuickLinks/>
       <Mission/>
-      
-      <Testimonials/>
-    {/* <EventsSection /> */}
+      <TestimonialsSection />
+        <ImpLinks/>
+      {/* <Testimonials/> */}
+    <EventsSection />
       {/* <News/>
 
-      <ImpLinks/>
+    
       <UniversitySongs/>
 
       <GalleryPreview/> */}
@@ -54,7 +57,7 @@ const Home = () => {
       {/* <AdmissionEnquiry/> */}
       {/* <CampusLife />
       <Upcomingevents/>
-      <TestimonialsSection />
+      
       <CTASection /> */}
     </div>
   )
