@@ -60,9 +60,9 @@ const tabs: TabItem[] = [
 ];
 
 const tabIcons: Record<Tab, React.ReactNode> = {
-  about: <span>🎓</span>,
-  mission: <span>🚀</span>,
-  vision: <span>👁️</span>,
+  about: <span></span>,
+  mission: <span></span>,
+  vision: <span></span>,
 };
 
 export default function AboutSection() {
