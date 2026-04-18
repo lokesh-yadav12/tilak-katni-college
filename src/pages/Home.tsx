@@ -14,7 +14,7 @@ import Mission from '@/components/home/Mission';
 // import TestimonialCard from '@/components/home/TestimonialCard'
 // import Testimonials from '@/components/home/Testimonials'
 import TestimonialsSection from '@/components/home/TestimonialsSection'
-import ImpLinks from '@/components/home/ImpLinks'
+//import ImpLinks from '@/components/home/ImpLinks'
 //import ViceChancellorNoticesSection from '@/components/home/ViceChancellorNoticesSection'
 import EventsSection from '@/components/home/EventsSection'
 
@@ -33,7 +33,7 @@ const Home = () => {
       <QuickLinks/>
       <Mission/>
       <TestimonialsSection />
-        <ImpLinks/>
+        {/* <ImpLinks/> */}
       {/* <Testimonials/> */}
     <EventsSection />
       {/* <News/>

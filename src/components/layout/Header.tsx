@@ -551,7 +551,7 @@ export default function Header() {
 								<div className="hidden lg:block w-px h-8 bg-gray-200" />
 
 								{/* Quick Links trigger — desktop only */}
-								<div className="hidden lg:block relative">
+								{/* <div className="hidden lg:block relative">
 									<button
 										ref={triggerRef}
 										onClick={() => setIsQuickLinksOpen((p) => !p)}
@@ -566,7 +566,7 @@ export default function Header() {
 										<span>Quick Links</span>
 									</button>
 
-									{/* Floating panel */}
+									
 									<div ref={panelRef} className={`ql-panel ${isQuickLinksOpen ? 'open' : ''}`}>
 										<div className="ql-panel-header">
 											<h3>Quick Links</h3>
@@ -593,7 +593,7 @@ export default function Header() {
 											))}
 										</div>
 									</div>
-								</div>
+								</div> */}
 
 								{/* Mobile hamburger */}
 								<button
@@ -660,7 +660,7 @@ export default function Header() {
 					<div className="lg:hidden bg-white border-t border-gray-100 max-h-[calc(100vh-108px)] overflow-y-clip">
 
 						{/* Mobile Quick Links grid */}
-						<div className="px-4 pt-4 pb-3 border-b border-gray-100 bg-gray-50">
+						{/* <div className="px-4 pt-4 pb-3 border-b border-gray-100 bg-gray-50">
 							<p className="text-[11px] font-semibold text-gray-400 uppercase tracking-widest mb-3">Quick Links</p>
 							<div className="grid grid-cols-3 gap-2">
 								{quickLinks.map((ql) => (
@@ -680,7 +680,7 @@ export default function Header() {
 									</Link>
 								))}
 							</div>
-						</div>
+						</div> */}
 
 						{/* Mobile Social Icons */}
 						<div className="px-4 py-3 border-b border-gray-100 bg-gray-50 flex items-center gap-2">

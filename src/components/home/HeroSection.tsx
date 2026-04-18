@@ -13,7 +13,7 @@ import img10 from "../../assets/bhoj9.jpg"
 import img11 from "../../assets/bhoj10.jpg"
 import img12 from "../../assets/bhoj11.jpeg"
 import img13 from "../../assets/bhoj12.jpeg"
-import vc from "../../assets/vc.jpg"
+//import vc from "../../assets/vc.jpg"
 
 
 interface Slide {
