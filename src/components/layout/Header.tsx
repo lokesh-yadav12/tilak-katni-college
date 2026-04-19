@@ -2,13 +2,84 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/tilaklogo1.png';
-
-interface NavLink {
+export interface NavLink {
 	label: string;
 	href?: string;
 	hasDropdown?: boolean;
-	dropdownItems?: { label: string; href: string }[];
+	dropdownItems?: NavLink[];
+	subItems?: NavLink[];
 }
+
+// Add this component ABOVE your Header function
+const DropdownItem = ({ item, level = 0 }: { item: NavLink; level?: number }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <div
+      className="relative"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <Link
+        to={item.href || '#'}
+        className="flex items-center justify-between px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-[#1e3a8a] transition-colors gap-4"
+        style={{ whiteSpace: level === 0 ? 'nowrap' : 'normal' }}
+      >
+        {item.label}
+        {item.subItems && item.subItems.length > 0 && (
+          <ChevronDown className="w-3 h-3 -rotate-90 flex-shrink-0 text-gray-400" />
+        )}
+      </Link>
+
+      {isHovered && item.subItems && item.subItems.length > 0 && (
+        <>
+          {/* Invisible bridge to fill the gap */}
+          <div className="absolute top-0 left-full w-2 h-full z-40" />
+
+          <div
+            className="absolute top-0 left-full ml-2 bg-white rounded-md shadow-lg py-2 z-50"
+            style={{ minWidth: '220px', maxWidth: '320px', width: 'max-content' }}
+          >
+            {item.subItems.map((sub) => (
+              <DropdownItem key={sub.label} item={sub} level={level + 1} />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+};
+
+// const DropdownItem = ({ item, level = 0 }: { item: NavLink; level?: number }) => {
+// 	const [isHovered, setIsHovered] = useState(false);
+
+// 	return (
+// 		<div className="relative" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+// 			<Link
+// 				to={item.href || '#'}
+// 				className="flex items-center justify-between px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-[#1e3a8a] transition-colors whitespace-nowrap gap-4"
+// 			>
+// 				{item.label}
+// 				{item.subItems && item.subItems.length > 0 && (
+// 					<ChevronDown className="w-3 h-3 -rotate-90 flex-shrink-0 text-gray-400" />
+// 				)}
+// 			</Link>
+
+// 			{isHovered && item.subItems && item.subItems.length > 0 && (
+// 				<>
+// 					{/* Invisible bridge to fill the gap so mouse doesn't leave */}
+// 					<div className="absolute top-0 left-full w-2 h-full z-40" />
+
+// 					<div className="absolute top-0 left-full ml-2 bg-white rounded-md shadow-lg py-2 z-50 min-w-[200px]">
+// 						{item.subItems.map((sub) => (
+// 							<DropdownItem key={sub.label} item={sub} level={level + 1} />
+// 						))}
+// 					</div>
+// 				</>
+// 			)}
+// 		</div>
+// 	);
+// };
 
 const navLinks: NavLink[] = [
 	{ label: 'Home', href: '/', hasDropdown: false },
@@ -16,78 +87,267 @@ const navLinks: NavLink[] = [
 		label: 'College',
 		hasDropdown: true,
 		dropdownItems: [
-			{ label: 'Overview', href: '/about' },
 			{ label: 'Mission & Vision', href: '/vision-mission' },
-			{ label: 'Values', href: '/values' },
-			{ label: 'Accreditations', href: '/about/accreditations' },
+			{ label: 'Academic Calendar', href: '/academic-calendar' },
+			{ label: 'Stars', href: '/stars' },
+			{ label: 'Library', href: '/library' },
+			{ label: 'GTC at a Glance', href: '/gtc-at-a-glance' },
+			{ label: 'IQAC', href: '/iqac' },
 		],
 	},
+
 	{
 		label: 'Programmes',
 		hasDropdown: true,
 		dropdownItems: [
-			{ label: 'Programs', href: '/academics' },
-			{ label: 'Departments', href: '/academics/departments' },
-			{ label: 'Faculty', href: '/academics/faculty' },
-			{ label: 'Academic Calendar', href: '/academics/calendar' },
+			{
+				label: 'UG',
+				href: '/programmes/ug',
+				subItems: [
+					{
+						label: 'Bachelor of Science (B.Sc.)',
+						href: '/programmes/ug/bsc',
+						subItems: [
+							{ label: 'CBZ', href: '/programmes/ug/bsc/cbz' },
+							{ label: 'Plain', href: '/programmes/ug/bsc/plain' },
+							
+						],
+					},
+					{
+						label: 'Bachelor of Commerce (B.Com)',
+						href: '/programmes/ug/bcom',
+						// subItems: [
+						// 	{ label: 'Plain', href: '/programmes/ug/bcom/plain' },
+						// 	{ label: 'Computer Applications', href: '/programmes/ug/bcom/ca' },
+						// ],
+					},
+					{
+						label: 'Bachelor of Arts (B.A.)',
+						href: '/programmes/ug/ba',
+						// subItems: [
+						// 	{ label: 'History', href: '/programmes/ug/ba/history' },
+						// 	{ label: 'Economics', href: '/programmes/ug/ba/economics' },
+						// ],
+					},
+				],
+			},
+			{
+				label: 'PG',
+				href: '/programmes/pg',
+				subItems: [
+					{
+						label: 'Master of Science (M.Sc.)',
+						href: '/programmes/pg/msc',
+						subItems: [
+							{ label: 'Mathematics', href: '/programmes/pg/msc/mathematics' },
+							{ label: 'Physics', href: '/programmes/pg/msc/physics' },
+							{ label: 'Chemistry', href: '/programmes/pg/msc/chemistry' },
+							{ label: 'Botany', href: '/programmes/pg/msc/botany' },
+							{ label: 'Zoology', href: '/programmes/pg/msc/zoology' },
+						],
+					},
+					{
+						label: 'Master of Commerce (M.Com)',
+						href: '/programmes/pg/mcom',
+						subItems: [
+							{ label: 'Commerce', href: '/programmes/pg/mcom/commerce' },
+							// { label: 'Finance', href: '/programmes/pg/mcom/finance' },
+						],
+					},
+					{
+						label: 'Master of Arts (M.A.)',
+						href: '/programmes/pg/ma',
+						subItems: [
+							{ label: 'Sociology', href: '/programmes/pg/ma/sociology' },
+							{ label: 'Hindi', href: '/programmes/pg/ma/hindi' },
+							{ label: 'English', href: '/programmes/pg/ma/english' },
+							{ label: 'Political Science', href: '/programmes/pg/ma/political-science' },
+							{ label: 'Economics', href: '/programmes/pg/ma/economics' },
+							{ label: 'Geography', href: '/programmes/pg/ma/geography' },
+						],
+					},
+				],
+			},
 		],
 	},
+
 	{
 		label: 'Department',
 		hasDropdown: true,
 		dropdownItems: [
-			{ label: 'Exam Schedule', href: '/examinations/schedule' },
-			{ label: 'Results', href: '/examinations/results' },
-			{ label: 'Exam Guidelines', href: '/examinations/guidelines' },
+			{
+				label: 'Faculty of Arts',
+				href: '/department/arts',
+				subItems: [
+					{
+						label: 'Department of Sanskrit',
+						href: '/department/arts/sanskrit',
+						
+					},
+					{
+						label: 'Department of Physical Education & sports',
+						href: '/department/arts/physical-education',
+						
+					},
+					{
+						label: 'Department of English',
+						href: '/department/arts/english',
+						
+					},
+					{
+						label: 'Department of Sociology',
+						href: '/department/arts/sociology',
+					},
+					{
+						label: 'Department of Geography',
+						href: '/department/arts/geography',
+						
+					},
+					{
+						label: 'Department of Political Science',
+						href: '/department/arts/political-science',
+						
+					},
+					{
+						label: 'Department of History',
+						href: '/department/arts/history',
+						
+					},
+					{
+						label: 'Department of Hindi',
+						href: '/department/arts/hindi',
+						
+					},
+					{
+						label: 'Department of Economics',
+						href: '/department/arts/economics',
+						
+					},
+				],
+			},
+
+			{
+				label: 'Faculty of Science',
+				href: '/department/science',
+				subItems: [
+					{
+						label: 'Department of computer science',
+						href: '/department/science/computer-science',
+						
+					},
+					{
+						label: 'Department of Biotechnology',
+						href: '/department/science/biotechnology',
+						
+					},
+					{
+						label: 'Department of Geology',
+						href: '/department/science/geology',
+						
+					},
+					{
+						label: 'Department of physics',
+						href: '/department/science/physics',
+					},
+					{
+						label: 'Department of Mathematics',
+						href: '/department/science/mathematics',
+						
+					},
+					{
+						label: 'Department of Chemistry',
+						href: '/department/science/chemistry',
+						
+					},
+					{
+						label: 'Department of Botany',
+						href: '/department/science/botany',
+						
+					},
+					{
+						label: 'Department of Zoology',
+						href: '/department/science/zoology',
+						
+					},
+					
+				],
+			},
+
+			{
+				label: 'Faculty of Commerce',
+				href: '/department/commerce',
+				subItems: [
+					{
+						label: 'Department of computer Applications',
+						href: '/department/commerce/computer-applications',
+						
+					},
+					{
+						label: 'Department of Commerce',
+						href: '/department/commerce/commerce',
+						
+					},
+					
+					
+				],
+			},
 		],
 	},
+
 	{
 		label: 'Support Services',
 		hasDropdown: true,
 		dropdownItems: [
-			{ label: 'Research Projects', href: '/research/projects' },
-			{ label: 'Publications', href: '/research/publications' },
-			{ label: 'Innovation', href: '/research/innovation' },
+			{ label: 'Swami Vivekananda career Guidance cell', href: '/support/career-guidance' },
+			{ label: 'Club', href: '/support/club' },
+			{ label: 'Hostel', href: '/support/hostel' },
+			
 		],
 	},
-	{ label: 'Staff', href: '/careers' },
-	{ label: 'Research', href: '/careers' },
+	{ label: 'Staff', href: '/staff' },
+	{ label: 'Research', href: '/research' },
 	{
 		label: 'Committee',
 		hasDropdown: true,
 		dropdownItems: [
-			{ label: 'Research Centers', href: '/research-section/centers' },
-			{ label: 'PhD Programs', href: '/research-section/phd' },
-			{ label: 'Collaborations', href: '/research-section/collaborations' },
+			{ label: 'Entrepreneurship Development committee', href: '/committee/entrepreneurship' },
+			{ label: 'Grievance redressal cell', href: '/committee/grievance' },
+			{ label: 'Planning Committee', href: '/committee/planning' },
+			{ label: 'Internal complaint committee', href: '/committee/internal-complaint' },
+			{ label: 'statutory committee', href: '/committee/statutory' },
+			{ label: 'Anti ragging committee', href: '/committee/anti-ragging' },
 		],
 	},
 	{
 		label: 'Curriculum Activity',
 		hasDropdown: true,
 		dropdownItems: [
-			{ label: 'Admission Form', href: '/admission-form' },
-			{ label: 'Admission Process', href: '/admission/process' },
-			{ label: 'Eligibility', href: '/admission/eligibility' },
-			{ label: 'Fee Structure', href: '/admission/fees' },
+			{ label: 'NSS', href: '/activity/nss' },
+			{ label: 'Sports ', href: '/activity/sports' },
+			{ label: 'NCC', href: '/activity/ncc' },
+		
 		],
 	},
 	{
 		label: 'Study Center',
 		hasDropdown: true,
 		dropdownItems: [
-			{ label: 'Admission Form', href: '/admission-form' },
-			{ label: 'Admission Process', href: '/admission/process' },
+			{ label: 'BHOJ', href: '/study-center/bhoj' },
+			{ label: 'IGNOU', href: '/study-center/ignou' },
+			
 		],
 	},
 	{
 		label: 'Gallery',
 		hasDropdown: true,
 		dropdownItems: [
-			{ label: 'Photos', href: '/gallery/photos' },
-			{ label: 'Videos', href: '/gallery/videos' },
+			{ label: 'Photo Gallery', href: '/gallery/photos' },
+			{ label: 'Media Gallery', href: '/gallery/media' },
+			{ label: 'Video Gallery', href: '/gallery/videos' },
+
 		],
 	},
-	{ label: 'Student Corner', href: '/careers' },
+	{ label: 'Student Corner', href: '/student-corner' },
 ];
 
 const announcements = [
@@ -100,129 +360,129 @@ const announcements = [
 	'🎉 Annual Cultural Fest "Utsav 2025" — 15th to 17th May',
 ];
 
-const quickLinks: {
-	label: string;
-	href: string;
-	icon: React.ReactNode;
-	color: string;
-	bg: string;
-}[] = [
-	{
-		label: 'World Bank',
-		href: '/world-bank',
-		color: '#1e3a8a',
-		bg: '#EFF6FF',
-		icon: (
-			<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8">
-				<circle cx="12" cy="12" r="10" />
-				<line x1="2" y1="12" x2="22" y2="12" />
-				<path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z" />
-			</svg>
-		),
-	},
-	{
-		label: 'RTI',
-		href: '/rti',
-		color: '#7C3AED',
-		bg: '#F3EFFE',
-		icon: (
-			<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8">
-				<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-				<polyline points="14 2 14 8 20 8" />
-				<line x1="9" y1="13" x2="15" y2="13" />
-				<line x1="9" y1="17" x2="15" y2="17" />
-			</svg>
-		),
-	},
-	{
-		label: 'AISE Portal',
-		href: '/aise-portal',
-		color: '#B45309',
-		bg: '#FFFBEB',
-		icon: (
-			<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8">
-				<rect x="2" y="3" width="20" height="14" rx="2" />
-				<line x1="8" y1="21" x2="16" y2="21" />
-				<line x1="12" y1="17" x2="12" y2="21" />
-			</svg>
-		),
-	},
-	{
-		label: 'Janbhagidari',
-		href: '/janbhagidari',
-		color: '#065F46',
-		bg: '#ECFDF5',
-		icon: (
-			<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8">
-				<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-				<circle cx="9" cy="7" r="4" />
-				<path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-				<path d="M16 3.13a4 4 0 0 1 0 7.75" />
-			</svg>
-		),
-	},
-	{
-		label: 'Tender',
-		href: '/tender',
-		color: '#9D174D',
-		bg: '#FDF2F8',
-		icon: (
-			<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8">
-				<polyline points="9 11 12 14 22 4" />
-				<path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
-			</svg>
-		),
-	},
-	{
-		label: 'Recruitment',
-		href: '/recruitment',
-		color: '#1D4ED8',
-		bg: '#EFF6FF',
-		icon: (
-			<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8">
-				<rect x="2" y="7" width="20" height="14" rx="2" />
-				<path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
-				<line x1="12" y1="12" x2="12" y2="16" />
-				<line x1="10" y1="14" x2="14" y2="14" />
-			</svg>
-		),
-	},
-	{
-		label: 'Scholarships',
-		href: '/scholarships',
-		color: '#B45309',
-		bg: '#FFFBEB',
-		icon: (
-			<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8">
-				<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-			</svg>
-		),
-	},
-	{
-		label: 'Alumni',
-		href: '/alumni',
-		color: '#065F46',
-		bg: '#ECFDF5',
-		icon: (
-			<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8">
-				<path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-				<path d="M6 12v5c3 3 9 3 12 0v-5" />
-			</svg>
-		),
-	},
-	{
-		label: 'MOUs',
-		href: '/mous',
-		color: '#7C3AED',
-		bg: '#F3EFFE',
-		icon: (
-			<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8">
-				<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
-				<path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
-			</svg>
-		),
-	},
-];
+// const quickLinks: {
+// 	label: string;
+// 	href: string;
+// 	icon: React.ReactNode;
+// 	color: string;
+// 	bg: string;
+// }[] = [
+// 	{
+// 		label: 'World Bank',
+// 		href: '/world-bank',
+// 		color: '#1e3a8a',
+// 		bg: '#EFF6FF',
+// 		icon: (
+// 			<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8">
+// 				<circle cx="12" cy="12" r="10" />
+// 				<line x1="2" y1="12" x2="22" y2="12" />
+// 				<path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z" />
+// 			</svg>
+// 		),
+// 	},
+// 	{
+// 		label: 'RTI',
+// 		href: '/rti',
+// 		color: '#7C3AED',
+// 		bg: '#F3EFFE',
+// 		icon: (
+// 			<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8">
+// 				<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+// 				<polyline points="14 2 14 8 20 8" />
+// 				<line x1="9" y1="13" x2="15" y2="13" />
+// 				<line x1="9" y1="17" x2="15" y2="17" />
+// 			</svg>
+// 		),
+// 	},
+// 	{
+// 		label: 'AISE Portal',
+// 		href: '/aise-portal',
+// 		color: '#B45309',
+// 		bg: '#FFFBEB',
+// 		icon: (
+// 			<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8">
+// 				<rect x="2" y="3" width="20" height="14" rx="2" />
+// 				<line x1="8" y1="21" x2="16" y2="21" />
+// 				<line x1="12" y1="17" x2="12" y2="21" />
+// 			</svg>
+// 		),
+// 	},
+// 	{
+// 		label: 'Janbhagidari',
+// 		href: '/janbhagidari',
+// 		color: '#065F46',
+// 		bg: '#ECFDF5',
+// 		icon: (
+// 			<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8">
+// 				<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+// 				<circle cx="9" cy="7" r="4" />
+// 				<path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+// 				<path d="M16 3.13a4 4 0 0 1 0 7.75" />
+// 			</svg>
+// 		),
+// 	},
+// 	{
+// 		label: 'Tender',
+// 		href: '/tender',
+// 		color: '#9D174D',
+// 		bg: '#FDF2F8',
+// 		icon: (
+// 			<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8">
+// 				<polyline points="9 11 12 14 22 4" />
+// 				<path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+// 			</svg>
+// 		),
+// 	},
+// 	{
+// 		label: 'Recruitment',
+// 		href: '/recruitment',
+// 		color: '#1D4ED8',
+// 		bg: '#EFF6FF',
+// 		icon: (
+// 			<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8">
+// 				<rect x="2" y="7" width="20" height="14" rx="2" />
+// 				<path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+// 				<line x1="12" y1="12" x2="12" y2="16" />
+// 				<line x1="10" y1="14" x2="14" y2="14" />
+// 			</svg>
+// 		),
+// 	},
+// 	{
+// 		label: 'Scholarships',
+// 		href: '/scholarships',
+// 		color: '#B45309',
+// 		bg: '#FFFBEB',
+// 		icon: (
+// 			<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8">
+// 				<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+// 			</svg>
+// 		),
+// 	},
+// 	{
+// 		label: 'Alumni',
+// 		href: '/alumni',
+// 		color: '#065F46',
+// 		bg: '#ECFDF5',
+// 		icon: (
+// 			<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8">
+// 				<path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+// 				<path d="M6 12v5c3 3 9 3 12 0v-5" />
+// 			</svg>
+// 		),
+// 	},
+// 	{
+// 		label: 'MOUs',
+// 		href: '/mous',
+// 		color: '#7C3AED',
+// 		bg: '#F3EFFE',
+// 		icon: (
+// 			<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8">
+// 				<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+// 				<path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+// 			</svg>
+// 		),
+// 	},
+// ];
 
 // Social media links
 const socialLinks = [
@@ -251,7 +511,13 @@ const socialLinks = [
 		href: 'https://twitter.com',
 		icon: (
 			<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-				<path d="M4 4l16 16M4 20L20 4" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" fill="none"/>
+				<path
+					d="M4 4l16 16M4 20L20 4"
+					stroke="currentColor"
+					strokeWidth="2.2"
+					strokeLinecap="round"
+					fill="none"
+				/>
 			</svg>
 		),
 	},
@@ -259,7 +525,16 @@ const socialLinks = [
 		label: 'Instagram',
 		href: 'https://instagram.com',
 		icon: (
-			<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+			<svg
+				viewBox="0 0 24 24"
+				width="18"
+				height="18"
+				fill="none"
+				stroke="currentColor"
+				strokeWidth="2"
+				strokeLinecap="round"
+				strokeLinejoin="round"
+			>
 				<rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
 				<path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
 				<line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
@@ -493,8 +768,9 @@ export default function Header() {
 			`}</style>
 
 			{/* Fixed nav */}
-			<nav className={`fixed top-0 left-0 right-0 w-full z-30 transition-all duration-300 ${isScrolled ? 'shadow-lg' : ''}`}>
-
+			<nav
+				className={`fixed top-0 left-0 right-0 w-full z-30 transition-all duration-300 ${isScrolled ? 'shadow-lg' : ''}`}
+			>
 				{/* ── TOP ANNOUNCEMENT TICKER ── */}
 				<div className="bg-[#1e3a8a] text-white">
 					<div className="max-w-full mx-auto px-4 lg:px-16">
@@ -504,8 +780,12 @@ export default function Header() {
 							</span>
 							<div className="ticker-container flex-1">
 								<div className="ticker-track">
-									<span className="ticker-item text-sm lg:text-base font-semibold text-white">{tickerText}</span>
-									<span className="ticker-item text-sm lg:text-base font-semibold text-white">{tickerText}</span>
+									<span className="ticker-item text-sm lg:text-base font-semibold text-white">
+										{tickerText}
+									</span>
+									<span className="ticker-item text-sm lg:text-base font-semibold text-white">
+										{tickerText}
+									</span>
 								</div>
 							</div>
 						</div>
@@ -516,7 +796,6 @@ export default function Header() {
 				<div className="bg-white border-b border-gray-100">
 					<div className="max-w-full mx-auto px-4 sm:px-6 lg:px-16">
 						<div className="flex items-center justify-between py-2 sm:py-3 gap-4">
-
 							{/* Logo */}
 							<div className="flex items-center flex-shrink-0">
 								<Link to="/" onClick={handleLogoClick}>
@@ -530,7 +809,6 @@ export default function Header() {
 
 							{/* Right side */}
 							<div className="flex items-center gap-4">
-
 								{/* Social Icons — desktop only */}
 								<div className="hidden lg:flex items-center gap-2">
 									{socialLinks.map((s) => (
@@ -601,7 +879,11 @@ export default function Header() {
 									className="lg:hidden p-2 mr-4 rounded-lg bg-[#1e3a8a] hover:bg-[#1e40af] transition-colors"
 									aria-label="Toggle menu"
 								>
-									{isMobileMenuOpen ? <X className="w-6 h-6 text-white" /> : <Menu className="w-6 h-6 text-white" />}
+									{isMobileMenuOpen ? (
+										<X className="w-6 h-6 text-white" />
+									) : (
+										<Menu className="w-6 h-6 text-white" />
+									)}
 								</button>
 							</div>
 						</div>
@@ -626,16 +908,11 @@ export default function Header() {
 												<ChevronDown className="w-3.5 h-3.5" />
 											</button>
 											{activeDropdown === link.label && (
-												<div className="absolute top-full left-0 pt-0 w-52 z-50">
+												<div className="absolute top-full left-0 pt-0  z-50"
+												 style={{ minWidth: '200px', maxWidth: '320px', width: 'max-content' }}>
 													<div className="bg-white rounded-md shadow-lg py-2">
 														{link.dropdownItems?.map((item) => (
-															<Link
-																key={item.label}
-																to={item.href}
-																className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-[#1e3a8a] transition-colors"
-															>
-																{item.label}
-															</Link>
+															<DropdownItem key={item.label} item={item} /> // ✅ uses recursive component
 														))}
 													</div>
 												</div>
@@ -658,7 +935,6 @@ export default function Header() {
 				{/* ── MOBILE MENU ── */}
 				{isMobileMenuOpen && (
 					<div className="lg:hidden bg-white border-t border-gray-100 max-h-[calc(100vh-108px)] overflow-y-clip">
-
 						{/* Mobile Quick Links grid */}
 						{/* <div className="px-4 pt-4 pb-3 border-b border-gray-100 bg-gray-50">
 							<p className="text-[11px] font-semibold text-gray-400 uppercase tracking-widest mb-3">Quick Links</p>
@@ -684,7 +960,9 @@ export default function Header() {
 
 						{/* Mobile Social Icons */}
 						<div className="px-4 py-3 border-b border-gray-100 bg-gray-50 flex items-center gap-2">
-							<span className="text-[11px] font-semibold text-gray-400 uppercase tracking-widest mr-1">Follow Us</span>
+							<span className="text-[11px] font-semibold text-gray-400 uppercase tracking-widest mr-1">
+								Follow Us
+							</span>
 							{socialLinks.map((s) => (
 								<a
 									key={s.label}
@@ -706,13 +984,20 @@ export default function Header() {
 									{link.hasDropdown ? (
 										<div>
 											<button
-												onClick={() => setActiveDropdown(activeDropdown === link.label ? null : link.label)}
+												onClick={() =>
+													setActiveDropdown(activeDropdown === link.label ? null : link.label)
+												}
 												className="mobile-nav-item"
 											>
 												<span>{link.label}</span>
 												<ChevronDown
 													className="w-4 h-4 transition-transform flex-shrink-0"
-													style={{ transform: activeDropdown === link.label ? 'rotate(180deg)' : 'rotate(0deg)' }}
+													style={{
+														transform:
+															activeDropdown === link.label
+																? 'rotate(180deg)'
+																: 'rotate(0deg)',
+													}}
 												/>
 											</button>
 											{activeDropdown === link.label && (
@@ -758,20 +1043,6 @@ export default function Header() {
 		</>
 	);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import React, { useState, useEffect } from 'react';
 // import { Menu, X, ChevronDown, Search } from 'lucide-react';

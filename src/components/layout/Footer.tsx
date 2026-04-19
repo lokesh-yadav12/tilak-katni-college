@@ -1,47 +1,48 @@
 import React from 'react';
-import {  MapPin, Phone, Mail, Facebook, Twitter, Instagram } from 'lucide-react';
-import logo from '../../assets/logo_bhoj.png'
+import {  MapPin, Phone, Mail, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
+import logo from '../../assets/footerlogo.png'
 
 export default function Footer() {
   const quickLinks1 = [
-    { name: 'BHOJ Online Knowledge Portal', href: '#' },
-    { name: 'Indian Nursing Council', href: '#' },
-    { name: 'Department Of Ayush, GoI', href: '#' },
-    { name: 'Anti Ragging', href: '#' },
-    { name: 'Online Fee Payment', href: '#' },
-    { name: 'Hon\'ble Governor : Raj Bhavan MP', href: '#' },
+    { name: 'Exam Timetable', href: '#' },
+    { name: 'Alumni Registration', href: '#' },
+    { name: 'Student Corner', href: '#' },
+    { name: 'Teacher Login', href: '#' },
+    { name: 'FAQ', href: '#' },
+    { name: 'Contact Us', href: '#' },
     { name: 'Photo Gallery', href: '#' },
-    { name: 'Feedback', href: '#' }
+    
   ];
 
   const quickLinks2 = [
     
-    { name: 'Department Of Ayush, M.P.', href: '#' },
-    { name: 'All India Council For Technical Education', href: '#' },
-    { name: 'Central Coucil Of Indian Medicine', href: '#' },
-    { name: 'Directorate Of Medical Education', href: '#' },
-    { name: 'Department Of Higher Education', href: '#' },
-    { name: 'Madhya Pradesh Medical Science University', href: '#' },
-    { name: 'Central Council For Research In Homoeopathy', href: '#' }
+    { name: 'World Bank', href: '#' },
+    { name: 'Right to Information', href: '#' },
+    { name: 'AISE Portal', href: '#' },
+    { name: 'Tender', href: '#' },
+    { name: 'Recruitment', href: '#' },
+    { name: 'Scholarship', href: '#' },
+    { name: 'Alumni', href: '#' }
   ];
 
-  const announcements = [
-    { title: 'Covid19 Information', href: '#' },
-    { title: 'Recruitment For The Upcoming Paramedical Courses', href: '#' },
-    { title: 'Virtual Seminar On "Artificial Intelligence" 20 September 2020', href: '#' }
-  ];
+  // const announcements = [
+  //   { title: 'Covid19 Information', href: '#' },
+  //   { title: 'Recruitment For The Upcoming Paramedical Courses', href: '#' },
+  //   { title: 'Virtual " 20 September 2020', href: '#' }
+  // ];
 
   return (
     <footer id="contact" className="bg-slate-900 text-white py-12">
-      <div className=" mx-auto px-4 sm:px-8 lg:px-10">
-        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
+      <div className=" mx-auto px-4 sm:px-6 lg:px-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-4 mb-8 mx-16">
           {/* Quick Links Column 1 */}
-          <div>
-            <img src={logo} alt="" className='h-32 w-32' />
-            <p>BHOJ University, Bhopal</p>
-            <p>One of the most prestigious University around the country.</p>
+          <div className='sm:col-span-2'>
+            <img src={logo} alt="" className='h-32' />
+            {/* <p>BHOJ University, Bhopal</p> */}
+            <p>Govt. Tilak P.G. College, katni (M.P.) was established in august 1958 under the aegis of Tilak Shiksha society, katni, comprising of social workers, educationists and some business men of the town. The Govt. Tilak P.G. College katni a multi-faculty educational institution affiliated to Rani Durgawati university Jabalpur. it is the leading college of katni district.</p>
           </div>
-          <div>
+
+          <div className='sm:pl-6'>
             <h4 className="font-bold mb-4 text-lg">Quick Links</h4>
             <ul className="space-y-2 text-gray-900">
               {quickLinks1.map((link, index) => (
@@ -69,7 +70,7 @@ export default function Footer() {
           </div>
 
           {/* Announcements */}
-          <div>
+          {/* <div>
             <h4 className="font-bold mb-4 text-lg">Announcements</h4>
             <ul className="space-y-2 text-slate-400">
               {announcements.map((announcement, index) => (
@@ -80,7 +81,7 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
 
           {/* Contact */}
           <div>
@@ -89,8 +90,13 @@ export default function Footer() {
               <li className="flex items-start space-x-2">
                 <MapPin className="w-5 h-5 flex-shrink-0 mt-0.5" />
                 <span>
-                  BHOJ University, Airport Rd, Abbas Nagar, Gandhi Nagar, Bhopal, Madhya Pradesh, India<br />
-                  Pin Code - 462033
+                  Govt. Tilak P.G. College<br/>
+                  Shahadol Road Khirahani<br/>
+                  Katni, Madhya Pradesh<br/>
+                  07622292113,07622235723<br/>
+                  {/* gtc_katni@yahoo.co.in<br/> */}
+                  {/* BHOJ University, Airport Rd, Abbas Nagar, Gandhi Nagar, Bhopal, Madhya Pradesh, India<br />
+                  Pin Code - 462033 */}
                 </span>
               </li>
               <li className="flex items-center space-x-2">
@@ -99,7 +105,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center space-x-2">
                 <Mail className="w-5 h-5" />
-                <span>BHOJuniversitybpl@gmail.com</span>
+                <span>gtc_katni@gmail.com</span>
               </li>
             </ul>
           </div>
@@ -108,15 +114,19 @@ export default function Footer() {
         <div className="border-t border-slate-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6 space-y-4 md:space-y-0">
             <p className="text-slate-400 text-sm w-full text-center  gap-8">
-              © 2024 - BHOJ University | All ® rights reserved | 
-              <a href="#" className="hover:text-white transition-colors gap-8"> Terms & Conditions</a> | 
-              <a href="#" className="hover:text-white transition-colors"> Privacy Policy</a> | 
-              <a href="#" className="hover:text-white transition-colors"> Refund and Cancellation Policy</a> | 
-              Last Updated: 03-Aug-2022
+             Copyright ©2025 Govt. Tilak P.G. College, Katni. All rights reserved. | Powered by :
+              <a href="https://www.indian-tech.com/" className="hover:text-red-900 underline transition-colors gap-8"> Indian Tech Corporation</a> | 
+              {/* <a href="#" className="hover:text-white transition-colors"> Privacy Policy</a> | 
+              <a href="#" className="hover:text-white transition-colors"> Refund and Cancellation Policy</a>  */}
+              
+              Last Updated: 20-Feb-2026
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-slate-400 hover:text-white transition-colors" aria-label="Facebook">
                 <Facebook className="w-5 h-5" />
+              </a>
+              <a href="#" className="text-slate-400 hover:text-white transition-colors" aria-label="Facebook">
+                <Linkedin className="w-5 h-5" />
               </a>
               <a href="#" className="text-slate-400 hover:text-white transition-colors" aria-label="Twitter">
                 <Twitter className="w-5 h-5" />
@@ -128,7 +138,7 @@ export default function Footer() {
           </div>
           <div className="text-center mt-4">
             <p className="text-slate-500 text-xs">
-              Internal Release - 02 - Build v1.00.0045 Date: 03-Aug-2022
+              Internal Release - Date: 20-Feb-2026
             </p>
           </div>
         </div>

@@ -8,12 +8,28 @@ import FloatingButtons from './pages/FloatingButtons';
 import AllInfoPage from './pages/AllInfoPage';
 import AdmissionForm from './pages/AdmissionForm';
 import AboutPage from './pages/AboutPage';
-import VisionMission from './pages/VisionMission';
+//import VisionMission from './pages/VisionMission';
 import Values from './pages/Values';
 import ScrollToTop from './components/ui/ScrollToTop';
 import Gallery from './pages/Gallery';
 import ChancellorMessagePage from './components/home/Chancellormessagepage';
 import ViceChancellorMessagePage from './components/home/ViceChancellormessagepage';
+import AcademicCalendar from './pages/college/AcademicCalendar';
+import Mission from './components/home/Mission';
+
+//import StarSection from './components/home/StarSection';
+import Stars from './pages/college/Stars';
+import StudentCorner from './pages/StudentCorner';
+import Bhoj from './pages/Bhoj';
+import Ignou from './pages/college/Ignou';
+import Reaserchcell from './pages/Reaserchcell';
+import Nss from './pages/Nss';
+import Sports from './pages/Sports';
+import Ncc from './pages/Ncc';
+import Library from './pages/Library';
+import Gtcataglance from './pages/Gtcataglance';
+import Iqac from './pages/Iqac';
+import Staff from './pages/Staff';
 
 const Home = lazy(() => import('./pages/Home'));
 // const Legacy = lazy(() => import('./pages/Legacy'));
@@ -68,9 +84,22 @@ function App() {
 					<Route path="/all-info/:department" element={<AllInfoPage />} />
 					<Route path="/admission-form" element={<AdmissionForm />} />
 					<Route path="/about" element={<AboutPage />} />
-					<Route path="/vision-mission" element={<VisionMission />} />
+					<Route path="/vision-mission" element={<Mission />} />
+					<Route path="/academic-calendar" element={<AcademicCalendar />} />
+					<Route path="/stars" element={<Stars />} />
+					<Route path="/iqac" element={<Iqac />} />
 					<Route path="/values" element={<Values />} />
+					<Route path="/library" element={<Library />} />
+					<Route path="/gtc-at-a-glance" element={<Gtcataglance />} />
 					<Route path="/gallery" element={<Gallery />} />
+					<Route path="/student-corner" element={<StudentCorner />} />
+					<Route path="/staff" element={<Staff />} />
+					<Route path="/study-center/bhoj" element={<Bhoj />} />
+					<Route path="/study-center/ignou" element={<Ignou />} />
+					<Route path="/activity/nss" element={<Nss />} />	
+					<Route path="/activity/ncc" element={<Ncc />} />
+					<Route path="/activity/sports" element={<Sports />} />
+					<Route path="/research" element={<Reaserchcell />} />
 					<Route path="/chancellor-message" element={<ChancellorMessagePage />} />
 					<Route path="/vice-chancellor-message" element={<ViceChancellorMessagePage />} />
 
