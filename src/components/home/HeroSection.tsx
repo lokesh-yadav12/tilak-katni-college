@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Quote, ArrowRight, Sparkles } from 'lucide-react';
-import img1 from "../../assets/bhoj1.jpeg"
-import img2 from "../../assets/bhoj2.jpeg"
-import img3 from "../../assets/bhoj3.jpeg"
-import img4 from "../../assets/bhoj4.jpg"
-import img5 from "../../assets/bhoj5.jpg"
-import img6 from "../../assets/bhoj6.jpg"
-import img7 from "../../assets/bhoj7.jpg"
-import img8 from "../../assets/bhoj8.jpg"
-import img9 from "../../assets/bhoj7.jpeg"
-import img10 from "../../assets/bhoj9.jpg"
-import img11 from "../../assets/bhoj10.jpg"
-import img12 from "../../assets/bhoj11.jpeg"
-import img13 from "../../assets/bhoj12.jpeg"
+import img1 from "../../assets/images/hero1.png"
+import img2 from "../../assets/images/hero2.png"
+import img3 from "../../assets/images/hero3.png"
+import img4 from "../../assets/images/hero4.png"
+import img5 from "../../assets/images/hero5.png"
+// import img6 from "../../assets/bhoj6.jpg"
+// import img7 from "../../assets/bhoj7.jpg"
+// import img8 from "../../assets/bhoj8.jpg"
+// import img9 from "../../assets/bhoj7.jpeg"
+// import img10 from "../../assets/bhoj9.jpg"
+// import img11 from "../../assets/bhoj10.jpg"
+// import img12 from "../../assets/bhoj11.jpeg"
+// import img13 from "../../assets/bhoj12.jpeg"
 //import vc from "../../assets/vc.jpg"
 
 
@@ -52,46 +52,46 @@ const HeroSection = () => {
       image: img5,
       alt: 'Slide 5'
     },
-    {
-      id: 6,
-      image: img6,
-      alt: 'Slide 6'
-    },
-    {
-      id: 7,
-      image: img7,
-      alt: 'Slide 7'
-    },
-    {
-      id: 8,
-      image: img8,
-      alt: 'Slide 8'
-    },
-    {
-      id: 9,
-      image: img9,
-      alt: 'Slide 9'
-    },
-    {
-      id: 10,
-      image: img10,
-      alt: 'Slide 10'
-    },
-    {
-      id: 11,
-      image: img11,
-      alt: 'Slide 11'
-    },
-    {
-      id: 12,
-      image: img12,
-      alt: 'Slide 12'
-    },
-    {
-      id: 13,
-      image: img13,
-      alt: 'Slide 13'
-    },
+    // {
+    //   id: 6,
+    //   image: img6,
+    //   alt: 'Slide 6'
+    // },
+    // {
+    //   id: 7,
+    //   image: img7,
+    //   alt: 'Slide 7'
+    // },
+    // {
+    //   id: 8,
+    //   image: img8,
+    //   alt: 'Slide 8'
+    // },
+    // {
+    //   id: 9,
+    //   image: img9,
+    //   alt: 'Slide 9'
+    // },
+    // {
+    //   id: 10,
+    //   image: img10,
+    //   alt: 'Slide 10'
+    // },
+    // {
+    //   id: 11,
+    //   image: img11,
+    //   alt: 'Slide 11'
+    // },
+    // {
+    //   id: 12,
+    //   image: img12,
+    //   alt: 'Slide 12'
+    // },
+    // {
+    //   id: 13,
+    //   image: img13,
+    //   alt: 'Slide 13'
+    // },
   ];
 
   useEffect(() => {

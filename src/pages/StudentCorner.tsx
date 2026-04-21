@@ -7,6 +7,13 @@ interface CornerItem {
   icon: React.ReactNode;
 }
 
+const BROWN = '#753300';
+const BROWN2 = '#9a4a10';
+const GOLD = '#e5be10';
+const CREAM = '#fdf8ee';
+const DARK = '#3a1a00';
+const MUTED = '#b08060';
+
 const items: CornerItem[] = [
   {
     label: 'Result',
@@ -100,30 +107,50 @@ const items: CornerItem[] = [
 
 const StudentCorner = () => {
   return (
-    <div className="max-w-5xl mx-auto px-4 py-16 sm:py-44">
-      <div className="text-center mb-10">
-        <h1 className="text-2xl font-medium text-gray-900 mb-1">Student Corner</h1>
-        <p className="text-sm text-gray-500">Quick access to all student resources</p>
-      </div>
+    <div style={{ fontFamily: 'Georgia, serif', background: 'linear-gradient(160deg,#fff8ee 0%,#fdf3d8 50%,#fff 100%)', minHeight: '100vh', padding: '52px 24px 72px' }}>
+      <style>{`
+        .sc-card { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; padding:28px 16px 22px; background:${CREAM}; border:1.5px solid rgba(229,190,16,0.28); border-radius:16px; text-decoration:none; transition:border-color 0.25s,box-shadow 0.25s,background 0.25s; }
+        .sc-card:hover { border-color:rgba(117,51,0,0.45); box-shadow:0 6px 28px rgba(117,51,0,0.10); background:#fff8ee; }
+        .sc-icon-wrap { width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center; background:rgba(117,51,0,0.09); border:1.5px solid rgba(229,190,16,0.3); transition:background 0.25s,border-color 0.25s; color:${BROWN2}; }
+        .sc-card:hover .sc-icon-wrap { background:linear-gradient(135deg,${BROWN},${BROWN2}); border-color:${BROWN}; color:${GOLD}; }
+        .sc-arrow { font-size:13px; color:${MUTED}; opacity:0.6; transition:color 0.25s,opacity 0.25s; }
+        .sc-card:hover .sc-arrow { color:${BROWN}; opacity:1; }
+      `}</style>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-        {items.map((item) => (
-          <Link
-            key={item.label}
-            to={item.href}
-            className="group flex flex-col items-center justify-center gap-4 py-8 px-4 bg-white border border-gray-200 rounded-xl hover:border-gray-300 hover:bg-gray-50 transition-all"
-          >
-            <div className="w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-700 group-hover:bg-[#e5be10] group-hover:text-white transition-colors">
-              <span className="w-7 h-7 [&>svg]:w-7 [&>svg]:h-7 [&>svg]:stroke-current">
-                {item.icon}
+      <div style={{ maxWidth: 860, margin: '0 auto' }}>
+
+        {/* Header */}
+        <div style={{ textAlign: 'center', marginBottom: 40 }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
+            <div style={{ height: 1, width: 36, background: 'linear-gradient(90deg,transparent,#e5be10)' }} />
+            <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#9a6040', fontFamily: 'sans-serif' }}>Govt. Tilak P.G. College · Katni, M.P.</span>
+            <div style={{ height: 1, width: 36, background: 'linear-gradient(90deg,#e5be10,transparent)' }} />
+          </div>
+          <h1 style={{ fontSize: 'clamp(28px,5vw,44px)', fontWeight: 800, background: `linear-gradient(135deg,${BROWN} 0%,${BROWN2} 50%,${GOLD} 100%)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', lineHeight: 1.15, margin: '0 0 8px', fontFamily: 'Georgia, serif' }}>
+            Student Corner
+          </h1>
+          <p style={{ fontFamily: 'sans-serif', fontSize: 14, color: MUTED, margin: 0 }}>
+            Quick access to all student resources
+          </p>
+        </div>
+
+        {/* Grid */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 16 }}>
+          {items.map((item) => (
+            <Link key={item.label} to={item.href} className="sc-card">
+              <div className="sc-icon-wrap">
+                <span style={{ width: 24, height: 24, display: 'flex' }}>
+                  {item.icon}
+                </span>
+              </div>
+              <span style={{ fontSize: 13, fontWeight: 600, color: DARK, textAlign: 'center', lineHeight: 1.3, fontFamily: 'sans-serif' }}>
+                {item.label}
               </span>
-            </div>
-            <span className="text-sm font-medium text-gray-800 text-center leading-tight">
-              {item.label}
-            </span>
-            <span className="text-xs text-gray-400 group-hover:text-blue-700 transition-colors">→</span>
-          </Link>
-        ))}
+              <span className="sc-arrow">→</span>
+            </Link>
+          ))}
+        </div>
+
       </div>
     </div>
   );
