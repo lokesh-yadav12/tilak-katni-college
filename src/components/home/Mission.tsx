@@ -102,7 +102,6 @@ export default function AboutSection() {
         .amv-bullet-row:last-child { border-bottom:none; }
       `}</style>
 
-      /* BG decoration */
       <div style={{ position:'absolute', width:400, height:400, top:-100, right:-100, borderRadius:'50%', background:'rgba(229,190,16,0.07)', pointerEvents:'none' }} />
       <div style={{ position:'absolute', width:260, height:260, bottom:-60, left:-80, borderRadius:'50%', background:'rgba(117,51,0,0.05)', pointerEvents:'none' }} />
 

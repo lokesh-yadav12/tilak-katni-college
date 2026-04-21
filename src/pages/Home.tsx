@@ -29,13 +29,13 @@ const Home = () => {
         {/* <ViceChancellorNoticesSection/> */}
       </div>
       <StatsSection />
+    <EventsSection />
       <StarSection/>
       {/* <QuickLinks/> */}
       <Mission/>
-      <TestimonialsSection />
         {/* <ImpLinks/> */}
       {/* <Testimonials/> */}
-    <EventsSection />
+      <TestimonialsSection />
       {/* <News/>
 
     
