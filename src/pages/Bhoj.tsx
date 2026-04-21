@@ -28,7 +28,7 @@ const Bhoj = () => {
 		>
 			{/* ── Hero Banner ── */}
 			<div
-				className="relative py-16 mt-6 flex items-center justify-center overflow-hidden"
+				className="relative py-16  flex items-center justify-center overflow-hidden"
 				style={{ background: 'linear-gradient(135deg,#753300 0%,#9a4a10 100%)' }}
 			>
 				{/* diagonal pattern */}

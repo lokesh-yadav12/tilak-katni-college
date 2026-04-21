@@ -215,7 +215,7 @@ const Ignou = () => {
 
 			<div className="ignou-root">
 				{/* Hero */}
-				<div className="ignou-hero mt-6">
+				<div className="ignou-hero">
 					<h1 className="ignou-hero-title ">IGNOU</h1>
 				</div>
 
