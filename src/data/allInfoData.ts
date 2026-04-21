@@ -13,6 +13,8 @@ export type DepartmentType =
 export interface DepartmentData {
 	title: string;
 	items: string[];
+	/** Maps each item (by index) to its section key + item id in detailedInfoData */
+	itemLinks: Array<{ section: string; itemId: string }>;
 }
 
 export const allInfoData: Partial<Record<DepartmentType, DepartmentData>> = {
@@ -32,6 +34,20 @@ export const allInfoData: Partial<Record<DepartmentType, DepartmentData>> = {
 			'Sexual Harassment Prevention',
 			'Committee Members',
 		],
+		itemLinks: [
+			{ section: 'governance',    itemId: 'admin-gov-1'  }, // University Governance Structure
+			{ section: 'policies',      itemId: 'admin-pol-1'  }, // Administrative Policies and Guidelines
+			{ section: 'announcements', itemId: 'admin-ann-3'  }, // Leadership Directory
+			{ section: 'governance',    itemId: 'admin-gov-1'  }, // Organizational Chart
+			{ section: 'updates',       itemId: 'admin-upd-1'  }, // Contact Information
+			{ section: 'updates',       itemId: 'admin-upd-1'  }, // Office Hours and Locations
+			{ section: 'updates',       itemId: 'admin-upd-3'  }, // Grievance Redressal Mechanism
+			{ section: 'announcements', itemId: 'admin-ann-5'  }, // Right to Information (RTI)
+			{ section: 'announcements', itemId: 'admin-ann-4'  }, // Anti-Ragging Policy
+			{ section: 'policies',      itemId: 'admin-pol-1'  }, // Code of Conduct
+			{ section: 'policies',      itemId: 'admin-pol-2'  }, // Sexual Harassment Prevention
+			{ section: 'governance',    itemId: 'admin-gov-2'  }, // Committee Members
+		],
 	},
 	academics: {
 		title: 'Academics',
@@ -48,6 +64,20 @@ export const allInfoData: Partial<Record<DepartmentType, DepartmentData>> = {
 			'Course Registration Process',
 			'Attendance Policy',
 			'Internal Assessment Guidelines',
+		],
+		itemLinks: [
+			{ section: 'announcements',   itemId: 'acad-ann-1'    }, // Academic Calendar 2025-26
+			{ section: 'course-updates',  itemId: 'acad-course-1' }, // Course Catalog and Syllabus
+			{ section: 'exam-notices',    itemId: 'acad-exam-1'   }, // Examination Schedule
+			{ section: 'announcements',   itemId: 'acad-ann-1'    }, // Grading Policy and System
+			{ section: 'announcements',   itemId: 'acad-ann-1'    }, // Academic Regulations
+			{ section: 'faculty-updates', itemId: 'acad-fac-1'    }, // Faculty Directory
+			{ section: 'course-updates',  itemId: 'acad-course-2' }, // Department Information
+			{ section: 'announcements',   itemId: 'acad-ann-3'    }, // Credit Transfer Guidelines
+			{ section: 'announcements',   itemId: 'acad-ann-4'    }, // Academic Probation Rules
+			{ section: 'announcements',   itemId: 'acad-ann-3'    }, // Course Registration Process
+			{ section: 'announcements',   itemId: 'acad-ann-1'    }, // Attendance Policy
+			{ section: 'exam-notices',    itemId: 'acad-exam-4'   }, // Internal Assessment Guidelines
 		],
 	},
 	admissions: {
@@ -66,95 +96,27 @@ export const allInfoData: Partial<Record<DepartmentType, DepartmentData>> = {
 			'Transfer and Migration',
 			'Counseling Schedule',
 		],
-	},
-	research: {
-		title: 'Research',
-		items: [
-			'Research Centers and Labs',
-			'Ongoing Research Projects',
-			'Publication Guidelines',
-			'Research Funding Opportunities',
-			'Ph.D. Programs',
-			'Research Facilities',
-			'Research Scholars Directory',
-			'Thesis Submission Guidelines',
-			'Conference and Seminar Calendar',
-			'Research Ethics Committee',
-			'Intellectual Property Rights',
-			'Collaboration Opportunities',
+		itemLinks: [
+			{ section: 'announcements',    itemId: 'adm-ann-1'   }, // Admission Process Overview
+			{ section: 'announcements',    itemId: 'adm-ann-1'   }, // Eligibility Criteria
+			{ section: 'announcements',    itemId: 'adm-ann-1'   }, // Application Forms
+			{ section: 'announcements',    itemId: 'adm-ann-2'   }, // Important Dates and Deadlines
+			{ section: 'scholarships',     itemId: 'adm-sch-1'   }, // Fee Structure
+			{ section: 'entrance-exams',   itemId: 'adm-exam-1'  }, // Entrance Exam Details
+			{ section: 'announcements',    itemId: 'adm-ann-4'   }, // Merit List and Cut-offs
+			{ section: 'counseling',       itemId: 'adm-coun-2'  }, // Document Verification
+			{ section: 'scholarships',     itemId: 'adm-sch-2'   }, // Reservation Policy
+			{ section: 'announcements',    itemId: 'adm-ann-1'   }, // Foreign Students Admission
+			{ section: 'announcements',    itemId: 'adm-ann-3'   }, // Transfer and Migration
+			{ section: 'counseling',       itemId: 'adm-coun-1'  }, // Counseling Schedule
 		],
 	},
-	// 'student-affairs': {
-	// 	title: 'Student Affairs',
-	// 	items: [
-	// 		'Student Clubs and Organizations',
-	// 		'Sports and Recreation',
-	// 		'Cultural Activities',
-	// 		'Counseling Services',
-	// 		'Scholarship Information',
-	// 		'Hostel Facilities',
-	// 		'Student Welfare Programs',
-	// 		'Health Services',
-	// 		'Mess and Canteen',
-	// 		'Student Council',
-	// 		'Career Guidance',
-	// 		'Alumni Network',
-	// 	],
-	// },
-	// facilities: {
-	// 	title: 'Facilities',
-	// 	items: [
-	// 		'Library Resources',
-	// 		'Computer Labs',
-	// 		'Sports Complex',
-	// 		'Medical Center',
-	// 		'Transportation Services',
-	// 		'Cafeteria and Dining',
-	// 		'Wi-Fi and Internet',
-	// 		'Auditorium and Halls',
-	// 		'Parking Facilities',
-	// 		'ATM and Banking',
-	// 		'Photocopy and Printing',
-	// 		'Gymnasium',
-	// 	],
-	// },
-	// placements: {
-	// 	title: 'Placements & Career',
-	// 	items: [
-	// 		'Placement Statistics',
-	// 		'Recruiting Companies',
-	// 		'Training Programs',
-	// 		'Internship Opportunities',
-	// 		'Career Counseling',
-	// 		'Resume Building Workshops',
-	// 		'Mock Interviews',
-	// 		'Industry Interface',
-	// 		'Entrepreneurship Cell',
-	// 		'Alumni Success Stories',
-	// 		'Higher Education Guidance',
-	// 		'Skill Development Programs',
-	// 	],
-	// },
-	// examinations: {
-	// 	title: 'Examinations',
-	// 	items: [
-	// 		'Examination Schedule',
-	// 		'Admit Card Download',
-	// 		'Result Notifications',
-	// 		'Revaluation Process',
-	// 		'Grade Card Download',
-	// 		'Examination Rules',
-	// 		'Hall Ticket Information',
-	// 		'Supplementary Exams',
-	// 		'Exam Form Submission',
-	// 		'Unfair Means Policy',
-	// 		'Answer Sheet Review',
-	// 		'Transcript Request',
-	// 	],
-	// },
 };
 
+// ---------------------------------------------------------------------------
 // Additional data structure for the detailed info pages
+// ---------------------------------------------------------------------------
+
 export interface InfoItem {
 	id: string;
 	title: string;

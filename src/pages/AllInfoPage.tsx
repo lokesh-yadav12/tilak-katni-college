@@ -1,250 +1,461 @@
-import { motion } from 'framer-motion';
-import { useParams, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
 import { allInfoData, detailedInfoData, DepartmentType } from '@/data/allInfoData';
 
+const GOLD = '#e5be10';
+const BROWN = '#753300';
+const BROWN2 = '#9a4a10';
+const DARK = '#3a1a00';
+const CREAM = '#fdf8ee';
+const TEXT = '#4a2000';
+const MUTED = '#b08060';
+
 const AllInfoPage: React.FC = () => {
-	const { department } = useParams<{ department: string }>();
-	const navigate = useNavigate();
-	const [selectedSection, setSelectedSection] = useState<string>('');
-	const [activeItem, setActiveItem] = useState<string | null>(null);
+  const { department } = useParams<{ department: string }>();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const [selectedSection, setSelectedSection] = useState<string>('');
+  // The item that should be highlighted and auto-expanded
+  const [pinnedItemId, setPinnedItemId] = useState<string | null>(null);
+  // Hover state (existing behaviour)
+  const [hoveredItemId, setHoveredItemId] = useState<string | null>(null);
+  const pinnedItemRef = useRef<HTMLDivElement | null>(null);
 
-	const currentDept = department ? allInfoData[department as DepartmentType] : null;
-	const sections = department ? detailedInfoData[department as DepartmentType] : null;
+  const currentDept = department ? allInfoData[department as DepartmentType] : null;
+  const sections = department ? detailedInfoData[department as DepartmentType] : null;
 
-	// Set initial section when component mounts or department changes
-	useEffect(() => {
-		if (sections) {
-			const firstSectionKey = Object.keys(sections)[0];
-			if (firstSectionKey) {
-				setSelectedSection(firstSectionKey);
-			}
-		}
-	}, [department, sections]);
+  // ── Resolve section + item from URL params ──────────────────────────────
+  useEffect(() => {
+    if (!sections) return;
+    const sectionKeys = Object.keys(sections);
 
-	// Scroll to top on mount
-	useEffect(() => {
-		window.scrollTo({ top: 0, behavior: 'smooth' });
-	}, []);
+    const sectionParam = searchParams.get('section');
+    const itemParam    = searchParams.get('item');
 
-	if (!currentDept || !sections) {
-		return (
-			<div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-blue-50">
-				<div className="text-center">
-					<motion.div
-						initial={{ scale: 0 }}
-						animate={{ scale: 1 }}
-						transition={{ duration: 0.5 }}
-						className="mb-4"
-					>
-						<span className="text-6xl">📭</span>
-					</motion.div>
-					<h2 className="text-2xl font-bold text-gray-800 mb-4">Department not found</h2>
-					<p className="text-gray-600 mb-6">The department you're looking for doesn't exist.</p>
-					<button
-						onClick={() => navigate('/')}
-						className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
-					>
-						Go Back Home
-					</button>
-				</div>
-			</div>
-		);
-	}
+    // Pick section: prefer the URL param if valid, else first section
+    const targetSection = sectionParam && sectionKeys.includes(sectionParam)
+      ? sectionParam
+      : sectionKeys[0];
 
-	const currentSection = sections[selectedSection];
-	const currentData = currentSection?.items || [];
+    setSelectedSection(targetSection);
+    setPinnedItemId(itemParam ?? null);
+  }, [department, sections, searchParams]);
 
-	return (
-		<div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 mt-40">
-			{/* Header */}
-			{/* <motion.div
-				initial={{ opacity: 0, y: -20 }}
-				animate={{ opacity: 1, y: 0 }}
-				transition={{ duration: 0.6 }}
-				className="bg-white shadow-md"
-			>
-				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-					<button
-						onClick={() => navigate('/')}
-						className="text-blue-600 hover:text-blue-800 mb-4 flex items-center gap-2 transition-colors"
-					>
-						<span>←</span> Back to Home
-					</button>
-					<h1 className="text-3xl sm:text-4xl font-bold text-blue-900">{currentDept.title}</h1>
-					<p className="text-gray-600 mt-2">Access all important information and updates</p>
-				</div>
-			</motion.div> */}
+  // ── Scroll pinned item into view once it renders ────────────────────────
+  useEffect(() => {
+    if (!pinnedItemId) return;
+    // Small delay to let the section switch animation finish
+    const timer = setTimeout(() => {
+      pinnedItemRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 350);
+    return () => clearTimeout(timer);
+  }, [pinnedItemId, selectedSection]);
 
-			{/* Main Content */}
-			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mt-10">
-				<div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-					{/* Left Sidebar */}
-					<motion.div
-						initial={{ opacity: 0, x: -20 }}
-						animate={{ opacity: 1, x: 0 }}
-						transition={{ duration: 0.6, delay: 0.2 }}
-						className="lg:col-span-3"
-					>
-						<div className="bg-[#2c4f6f] text-white rounded-lg overflow-hidden shadow-lg sticky top-4">
-							<div className="bg-[#1e3a52] px-6 py-4">
-								<h2 className="text-xl font-bold">Important Links</h2>
-							</div>
-							<nav className="divide-y divide-blue-800/30">
-								{Object.entries(sections).map(([key, section]) => (
-									<motion.button
-										key={key}
-										onClick={() => setSelectedSection(key)}
-										whileHover={{ x: 4 }}
-										whileTap={{ scale: 0.98 }}
-										className={`w-full text-left px-6 py-4 transition-all duration-300 ${
-											selectedSection === key
-												? 'bg-blue-800/40 border-l-4 border-yellow-500'
-												: 'hover:bg-blue-800/20'
-										}`}
-									>
-										<div className="flex items-center gap-3">
-											<span className="text-xl">{section.icon}</span>
-											<span className="font-medium text-sm">{section.label}</span>
-										</div>
-									</motion.button>
-								))}
-							</nav>
-						</div>
-					</motion.div>
+  useEffect(() => { window.scrollTo({ top: 0, behavior: 'smooth' }); }, []);
 
-					{/* Right Content Area */}
-					<motion.div
-						initial={{ opacity: 0, x: 20 }}
-						animate={{ opacity: 1, x: 0 }}
-						transition={{ duration: 0.6, delay: 0.3 }}
-						className="lg:col-span-9"
-					>
-						<div className="bg-white rounded-lg shadow-lg overflow-hidden">
-							{/* Content Header */}
-							<div className="border-b-4 border-yellow-500 bg-gradient-to-r from-blue-50 to-white px-6 py-5">
-								<h2 className="text-2xl sm:text-3xl font-bold">
-									View All{' '}
-									<span className="text-yellow-600">{currentSection?.label || 'Information'}</span>
-								</h2>
-							</div>
+  // ── Not found state ──────────────────────────────────────────────────────
+  if (!currentDept || !sections) {
+    return (
+      <div
+        style={{
+          minHeight:'100vh', display:'flex', alignItems:'center', justifyContent:'center',
+          background:'linear-gradient(160deg,#fff8ee,#fdf3d8)',
+          fontFamily:'Georgia,serif',
+        }}
+      >
+        <div style={{ textAlign:'center', padding:32 }}>
+          <div style={{ fontSize:64, marginBottom:16 }}>📭</div>
+          <h2 style={{ fontSize:28, fontWeight:800, color:DARK, marginBottom:8 }}>Department not found</h2>
+          <p style={{ fontFamily:'sans-serif', fontSize:14, color:MUTED, marginBottom:24 }}>The section you're looking for doesn't exist.</p>
+          <button
+            onClick={() => navigate('/')}
+            style={{
+              background:`linear-gradient(90deg,${BROWN},${BROWN2})`, color:GOLD,
+              border:'none', padding:'12px 28px', borderRadius:10, fontFamily:'sans-serif',
+              fontSize:13, fontWeight:700, letterSpacing:'0.06em', cursor:'pointer',
+            }}
+          >
+            ← Back Home
+          </button>
+        </div>
+      </div>
+    );
+  }
 
-							{/* Content List */}
-							<div className="divide-y">
-								{currentData.map((item, index) => {
-									const itemKey = `${selectedSection}-${item.id}`;
+  const sectionKeys = Object.keys(sections);
+  const currentSection = sections[selectedSection];
+  const currentData = currentSection?.items || [];
 
-									return (
-										<motion.div
-											key={itemKey}
-											initial={{ opacity: 0, y: 10 }}
-											animate={{ opacity: 1, y: 0 }}
-											transition={{ duration: 0.3, delay: index * 0.05 }}
-											className="relative overflow-hidden cursor-pointer group"
-											onMouseEnter={() => setActiveItem(itemKey)}
-											onMouseLeave={() => setActiveItem(null)}
-										>
-											{/* Hover background */}
-											<motion.div
-												initial={{ scaleX: 0 }}
-												animate={{ scaleX: activeItem === itemKey ? 1 : 0 }}
-												transition={{ duration: 0.3, ease: 'easeInOut' }}
-												className="absolute inset-0 bg-gradient-to-r from-blue-50 to-yellow-50 origin-left"
-											/>
+  // An item is "active" if it's being hovered OR it's the pinned target
+  const isItemActive = (itemId: string) =>
+    hoveredItemId === itemId || pinnedItemId === itemId;
 
-											{/* Content */}
-											<div className="relative px-6 py-4 flex items-start gap-4">
-												<span className="text-blue-600 font-bold text-lg mt-1 min-w-[30px]">
-													»
-												</span>
-												<div className="flex-1">
-													<div className="flex items-start gap-3 flex-wrap">
-														<p className="text-gray-800 group-hover:text-blue-900 transition-colors font-medium flex-1">
-															{item.title}
-														</p>
-														{item.isNew && (
-															<span className="bg-[#2c4f6f] text-white text-xs px-3 py-1 rounded-full font-semibold">
-																New
-															</span>
-														)}
-													</div>
-													{item.date && (
-														<p className="text-gray-500 text-sm mt-1">
-															{new Date(item.date).toLocaleDateString('en-US', {
-																year: 'numeric',
-																month: 'long',
-																day: 'numeric',
-															})}
-														</p>
-													)}
-													{item.content && (
-														<motion.p
-															initial={{ opacity: 0, height: 0 }}
-															animate={{
-																opacity: activeItem === itemKey ? 1 : 0,
-																height: activeItem === itemKey ? 'auto' : 0,
-															}}
-															transition={{ duration: 0.3 }}
-															className="text-gray-600 text-sm mt-2 overflow-hidden"
-														>
-															{item.content}
-														</motion.p>
-													)}
-												</div>
+  return (
+    <div
+      style={{
+        minHeight: '100vh',
+        background: 'linear-gradient(160deg,#fff8ee 0%,#fdf3d8 50%,#fff 100%)',
+        fontFamily: 'Georgia, serif',
+      }}
+    >
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&display=swap');
 
-												{/* Arrow indicator */}
-												<motion.span
-													initial={{ x: 0, opacity: 0 }}
-													animate={{
-														x: activeItem === itemKey ? 0 : -10,
-														opacity: activeItem === itemKey ? 1 : 0,
-													}}
-													transition={{ duration: 0.3 }}
-													className="text-blue-600 text-xl"
-												>
-													→
-												</motion.span>
-											</div>
-										</motion.div>
-									);
-								})}
-							</div>
+        .ai-sidebar-btn {
+          width: 100%; text-align: left; background: none; border: none;
+          padding: 12px 16px; cursor: pointer; display: flex; align-items: center;
+          gap: 10px; font-family: sans-serif; font-size: 13px; font-weight: 500;
+          color: rgba(253,248,238,0.6); border-bottom: 1px solid rgba(229,190,16,0.1);
+          transition: background 0.2s, color 0.2s, padding-left 0.2s;
+          position: relative;
+        }
+        .ai-sidebar-btn:last-child { border-bottom: none; }
+        .ai-sidebar-btn:hover { background: rgba(229,190,16,0.08); color: ${GOLD}; padding-left: 20px; }
+        .ai-sidebar-btn.active {
+          background: rgba(229,190,16,0.12);
+          color: ${GOLD};
+          font-weight: 700;
+          border-left: 3px solid ${GOLD};
+          padding-left: 13px;
+        }
+        .ai-content-row {
+          padding: 14px 20px;
+          border-bottom: 1px solid rgba(229,190,16,0.1);
+          display: flex; align-items: flex-start; gap: 14px;
+          cursor: pointer; transition: background 0.2s, padding-left 0.2s;
+          position: relative;
+        }
+        .ai-content-row:last-child { border-bottom: none; }
+        .ai-content-row:hover { background: rgba(229,190,16,0.07); padding-left: 26px; }
+        /* Pinned item gets a persistent highlight */
+        .ai-content-row.pinned {
+          background: rgba(229,190,16,0.13);
+          padding-left: 26px;
+          border-left: 3px solid ${GOLD};
+        }
+        .ai-back-btn {
+          display: inline-flex; align-items: center; gap: 8px;
+          background: rgba(229,190,16,0.12); border: 1px solid rgba(229,190,16,0.3);
+          color: ${GOLD}; padding: 8px 16px; border-radius: 8px;
+          font-family: sans-serif; font-size: 12px; font-weight: 700;
+          letter-spacing: 0.06em; cursor: pointer; transition: background 0.2s;
+          text-transform: uppercase;
+        }
+        .ai-back-btn:hover { background: rgba(229,190,16,0.22); }
+        .ai-new-badge {
+          font-family: sans-serif; font-size: 9px; font-weight: 700;
+          letter-spacing: 0.1em; text-transform: uppercase;
+          background: linear-gradient(90deg,${BROWN},${BROWN2});
+          color: ${GOLD}; padding: 2px 8px; border-radius: 20px;
+          flex-shrink: 0; align-self: flex-start; margin-top: 3px;
+        }
+        .ai-scroll::-webkit-scrollbar { width: 5px; }
+        .ai-scroll::-webkit-scrollbar-track { background: rgba(229,190,16,0.05); }
+        .ai-scroll::-webkit-scrollbar-thumb { background: rgba(229,190,16,0.25); border-radius: 3px; }
+      `}</style>
 
-							{/* Empty State */}
-							{currentData.length === 0 && (
-								<div className="px-6 py-16 text-center text-gray-500">
-									<div className="inline-block p-4 bg-gray-100 rounded-full mb-4">
-										<span className="text-4xl">📭</span>
-									</div>
-									<p className="text-lg font-medium">No items available at the moment.</p>
-									<p className="text-sm mt-2">Check back later for updates.</p>
-								</div>
-							)}
-						</div>
+      <div style={{ maxWidth: 1120, margin: '0 auto', padding: '0 24px 60px' }}>
 
-						{/* Info Box */}
-						<motion.div
-							initial={{ opacity: 0, y: 20 }}
-							animate={{ opacity: 1, y: 0 }}
-							transition={{ duration: 0.6, delay: 0.5 }}
-							className="mt-6 bg-blue-50 border-l-4 border-blue-600 p-4 rounded-lg"
-						>
-							<div className="flex items-start gap-3">
-								<span className="text-2xl">ℹ️</span>
-								<div>
-									<h3 className="font-semibold text-blue-900 mb-1">Need More Information?</h3>
-									<p className="text-sm text-gray-700">
-										For additional details or inquiries, please contact the respective department
-										office or visit the university help desk.
-									</p>
-								</div>
-							</div>
-						</motion.div>
-					</motion.div>
-				</div>
-			</div>
-		</div>
-	);
+        {/* ── Page Header ── */}
+        <motion.div
+          initial={{ opacity:0, y:-16 }}
+          animate={{ opacity:1, y:0 }}
+          transition={{ duration:0.5 }}
+          style={{ marginBottom:36 }}
+        >
+          {/* Breadcrumb */}
+          <div style={{ display:'flex', alignItems:'center', gap:8, marginBottom:20, fontFamily:'sans-serif', fontSize:12, color:MUTED }}>
+            <button className="ai-back-btn mt-5" onClick={() => navigate('/')}>← Home</button>
+            <span style={{ color:'rgba(176,128,96,0.4)' }}>›</span>
+            <span style={{ color:MUTED }}>Quick Information</span>
+            <span style={{ color:'rgba(176,128,96,0.4)' }}>›</span>
+            <span style={{ color:BROWN, fontWeight:700 }}>{currentDept.title}</span>
+          </div>
+
+          {/* Title block */}
+          <div style={{ display:'flex', alignItems:'center', gap:16 }}>
+            <div style={{ width:52, height:52, borderRadius:14, background:`linear-gradient(135deg,${BROWN},${BROWN2})`, display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0, boxShadow:`0 4px 16px rgba(117,51,0,0.3)` }}>
+              <svg viewBox="0 0 20 20" fill={GOLD} width="22" height="22">
+                <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clipRule="evenodd" />
+              </svg>
+            </div>
+            <div>
+              <div style={{ fontFamily:'sans-serif', fontSize:9, fontWeight:700, letterSpacing:'0.16em', textTransform:'uppercase', color:MUTED, marginBottom:4 }}>
+                ✦ Quick Information
+              </div>
+              <h1 style={{
+                fontFamily: "'Playfair Display', Georgia, serif",
+                fontSize: 'clamp(22px,3.5vw,36px)',
+                fontWeight: 800,
+                color: DARK,
+                margin: 0,
+                lineHeight: 1.15,
+              }}>
+                {currentDept.title}
+              </h1>
+            </div>
+          </div>
+
+          <div style={{ height:1, background:'linear-gradient(90deg,rgba(229,190,16,0.5),transparent)', marginTop:24 }} />
+        </motion.div>
+
+        {/* ── Two-column layout ── */}
+        <div style={{ display:'grid', gridTemplateColumns:'260px 1fr', gap:24, alignItems:'start' }}>
+
+          {/* ── LEFT SIDEBAR ── */}
+          <motion.div
+            initial={{ opacity:0, x:-20 }}
+            animate={{ opacity:1, x:0 }}
+            transition={{ duration:0.55, delay:0.15 }}
+            style={{ position:'sticky', top:100 }}
+          >
+            <div
+              style={{
+                background:`linear-gradient(170deg,${DARK},#2a0e00)`,
+                borderRadius:16,
+                overflow:'hidden',
+                border:'1.5px solid rgba(229,190,16,0.2)',
+                boxShadow:'0 8px 32px rgba(58,26,0,0.25)',
+              }}
+            >
+              {/* Sidebar header */}
+              <div
+                style={{
+                  padding:'16px 16px 14px',
+                  background:`linear-gradient(90deg,${BROWN},${BROWN2})`,
+                  position:'relative', overflow:'hidden',
+                }}
+              >
+                <div style={{ position:'absolute', top:0, left:0, right:0, height:2, background:`linear-gradient(90deg,${GOLD},${BROWN2})` }} />
+                <div style={{ position:'absolute', top:-16, right:-16, width:60, height:60, background:'rgba(229,190,16,0.1)', borderRadius:'50%' }} />
+                <div style={{ fontFamily:'sans-serif', fontSize:8, fontWeight:700, letterSpacing:'0.16em', textTransform:'uppercase', color:'rgba(229,190,16,0.7)', marginBottom:4 }}>
+                  Navigation
+                </div>
+                <div style={{ fontFamily:"'Playfair Display', Georgia, serif", fontSize:16, fontWeight:700, color:GOLD, position:'relative', zIndex:1 }}>
+                  Sections
+                </div>
+              </div>
+
+              {/* Section links */}
+              <nav>
+                {sectionKeys.map((key) => {
+                  const sec = sections[key];
+                  const isActive = selectedSection === key;
+                  return (
+                    <button
+                      key={key}
+                      className={`ai-sidebar-btn${isActive ? ' active' : ''}`}
+                      onClick={() => {
+                        setSelectedSection(key);
+                        // Clear pinned item when user manually switches sections
+                        setPinnedItemId(null);
+                      }}
+                    >
+                      {sec.icon && <span style={{ fontSize:16, flexShrink:0 }}>{sec.icon}</span>}
+                      <span style={{ flex:1, textAlign:'left' }}>{sec.label}</span>
+                      {isActive && (
+                        <svg viewBox="0 0 8 12" width="7" height="12" fill={GOLD}>
+                          <path d="M1.5 1l5 5-5 5" stroke={GOLD} strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      )}
+                    </button>
+                  );
+                })}
+              </nav>
+            </div>
+
+            {/* Info hint card */}
+            <motion.div
+              initial={{ opacity:0, y:10 }}
+              animate={{ opacity:1, y:0 }}
+              transition={{ delay:0.5 }}
+              style={{
+                marginTop:16,
+                background:`rgba(229,190,16,0.08)`,
+                border:`1px solid rgba(229,190,16,0.25)`,
+                borderRadius:12,
+                padding:'14px 16px',
+              }}
+            >
+              <div style={{ display:'flex', gap:10, alignItems:'flex-start' }}>
+                <span style={{ fontSize:18 }}>ℹ️</span>
+                <div>
+                  <div style={{ fontFamily:'sans-serif', fontSize:12, fontWeight:700, color:BROWN, marginBottom:4 }}>Need Help?</div>
+                  <p style={{ fontFamily:'sans-serif', fontSize:11, color:MUTED, lineHeight:1.6, margin:0 }}>
+                    Contact the department office or visit the university help desk for further assistance.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* ── RIGHT CONTENT ── */}
+          <motion.div
+            initial={{ opacity:0, x:20 }}
+            animate={{ opacity:1, x:0 }}
+            transition={{ duration:0.55, delay:0.2 }}
+          >
+            <div
+              style={{
+                background:'#fff',
+                border:'1.5px solid rgba(229,190,16,0.28)',
+                borderRadius:20,
+                overflow:'hidden',
+                boxShadow:'0 6px 28px rgba(117,51,0,0.08)',
+              }}
+            >
+              {/* Panel header */}
+              <div
+                style={{
+                  background:`linear-gradient(135deg,${CREAM},#fff8e0)`,
+                  borderBottom:`2px solid rgba(229,190,16,0.35)`,
+                  padding:'18px 24px',
+                  display:'flex',
+                  alignItems:'center',
+                  justifyContent:'space-between',
+                  gap:12,
+                }}
+              >
+                <div>
+                  <div style={{ fontFamily:'sans-serif', fontSize:9, fontWeight:700, letterSpacing:'0.14em', textTransform:'uppercase', color:MUTED, marginBottom:4 }}>
+                    Currently Viewing
+                  </div>
+                  <h2 style={{
+                    fontFamily:"'Playfair Display', Georgia, serif",
+                    fontSize:'clamp(18px,2.5vw,26px)',
+                    fontWeight:700,
+                    color:DARK,
+                    margin:0,
+                    lineHeight:1.2,
+                  }}>
+                    {currentSection?.label || 'Information'}
+                  </h2>
+                </div>
+                <div
+                  style={{
+                    fontFamily:'sans-serif', fontSize:11, fontWeight:700,
+                    color:BROWN, background:'rgba(229,190,16,0.18)',
+                    border:'1px solid rgba(229,190,16,0.35)',
+                    padding:'4px 12px', borderRadius:20, whiteSpace:'nowrap',
+                  }}
+                >
+                  {currentData.length} item{currentData.length !== 1 ? 's' : ''}
+                </div>
+              </div>
+
+              {/* Content list */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={selectedSection}
+                  initial={{ opacity:0, y:10 }}
+                  animate={{ opacity:1, y:0 }}
+                  exit={{ opacity:0, y:-6 }}
+                  transition={{ duration:0.28 }}
+                  className="ai-scroll"
+                  style={{ maxHeight:600, overflowY:'auto' }}
+                >
+                  {currentData.length > 0 ? (
+                    currentData.map((item, index) => {
+                      const isPinned  = pinnedItemId === item.id;
+                      const isActive  = isItemActive(item.id);
+                      const isExpanded = isActive; // expand on hover OR when pinned
+
+                      return (
+                        <motion.div
+                          key={item.id ?? index}
+                          ref={isPinned ? pinnedItemRef : null}
+                          className={`ai-content-row${isPinned ? ' pinned' : ''}`}
+                          initial={{ opacity:0, x:-8 }}
+                          animate={{ opacity:1, x:0 }}
+                          transition={{ duration:0.2, delay: index * 0.04 }}
+                          onMouseEnter={() => setHoveredItemId(item.id)}
+                          onMouseLeave={() => setHoveredItemId(null)}
+                          // Clicking a pinned item clears the pin (back to hover-only)
+                          onClick={() => setPinnedItemId(prev => prev === item.id ? null : item.id)}
+                        >
+                          {/* Number badge */}
+                          <div
+                            style={{
+                              width:28, height:28, borderRadius:8, flexShrink:0,
+                              background: isActive
+                                ? `linear-gradient(135deg,${BROWN},${BROWN2})`
+                                : 'rgba(229,190,16,0.12)',
+                              border:`1px solid ${isActive ? BROWN : 'rgba(229,190,16,0.3)'}`,
+                              display:'flex', alignItems:'center', justifyContent:'center',
+                              transition:'background 0.2s, border-color 0.2s',
+                            }}
+                          >
+                            <span style={{ fontSize:10, fontWeight:700, fontFamily:'sans-serif', color: isActive ? GOLD : MUTED }}>
+                              {String(index + 1).padStart(2, '0')}
+                            </span>
+                          </div>
+
+                          {/* Text */}
+                          <div style={{ flex:1 }}>
+                            <p style={{
+                              fontFamily:'sans-serif', fontSize:13.5,
+                              color: isActive ? BROWN : TEXT,
+                              fontWeight: isActive ? 600 : 400,
+                              margin:0, lineHeight:1.6,
+                              transition:'color 0.2s',
+                            }}>
+                              {item.title}
+                            </p>
+                            {item.date && (
+                              <p style={{ fontFamily:'sans-serif', fontSize:11, color:MUTED, margin:'3px 0 0' }}>
+                                {new Date(item.date).toLocaleDateString('en-IN', { year:'numeric', month:'long', day:'numeric' })}
+                              </p>
+                            )}
+                            {item.content && (
+                              <AnimatePresence>
+                                {isExpanded && (
+                                  <motion.p
+                                    initial={{ opacity:0, height:0 }}
+                                    animate={{ opacity:1, height:'auto' }}
+                                    exit={{ opacity:0, height:0 }}
+                                    transition={{ duration:0.25 }}
+                                    style={{
+                                      fontFamily:'sans-serif', fontSize:12, color:'#7a4010',
+                                      lineHeight:1.65, margin:'6px 0 0', overflow:'hidden',
+                                    }}
+                                  >
+                                    {item.content}
+                                  </motion.p>
+                                )}
+                              </AnimatePresence>
+                            )}
+                          </div>
+
+                          {/* Badges & arrow */}
+                          <div style={{ display:'flex', flexDirection:'column', alignItems:'flex-end', gap:6, flexShrink:0 }}>
+                            {item.isNew && <span className="ai-new-badge">New</span>}
+                            <motion.span
+                              animate={{ x: isActive ? 0 : -6, opacity: isActive ? 1 : 0 }}
+                              transition={{ duration:0.2 }}
+                              style={{ fontSize:16, color:BROWN }}
+                            >
+                              →
+                            </motion.span>
+                          </div>
+                        </motion.div>
+                      );
+                    })
+                  ) : (
+                    <div style={{ padding:'60px 20px', textAlign:'center' }}>
+                      <div style={{ fontSize:48, marginBottom:12 }}>📭</div>
+                      <p style={{ fontFamily:'sans-serif', fontSize:14, color:MUTED, margin:0 }}>No items available at the moment.</p>
+                      <p style={{ fontFamily:'sans-serif', fontSize:12, color:'rgba(176,128,96,0.6)', margin:'6px 0 0' }}>Check back later for updates.</p>
+                    </div>
+                  )}
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default AllInfoPage;

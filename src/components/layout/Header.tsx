@@ -162,7 +162,7 @@ export default function Header() {
         .hdr-nav-link:hover { color:var(--gold); }
 
         /* Dropdown panel */
-        .hdr-dd-panel { background:#fff; border-radius:12px; box-shadow:0 12px 40px rgba(117,51,0,0.15); border:1px solid rgba(229,190,16,0.2); overflow:hidden; }
+        .hdr-dd-panel { background:#fff; border-radius:12px; box-shadow:0 12px 40px rgba(117,51,0,0.15); border:1px solid rgba(229,190,16,0.2); overflow:visible; }
 
         /* Mobile items */
         .hdr-mob-item { display:flex; align-items:center; justify-content:space-between; width:100%; padding:11px 12px; border-radius:10px; color:#3a1a00; font-size:14px; font-weight:600; background:none; border:none; cursor:pointer; transition:background 0.15s,color 0.15s; text-align:left; font-family:'Georgia',serif; }
@@ -203,7 +203,7 @@ export default function Header() {
             <div className="flex items-center justify-between py-2 sm:py-3 gap-4">
               <div className="flex items-center flex-shrink-0">
                 <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-                  <img src={logo} className="w-full h-auto object-contain block" style={{ maxWidth: 420 }} alt="Tilak College Logo" />
+                  <img src={logo} className="w-60 sm:w-full sm:h-auto object-contain block" style={{ maxWidth: 420 }} alt="Tilak College Logo" />
                 </Link>
               </div>
               <div className="flex items-center gap-3">

@@ -1,223 +1,281 @@
 import React from 'react';
-import {  MapPin, Phone, Mail, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
-import logo from '../../assets/footerlogo.png'
+import { MapPin, Phone, Mail, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
+import logo from '../../assets/footerlogo.png';
+
+const GOLD = '#e5be10';
+const BROWN = '#753300';
+const BROWN2 = '#9a4a10';
+const DARK = '#3a1a00';
+const CREAM = '#fdf8ee';
+
+const quickLinks1 = [
+  { name: 'Exam Timetable', href: '#' },
+  { name: 'Alumni Registration', href: '#' },
+  { name: 'Student Corner', href: '#' },
+  { name: 'Teacher Login', href: '#' },
+  { name: 'FAQ', href: '#' },
+  { name: 'Contact Us', href: '#' },
+  { name: 'Photo Gallery', href: '#' },
+];
+
+const quickLinks2 = [
+  { name: 'World Bank', href: '#' },
+  { name: 'Right to Information', href: '#' },
+  { name: 'AISE Portal', href: '#' },
+  { name: 'Tender', href: '#' },
+  { name: 'Recruitment', href: '#' },
+  { name: 'Scholarship', href: '#' },
+  { name: 'Alumni', href: '#' },
+];
 
 export default function Footer() {
-  const quickLinks1 = [
-    { name: 'Exam Timetable', href: '#' },
-    { name: 'Alumni Registration', href: '#' },
-    { name: 'Student Corner', href: '#' },
-    { name: 'Teacher Login', href: '#' },
-    { name: 'FAQ', href: '#' },
-    { name: 'Contact Us', href: '#' },
-    { name: 'Photo Gallery', href: '#' },
-    
-  ];
-
-  const quickLinks2 = [
-    
-    { name: 'World Bank', href: '#' },
-    { name: 'Right to Information', href: '#' },
-    { name: 'AISE Portal', href: '#' },
-    { name: 'Tender', href: '#' },
-    { name: 'Recruitment', href: '#' },
-    { name: 'Scholarship', href: '#' },
-    { name: 'Alumni', href: '#' }
-  ];
-
-  // const announcements = [
-  //   { title: 'Covid19 Information', href: '#' },
-  //   { title: 'Recruitment For The Upcoming Paramedical Courses', href: '#' },
-  //   { title: 'Virtual " 20 September 2020', href: '#' }
-  // ];
-
   return (
-    <footer id="contact" className="bg-slate-900 text-white py-12">
-      <div className=" mx-auto px-4 sm:px-6 lg:px-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-4 mb-8 mx-16">
-          {/* Quick Links Column 1 */}
-          <div className='sm:col-span-2'>
-            <img src={logo} alt="" className='h-32' />
-            {/* <p>BHOJ University, Bhopal</p> */}
-            <p>Govt. Tilak P.G. College, katni (M.P.) was established in august 1958 under the aegis of Tilak Shiksha society, katni, comprising of social workers, educationists and some business men of the town. The Govt. Tilak P.G. College katni a multi-faculty educational institution affiliated to Rani Durgawati university Jabalpur. it is the leading college of katni district.</p>
-          </div>
+    <footer
+      id="contact"
+      style={{
+        background: `linear-gradient(170deg,${DARK} 0%,#2a0e00 60%,#1a0800 100%)`,
+        fontFamily: 'Georgia, serif',
+        position: 'relative',
+        overflow: 'hidden',
+      }}
+    >
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+        .footer-link {
+          font-family: sans-serif;
+          font-size: 13px;
+          color: rgba(253,248,238,0.5);
+          text-decoration: none;
+          transition: color 0.2s, padding-left 0.2s;
+          display: block;
+          padding: 3px 0;
+        }
+        .footer-link:hover { color: ${GOLD}; padding-left: 6px; }
+        .footer-social-btn {
+          width: 36px; height: 36px; border-radius: 8px;
+          background: rgba(229,190,16,0.1); border: 1px solid rgba(229,190,16,0.25);
+          display: flex; align-items: center; justify-content: center;
+          color: rgba(253,248,238,0.5); transition: background 0.2s, color 0.2s, border-color 0.2s;
+          cursor: pointer;
+        }
+        .footer-social-btn:hover { background: rgba(229,190,16,0.2); color: ${GOLD}; border-color: rgba(229,190,16,0.5); }
+        .footer-contact-row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 14px; }
+        .footer-contact-icon { width: 32px; height: 32px; border-radius: 8px; background: rgba(229,190,16,0.12); border: 1px solid rgba(229,190,16,0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+      `}</style>
 
-          <div className='sm:pl-6'>
-            <h4 className="font-bold mb-4 text-lg">Quick Links</h4>
-            <ul className="space-y-2 text-gray-900">
-              {quickLinks1.map((link, index) => (
-                <li key={index}>
-                  <a href={link.href} className="hover:text-white text-slate-400 transition-colors">
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+      {/* Top gold accent bar */}
+      <div style={{ height: 3, background: `linear-gradient(90deg,transparent,${GOLD},${BROWN2},${GOLD},transparent)` }} />
 
-          {/* Quick Links Column 2 */}
+      {/* Decorative orbs */}
+      <div style={{ position:'absolute', width:400, height:400, top:-160, right:-160, borderRadius:'50%', background:'rgba(229,190,16,0.04)', pointerEvents:'none' }} />
+      <div style={{ position:'absolute', width:250, height:250, bottom:-80, left:-80, borderRadius:'50%', background:'rgba(117,51,0,0.15)', pointerEvents:'none' }} />
+
+      {/* Main content */}
+      <div style={{  margin: '0 auto', padding: '56px 32px 40px', position: 'relative', zIndex: 1 }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '1.6fr 1fr 1fr 1.2fr',
+            gap: '48px 40px',
+            marginBottom: 48,
+          }}
+        >
+
+          {/* ── Col 1: Brand ── */}
           <div>
-            <h4 className="font-bold mb-4 text-lg">Quick Links</h4>
-            <ul className="space-y-2 text-slate-400">
-              {quickLinks2.map((link, index) => (
-                <li key={index}>
-                  <a href={link.href} className="hover:text-white text-slate-400 transition-colors">
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Announcements */}
-          {/* <div>
-            <h4 className="font-bold mb-4 text-lg">Announcements</h4>
-            <ul className="space-y-2 text-slate-400">
-              {announcements.map((announcement, index) => (
-                <li key={index}>
-                  <a href={announcement.href} className="hover:text-white text-slate-400 transition-colors">
-                    {announcement.title}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div> */}
-
-          {/* Contact */}
-          <div>
-            <h4 className="font-bold mb-4 text-lg">Contact Us</h4>
-            <ul className="space-y-3 text-slate-400">
-              <li className="flex items-start space-x-2">
-                <MapPin className="w-5 h-5 flex-shrink-0 mt-0.5" />
-                <span>
-                  Govt. Tilak P.G. College<br/>
-                  Shahadol Road Khirahani<br/>
-                  Katni, Madhya Pradesh<br/>
-                  07622292113,07622235723<br/>
-                  {/* gtc_katni@yahoo.co.in<br/> */}
-                  {/* BHOJ University, Airport Rd, Abbas Nagar, Gandhi Nagar, Bhopal, Madhya Pradesh, India<br />
-                  Pin Code - 462033 */}
+            <img src={logo} alt="College Logo" style={{ height: 100, marginBottom: 20, filter: 'brightness(1.1)' }} />
+            <p
+              style={{
+                fontFamily: 'sans-serif',
+                fontSize: 13,
+                lineHeight: 1.8,
+                color: 'rgba(253,248,238,0.55)',
+                margin: '0 0 24px',
+              }}
+            >
+              Govt. Tilak P.G. College, Katni (M.P.) was established in August 1958. A multi-faculty institution affiliated to Rani Durgawati University Jabalpur — the leading college of Katni district.
+            </p>
+            {/* Divider with motto */}
+            <div
+              style={{
+                borderLeft: `3px solid ${GOLD}`,
+                paddingLeft: 14,
+                marginBottom: 24,
+              }}
+            >
+              <p style={{ fontFamily: 'Georgia, serif', fontSize: 12, fontStyle: 'italic', color: 'rgba(229,190,16,0.75)', lineHeight: 1.6, margin: 0 }}>
+                "Idquoyogh karmsu kaushallam"<br />
+                <span style={{ fontFamily: 'sans-serif', fontSize: 11, color: 'rgba(253,248,238,0.4)', fontStyle: 'normal' }}>
+                  Perfection in one's work is true yoga
                 </span>
-              </li>
-              <li className="flex items-center space-x-2">
-                <Phone className="w-5 h-5" />
-                <span>Tollfree : 18002700320</span>
-              </li>
-              <li className="flex items-center space-x-2">
-                <Mail className="w-5 h-5" />
-                <span>gtc_katni@gmail.com</span>
-              </li>
+              </p>
+            </div>
+            {/* Social icons */}
+            <div style={{ display: 'flex', gap: 8 }}>
+              {[
+                { icon: <Facebook size={15} />, label: 'Facebook' },
+                { icon: <Linkedin size={15} />, label: 'LinkedIn' },
+                { icon: <Twitter size={15} />, label: 'Twitter' },
+                { icon: <Instagram size={15} />, label: 'Instagram' },
+              ].map((s) => (
+                <a key={s.label} href="#" className="footer-social-btn" aria-label={s.label}>
+                  {s.icon}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* ── Col 2: Quick Links 1 ── */}
+          <div>
+            <div style={{ marginBottom: 20 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 4 }}>
+                <div style={{ width: 18, height: 2, background: `linear-gradient(90deg,${GOLD},${BROWN2})`, borderRadius: 1 }} />
+                <span style={{ fontFamily: 'sans-serif', fontSize: 9, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: GOLD }}>
+                  Quick Links
+                </span>
+              </div>
+              <h4 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 18, fontWeight: 700, color: CREAM, margin: 0 }}>
+                Student
+              </h4>
+            </div>
+            <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+              {quickLinks1.map((link) => (
+                <li key={link.name}>
+                  <a href={link.href} className="footer-link">
+                    <span style={{ color: 'rgba(229,190,16,0.5)', marginRight: 6, fontSize: 10 }}>›</span>
+                    {link.name}
+                  </a>
+                </li>
+              ))}
             </ul>
+          </div>
+
+          {/* ── Col 3: Quick Links 2 ── */}
+          <div>
+            <div style={{ marginBottom: 20 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 4 }}>
+                <div style={{ width: 18, height: 2, background: `linear-gradient(90deg,${GOLD},${BROWN2})`, borderRadius: 1 }} />
+                <span style={{ fontFamily: 'sans-serif', fontSize: 9, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: GOLD }}>
+                  Portals
+                </span>
+              </div>
+              <h4 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 18, fontWeight: 700, color: CREAM, margin: 0 }}>
+                Resources
+              </h4>
+            </div>
+            <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+              {quickLinks2.map((link) => (
+                <li key={link.name}>
+                  <a href={link.href} className="footer-link">
+                    <span style={{ color: 'rgba(229,190,16,0.5)', marginRight: 6, fontSize: 10 }}>›</span>
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* ── Col 4: Contact ── */}
+          <div>
+            <div style={{ marginBottom: 20 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 4 }}>
+                <div style={{ width: 18, height: 2, background: `linear-gradient(90deg,${GOLD},${BROWN2})`, borderRadius: 1 }} />
+                <span style={{ fontFamily: 'sans-serif', fontSize: 9, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: GOLD }}>
+                  Reach Us
+                </span>
+              </div>
+              <h4 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 18, fontWeight: 700, color: CREAM, margin: 0 }}>
+                Contact Us
+              </h4>
+            </div>
+
+            <div className="footer-contact-row">
+              <div className="footer-contact-icon">
+                <MapPin size={14} color={GOLD} />
+              </div>
+              <div style={{ fontFamily: 'sans-serif', fontSize: 12.5, color: 'rgba(253,248,238,0.55)', lineHeight: 1.7 }}>
+                Shahadol Road Khirahani<br />
+                Katni, Madhya Pradesh<br />
+                07622292113 · 07622235723
+              </div>
+            </div>
+
+            <div className="footer-contact-row">
+              <div className="footer-contact-icon">
+                <Phone size={14} color={GOLD} />
+              </div>
+              <div style={{ fontFamily: 'sans-serif', fontSize: 12.5, color: 'rgba(253,248,238,0.55)', lineHeight: 1.7 }}>
+                Tollfree: 18002700320
+              </div>
+            </div>
+
+            <div className="footer-contact-row">
+              <div className="footer-contact-icon">
+                <Mail size={14} color={GOLD} />
+              </div>
+              <div style={{ fontFamily: 'sans-serif', fontSize: 12.5, color: 'rgba(253,248,238,0.55)', lineHeight: 1.7 }}>
+                gtc_katni@gmail.com
+              </div>
+            </div>
+
+            {/* Map placeholder / location badge */}
+            <div
+              style={{
+                marginTop: 18,
+                background: 'rgba(229,190,16,0.08)',
+                border: '1px solid rgba(229,190,16,0.2)',
+                borderRadius: 10,
+                padding: '10px 14px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 8,
+              }}
+            >
+              <div style={{ width: 8, height: 8, borderRadius: '50%', background: GOLD, flexShrink: 0, boxShadow: `0 0 6px ${GOLD}` }} />
+              <span style={{ fontFamily: 'sans-serif', fontSize: 11, color: 'rgba(229,190,16,0.75)', letterSpacing: '0.04em' }}>
+                Katni, Madhya Pradesh — India
+              </span>
+            </div>
           </div>
         </div>
 
-        <div className="border-t border-slate-800 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6 space-y-4 md:space-y-0">
-            <p className="text-slate-400 text-sm w-full text-center  gap-8">
-             Copyright ©2025 Govt. Tilak P.G. College, Katni. All rights reserved. | Powered by :
-              <a href="https://www.indian-tech.com/" className="hover:text-red-900 underline transition-colors gap-8"> Indian Tech Corporation</a> | 
-              {/* <a href="#" className="hover:text-white transition-colors"> Privacy Policy</a> | 
-              <a href="#" className="hover:text-white transition-colors"> Refund and Cancellation Policy</a>  */}
-              
-              Last Updated: 20-Feb-2026
-            </p>
-            <div className="flex space-x-4">
-              <a href="#" className="text-slate-400 hover:text-white transition-colors" aria-label="Facebook">
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-slate-400 hover:text-white transition-colors" aria-label="Facebook">
-                <Linkedin className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-slate-400 hover:text-white transition-colors" aria-label="Twitter">
-                <Twitter className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-slate-400 hover:text-white transition-colors" aria-label="Instagram">
-                <Instagram className="w-5 h-5" />
-              </a>
-            </div>
-          </div>
-          <div className="text-center mt-4">
-            <p className="text-slate-500 text-xs">
-              Internal Release - Date: 20-Feb-2026
-            </p>
-          </div>
+        {/* Divider */}
+        <div style={{ height: 1, background: 'linear-gradient(90deg,transparent,rgba(229,190,16,0.3),transparent)', marginBottom: 28 }} />
+
+        {/* Bottom bar */}
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            gap: 12,
+          }}
+        >
+          <p style={{ fontFamily: 'sans-serif', fontSize: 12, color: 'rgba(253,248,238,0.35)', margin: 0 }}>
+            Copyright © 2025 Govt. Tilak P.G. College, Katni. All rights reserved.
+          </p>
+          <p style={{ fontFamily: 'sans-serif', fontSize: 12, color: 'rgba(253,248,238,0.35)', margin: 0, display: 'flex', alignItems: 'center', gap: 6 }}>
+            Powered by{' '}
+            <a
+              href="https://www.indian-tech.com/"
+              style={{ color: 'rgba(229,190,16,0.6)', textDecoration: 'none', transition: 'color 0.2s' }}
+              onMouseEnter={e => (e.currentTarget.style.color = GOLD)}
+              onMouseLeave={e => (e.currentTarget.style.color = 'rgba(229,190,16,0.6)')}
+            >
+              Indian Tech Corporation
+            </a>
+            <span style={{ color: 'rgba(253,248,238,0.2)' }}>·</span>
+            Last Updated: 20-Feb-2026
+          </p>
+        </div>
+
+        <div style={{ textAlign: 'center', marginTop: 14 }}>
+          <span style={{ fontFamily: 'sans-serif', fontSize: 11, color: 'rgba(253,248,238,0.2)' }}>
+            Internal Release — 20-Feb-2026
+          </span>
         </div>
       </div>
     </footer>
   );
 }
-
-
-// import React from 'react';
-// import { BookOpen, MapPin, Phone, Mail } from 'lucide-react';
-
-// export default function Footer() {
-//   return (
-//     <footer id="contact" className="bg-slate-900 text-white py-16">
-//       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-//         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-//           <div>
-//             <h3 className="text-xl font-bold mb-4 flex items-center space-x-2">
-//               <BookOpen className="w-6 h-6" />
-//               <span>University</span>
-//             </h3>
-//             <p className="text-slate-400 leading-relaxed">
-//               Empowering minds, transforming futures since 1922.
-//             </p>
-//           </div>
-
-//           <div>
-//             <h4 className="font-bold mb-4 text-lg">Quick Links</h4>
-//             <ul className="space-y-2 text-slate-400">
-//               <li><a href="#about" className="hover:text-white transition-colors">About Us</a></li>
-//               <li><a href="#academics" className="hover:text-white transition-colors">Admissions</a></li>
-//               <li><a href="#academics" className="hover:text-white transition-colors">Academic Programs</a></li>
-//               <li><a href="#campus-life" className="hover:text-white transition-colors">Campus Life</a></li>
-//             </ul>
-//           </div>
-
-//           <div>
-//             <h4 className="font-bold mb-4 text-lg">Resources</h4>
-//             <ul className="space-y-2 text-slate-400">
-//               <li><a href="#" className="hover:text-white transition-colors">Library</a></li>
-//               <li><a href="#" className="hover:text-white transition-colors">Campus Map</a></li>
-//               <li><a href="#" className="hover:text-white transition-colors">Student Portal</a></li>
-//               <li><a href="#" className="hover:text-white transition-colors">Career Services</a></li>
-//             </ul>
-//           </div>
-
-//           <div>
-//             <h4 className="font-bold mb-4 text-lg">Contact Us</h4>
-//             <ul className="space-y-3 text-slate-400">
-//               <li className="flex items-start space-x-2">
-//                 <MapPin className="w-5 h-5 flex-shrink-0 mt-0.5" />
-//                 <span>University Road, Academic City, India - 452001</span>
-//               </li>
-//               <li className="flex items-center space-x-2">
-//                 <Phone className="w-5 h-5" />
-//                 <span>+91 731-2527532</span>
-//               </li>
-//               <li className="flex items-center space-x-2">
-//                 <Mail className="w-5 h-5" />
-//                 <span>info@excellence.edu.in</span>
-//               </li>
-//             </ul>
-//           </div>
-//         </div>
-
-//         <div className="border-t border-slate-800 pt-8">
-//           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-//             <p className="text-slate-400 text-sm">
-//               © 2026 Excellence University. All rights reserved.
-//             </p>
-//             <div className="flex space-x-6">
-//               <a href="#" className="text-slate-400 hover:text-white transition-colors">Privacy Policy</a>
-//               <a href="#" className="text-slate-400 hover:text-white transition-colors">Terms of Service</a>
-//               <a href="#" className="text-slate-400 hover:text-white transition-colors">Sitemap</a>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </footer>
-//   );
-// }

@@ -17,6 +17,7 @@ import TestimonialsSection from '@/components/home/TestimonialsSection'
 //import ImpLinks from '@/components/home/ImpLinks'
 //import ViceChancellorNoticesSection from '@/components/home/ViceChancellorNoticesSection'
 import EventsSection from '@/components/home/EventsSection'
+import AboutSection from '@/components/home/AboutSection'
 
 const Home = () => {
   return (
@@ -24,6 +25,7 @@ const Home = () => {
       {/* NO FLOATING BUTTON COMPONENT HERE! It's already in App.tsx */}
       <HeroSection />
       <About/>
+      <AboutSection/>
       <div className='flex flex-col gap-10'>
         <ChancellorNoticesSection/>
         {/* <ViceChancellorNoticesSection/> */}
