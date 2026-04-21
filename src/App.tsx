@@ -30,7 +30,13 @@ import Library from './pages/Library';
 import Gtcataglance from './pages/Gtcataglance';
 import Iqac from './pages/Iqac';
 import Staff from './pages/Staff';
-
+import Enterprenurship from './pages/committee/Enterprenurship';
+//import grievance from './pages/committee/Grievance';
+import Grievance from './pages/committee/Grievance';
+import Planning from './pages/committee/Planning';
+import Statutory from './pages/committee/Statutory';
+import Complaint from './pages/committee/Complaint';
+import Antirag from './pages/committee/Antirag';
 const Home = lazy(() => import('./pages/Home'));
 // const Legacy = lazy(() => import('./pages/Legacy'));
 // const Location = lazy(() => import('./pages/Location'));
@@ -90,6 +96,12 @@ function App() {
 					<Route path="/iqac" element={<Iqac />} />
 					<Route path="/values" element={<Values />} />
 					<Route path="/library" element={<Library />} />
+					<Route path="/committee/entrepreneurship" element={<Enterprenurship />} />
+					<Route path="/committee/grievance" element={<Grievance/>} />
+					<Route path="/committee/planning" element={<Planning />} />
+					<Route path="/committee/internal-complaint" element={<Complaint />} />
+					<Route path="/committee/statutory" element={<Statutory />} />
+					<Route path="/committee/anti-ragging" element={<Antirag />} />
 					<Route path="/gtc-at-a-glance" element={<Gtcataglance />} />
 					<Route path="/gallery" element={<Gallery />} />
 					<Route path="/student-corner" element={<StudentCorner />} />
