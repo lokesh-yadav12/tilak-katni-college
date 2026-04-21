@@ -43,6 +43,9 @@ import Grievance from './pages/committee/Grievance';
 import Complaint from './pages/committee/Complaint';
 import Statutory from './pages/committee/Statutory';
 import Planning from './pages/committee/Planning';
+import Photogallery from './pages/Photogallery';
+import Mediagallery from './pages/Mediagallery';
+import Videogallery from './pages/Videogallery';
 
 const Home = lazy(() => import('./pages/Home'));
 // const Legacy = lazy(() => import('./pages/Legacy'));
@@ -109,6 +112,9 @@ function App() {
 					<Route path="/staff" element={<Staff />} />
 					<Route path="/study-center/bhoj" element={<Bhoj />} />
 					<Route path="/study-center/ignou" element={<Ignou />} />
+					<Route path="/gallery/photos" element={<Photogallery />} />
+					<Route path="/gallery/media" element={<Mediagallery />} />
+					<Route path="/gallery/videos" element={<Videogallery />} />
 
 					<Route path="/committee/anti-ragging" element={<Antirag />} />
 					<Route path="/committee/entrepreneurship" element={<Enterprenurship />} />
