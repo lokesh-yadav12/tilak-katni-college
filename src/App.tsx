@@ -1,3 +1,6 @@
+
+
+
 import { Routes, Route, Outlet } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import MainLayout from './components/layout/MainLayout';
@@ -30,13 +33,10 @@ import Library from './pages/Library';
 import Gtcataglance from './pages/Gtcataglance';
 import Iqac from './pages/Iqac';
 import Staff from './pages/Staff';
-import Enterprenurship from './pages/committee/Enterprenurship';
-//import grievance from './pages/committee/Grievance';
-import Grievance from './pages/committee/Grievance';
-import Planning from './pages/committee/Planning';
-import Statutory from './pages/committee/Statutory';
-import Complaint from './pages/committee/Complaint';
-import Antirag from './pages/committee/Antirag';
+import CareerGuidance from './pages/support/CareerGuidance';
+import Club from './pages/support/Club';
+import Hostel from './pages/support/Hostel';
+
 const Home = lazy(() => import('./pages/Home'));
 // const Legacy = lazy(() => import('./pages/Legacy'));
 // const Location = lazy(() => import('./pages/Location'));
@@ -48,30 +48,30 @@ const Home = lazy(() => import('./pages/Home'));
 // const NotFound = lazy(() => import('./pages/NotFound'));
 
 function App() {
-	// const [isInitialLoading, setIsInitialLoading] = useState(true);
+	const [isInitialLoading, setIsInitialLoading] = useState(true);
 
-	// const handleInitialLoadingComplete = () => {
-	// 	setIsInitialLoading(false);
-	// };
+	const handleInitialLoadingComplete = () => {
+		setIsInitialLoading(false);
+	};
 
 	// 🌀 Initial loader before full render
-	// if (isInitialLoading) {
-	// 	return (
-	// 		<div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-100 overflow-hidden">
-	// 			<div className="scale-[2]">
-	// 				<DPSLoading duration={2000} onLoadingComplete={handleInitialLoadingComplete} />
-	// 			</div>
-	// 		</div>
-	// 	);
-	// }
+	if (isInitialLoading) {
+		return (
+			<div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-100 overflow-hidden">
+				<div className="scale-[2]">
+					<DPSLoading duration={2000} onLoadingComplete={handleInitialLoadingComplete} />
+				</div>
+			</div>
+		);
+	}
 
 	return (
 		<Suspense
 			fallback={
 				<div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-100 overflow-hidden">
-					{/* <div className="scale-[2]">
+					<div className="scale-[2]">
 						<DPSLoading />
-					</div> */}
+					</div>
 				</div>
 			}
 		>
@@ -96,12 +96,6 @@ function App() {
 					<Route path="/iqac" element={<Iqac />} />
 					<Route path="/values" element={<Values />} />
 					<Route path="/library" element={<Library />} />
-					<Route path="/committee/entrepreneurship" element={<Enterprenurship />} />
-					<Route path="/committee/grievance" element={<Grievance/>} />
-					<Route path="/committee/planning" element={<Planning />} />
-					<Route path="/committee/internal-complaint" element={<Complaint />} />
-					<Route path="/committee/statutory" element={<Statutory />} />
-					<Route path="/committee/anti-ragging" element={<Antirag />} />
 					<Route path="/gtc-at-a-glance" element={<Gtcataglance />} />
 					<Route path="/gallery" element={<Gallery />} />
 					<Route path="/student-corner" element={<StudentCorner />} />
@@ -114,6 +108,9 @@ function App() {
 					<Route path="/research" element={<Reaserchcell />} />
 					<Route path="/chancellor-message" element={<ChancellorMessagePage />} />
 					<Route path="/vice-chancellor-message" element={<ViceChancellorMessagePage />} />
+					<Route path="/support/career-guidance" element={<CareerGuidance />} />
+					<Route path="/support/club" element={<Club />} />
+					<Route path="/support/hostel" element={<Hostel />} />
 
 				</Route>
 				<Route
