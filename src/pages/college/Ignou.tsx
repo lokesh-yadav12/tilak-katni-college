@@ -229,8 +229,11 @@ const Ignou = () => {
 									src={logo}
 									alt="IGNOU Logo"
 									onError={(e) => {
-										e.target.style.display = 'none';
-										e.target.nextSibling.style.display = 'flex';
+										const target = e.target as HTMLElement;
+										target.style.display = 'none';
+
+										const next = target.nextElementSibling as HTMLElement;
+										if (next) next.style.display = 'flex';
 									}}
 								/>
 								<div className="logo-fallback" style={{ display: 'none' }}>

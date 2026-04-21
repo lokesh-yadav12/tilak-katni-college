@@ -49,8 +49,8 @@ const staffData = [
 ];
 
 // ── initials helper ───────────────────────────────────────────────────────────
-const getInitials = (name) =>
-  name.replace(/\(.*?\)/g, '').trim().split(' ').filter(Boolean).map(n => n[0]).slice(0, 2).join('');
+const getInitials = (name: string): string =>
+  name.replace(/\(.*?\)/g, '').trim().split(' ').filter(Boolean).map((n: string) => n[0]).slice(0, 2).join('');
 
 // gradient pool for avatar backgrounds
 const avatarGradients = [
@@ -93,7 +93,7 @@ const CalIcon = () => (
 );
 
 // ── Staff Card ────────────────────────────────────────────────────────────────
-const StaffCard = ({ member, index }) => {
+const StaffCard = ({ member, index }: { member: StaffMember; index: number }) => {
   const grad = avatarGradients[index % avatarGradients.length];
   const isGuest = member.type === 'Guest';
 
