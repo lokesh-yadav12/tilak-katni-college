@@ -1,6 +1,19 @@
 import React, { useState } from 'react';
 
 // ── 44 dummy staff members ────────────────────────────────────────────────────
+
+type StaffMember = {
+  id: number;
+  name: string;
+  staffType: string;
+  type: string;
+  designation: string;
+  dob: string;
+  mobile: string;
+  email: string;
+  qualification: string;
+};
+
 const staffData = [
   { id: 1,  name: 'Dr. Padmaja Shukla',      staffType: 'Teaching', type: 'Regular',    designation: 'Asstt. Professor (HoD)', dob: '27-12-1958', mobile: '9424956186', email: 'padmajashukla@gmail.com',      qualification: 'M.Phil, M.Sc.' },
   { id: 2,  name: 'Dr. Ramesh Kumar Tiwari', staffType: 'Teaching', type: 'Regular',    designation: 'Associate Professor',    dob: '14-03-1965', mobile: '9826543210', email: 'rktiwari@gmail.com',            qualification: 'Ph.D, M.Sc.' },
