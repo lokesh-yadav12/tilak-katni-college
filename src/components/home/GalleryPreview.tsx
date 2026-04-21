@@ -50,7 +50,7 @@ const GalleryPreview: React.FC<GalleryPreviewProps> = ({
     <section className="py-20 px-4 bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#e5be10] mb-4">
             {title}
           </h2>
           <div className="w-24 h-1 bg-[#B8860B] mx-auto mb-6"></div>
@@ -70,7 +70,7 @@ const GalleryPreview: React.FC<GalleryPreviewProps> = ({
                 alt={image.alt}
                 className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1e3a8a]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="absolute inset-0 bg-gradient-to-t from-[#e5be10]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <div className="absolute bottom-4 left-4 right-4">
                   <p className="text-white font-semibold text-lg">{image.alt}</p>
                 </div>

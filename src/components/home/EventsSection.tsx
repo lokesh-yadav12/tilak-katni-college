@@ -3,132 +3,114 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { allInfoData, DepartmentType } from '@/data/allInfoData';
 
+const BADGES: Record<string, string> = {
+  // add your dept keys → badge labels here
+};
+
 const EventsSection: React.FC = () => {
-	const navigate = useNavigate();
-	const [activeItem, setActiveItem] = useState<string | null>(null);
+  const navigate = useNavigate();
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
-	const handleViewAll = (key: DepartmentType) => {
-		// Scroll to top and navigate
-		window.scrollTo({ top: 0, behavior: 'smooth' });
-		navigate(`/all-info/${key}`);
-	};
+  const handleViewAll = (key: DepartmentType) => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    navigate(`/all-info/${key}`);
+  };
 
-	return (
-		<div className="px-4 sm:px-10 py-20">
-			{/* Top Left Heading */}
-			<motion.div
-				initial={{ opacity: 0, y: -20 }}
-				whileInView={{ opacity: 1, y: 0 }}
-				viewport={{ once: true }}
-				transition={{ duration: 0.8, ease: 'easeOut' }}
-				className="mb-8 max-w-7xl mx-auto text-center"
-			>
-				<h2 className="text-3xl sm:text-4xl font-bold text-[#1e3a8a] mb-2">
-					Quick <span className="text-[#1e3a8a]">Information</span>
-				</h2>
-				<p className="sm:text-lg text-md text-gray-700 max-w-3xl mx-auto border-t-2 border-gray-300 pt-4">
-					Access important resources and information about our institute's administration, policies, and
-					governance.
-				</p>
-			</motion.div>
+  return (
+    <section
+      style={{
+        background: 'linear-gradient(160deg,#fff8ee 0%,#fdf3d8 50%,#fff 100%)',
+        padding: '60px 24px 80px',
+        position: 'relative',
+        overflow: 'hidden',
+        fontFamily: 'Georgia, serif',
+      }}
+    >
+      <style>{`
+        .ev-card { background:#fff; border:1.5px solid rgba(229,190,16,0.3); border-radius:16px; overflow:hidden; display:flex; flex-direction:column; box-shadow:0 4px 20px rgba(117,51,0,0.08); transition:transform 0.25s,box-shadow 0.25s,border-color 0.25s; }
+        .ev-card:hover { transform:translateY(-6px); box-shadow:0 16px 40px rgba(117,51,0,0.16); border-color:rgba(229,190,16,0.6); }
+        .ev-item { padding:10px 14px; border-bottom:1px solid rgba(229,190,16,0.12); font-size:12px; color:#4a2000; font-family:sans-serif; line-height:1.5; display:flex; align-items:flex-start; gap:8px; cursor:pointer; transition:background 0.2s,color 0.2s; }
+        .ev-item:last-child { border-bottom:none; }
+        .ev-item:hover { background:rgba(229,190,16,0.1); color:#753300; }
+        .ev-btn { background:linear-gradient(90deg,#753300,#9a4a10); color:#e5be10; border:none; padding:10px; font-size:11px; font-weight:700; letter-spacing:0.06em; cursor:pointer; font-family:sans-serif; text-align:center; width:100%; transition:opacity 0.2s; }
+        .ev-btn:hover { opacity:0.85; }
+      `}</style>
 
-			{/* Cards Grid */}
-			<div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-7xl mx-auto">
-				{(Object.keys(allInfoData) as DepartmentType[]).map((key, idx) => {
-					const dept = allInfoData[key]!;
+      {/* Decorative */}
+      <div style={{ position:'absolute', width:300, height:300, top:-80, right:-80, borderRadius:'50%', background:'rgba(229,190,16,0.06)', pointerEvents:'none' }} />
+      <div style={{ position:'absolute', width:200, height:200, bottom:-50, left:-60, borderRadius:'50%', background:'rgba(117,51,0,0.05)', pointerEvents:'none' }} />
 
-					return (
-						<motion.div
-							key={key}
-							initial={{ opacity: 0, y: 30 }}
-							whileInView={{ opacity: 1, y: 0 }}
-							whileHover={{
-								y: -8,
-								boxShadow: '0px 20px 45px rgba(0,0,0,0.18)',
-							}}
-							whileTap={{
-								scale: 0.97,
-							}}
-							transition={{
-								duration: 0.4,
-								ease: 'easeOut',
-								delay: idx * 0.1,
-							}}
-							viewport={{ once: true }}
-							className="relative bg-white/90 border rounded-xl flex flex-col overflow-hidden max-h-[420px] shadow-lg hover:shadow-xl transition-shadow"
-						>
-							{/* Golden border on hover */}
-							<motion.span
-								initial={{ opacity: 0 }}
-								whileHover={{ opacity: 1 }}
-								whileTap={{ opacity: 1 }}
-								transition={{ duration: 0.3 }}
-								className="absolute inset-0 rounded-xl border-2 border-yellow-500 pointer-events-none"
-							/>
+      <div style={{ maxWidth:1100, margin:'0 auto' }}>
+        {/* Header */}
+        <motion.div
+          initial={{ opacity:0, y:-18 }}
+          whileInView={{ opacity:1, y:0 }}
+          viewport={{ once:true }}
+          transition={{ duration:0.6 }}
+          style={{ textAlign:'center', marginBottom:36 }}
+        >
+          <div style={{ display:'inline-flex', alignItems:'center', gap:10, marginBottom:14 }}>
+            <div style={{ height:1, width:44, background:'linear-gradient(90deg,transparent,#e5be10)' }} />
+            <span style={{ fontSize:11, fontWeight:700, letterSpacing:'0.15em', textTransform:'uppercase', color:'#9a6040', fontFamily:'sans-serif' }}>Resources & Governance</span>
+            <div style={{ height:1, width:44, background:'linear-gradient(90deg,#e5be10,transparent)' }} />
+          </div>
+          <h2 style={{ fontSize:'clamp(28px,4vw,40px)', fontWeight:800, background:'linear-gradient(135deg,#753300 0%,#b36000 50%,#e5be10 100%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', lineHeight:1.1, margin:'0 0 10px' }}>
+            Quick Information
+          </h2>
+          <p style={{ fontSize:14, color:'#9a6040', fontFamily:'sans-serif', maxWidth:480, margin:'0 auto', lineHeight:1.6 }}>
+            Access important resources about our institute's administration, policies, and governance.
+          </p>
+        </motion.div>
 
-							{/* Title */}
-							<h3 className="text-xl font-semibold p-4 border-b text-[#1e3a8a] bg-white sticky top-0 z-10">
-								{dept.title}
-							</h3>
+        {/* Grid */}
+        <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(220px,1fr))', gap:16 }}>
+          {(Object.keys(allInfoData) as DepartmentType[]).map((key, idx) => {
+            const dept = allInfoData[key]!;
+            return (
+              <motion.div
+                key={key}
+                initial={{ opacity:0, y:30 }}
+                whileInView={{ opacity:1, y:0 }}
+                viewport={{ once:true }}
+                transition={{ duration:0.4, delay:idx * 0.1 }}
+                className="ev-card"
+              >
+                {/* Header */}
+                <div style={{ padding:'14px 16px', background:'linear-gradient(135deg,#753300,#9a4a10)', position:'relative', overflow:'hidden' }}>
+                  <div style={{ position:'absolute', top:-20, right:-20, width:70, height:70, background:'rgba(229,190,16,0.12)', borderRadius:'50%' }} />
+                  <div style={{ fontSize:9, fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', color:'#753300', background:'rgba(229,190,16,0.2)', border:'1px solid rgba(229,190,16,0.4)', padding:'2px 8px', borderRadius:20, display:'inline-block', marginBottom:6, fontFamily:'sans-serif' }}>
+                    ✦ {BADGES[key] ?? key}
+                  </div>
+                  <div style={{ fontSize:13, fontWeight:700, color:'#e5be10', fontFamily:'sans-serif', position:'relative', zIndex:1 }}>
+                    {dept.title}
+                  </div>
+                </div>
 
-							{/* Scrollable List */}
-							<ul className="flex-1 divide-y overflow-y-auto scrollbar-thin scrollbar-thumb-yellow-600/70">
-								{dept.items.map((item, index) => {
-									const itemKey = `${key}-${index}`;
+                {/* List */}
+                <div style={{ flex:1, maxHeight:220, overflowY:'auto' }}>
+                  {dept.items.map((item, i) => (
+                    <div
+                      key={i}
+                      className="ev-item"
+                      onClick={() => handleViewAll(key)}
+                    >
+                      <span style={{ width:5, height:5, borderRadius:'50%', background:'#e5be10', flexShrink:0, marginTop:5 }} />
+                      {item}
+                    </div>
+                  ))}
+                </div>
 
-									return (
-										<motion.li
-											key={itemKey}
-											className="relative overflow-hidden p-4 text-sm text-gray-700 hover:text-white cursor-pointer select-none"
-											onMouseEnter={() => setActiveItem(itemKey)}
-											onMouseLeave={() => setActiveItem(null)}
-											onTapStart={() => setActiveItem(itemKey)}
-											onTapCancel={() => setActiveItem(null)}
-											onTap={() => setTimeout(() => setActiveItem(null), 300)}
-											onClick={() => handleViewAll(key)}
-										>
-											{/* Blue slide background */}
-											<motion.span
-												initial={{ scaleX: 0 }}
-												animate={{ scaleX: activeItem === itemKey ? 1 : 0 }}
-												transition={{ duration: 0.35, ease: 'easeInOut' }}
-												className="absolute inset-0 bg-[#B8860B]/80 origin-left z-0"
-											/>
-
-											{/* Text */}
-											<span className="relative z-10">• {item}</span>
-										</motion.li>
-									);
-								})}
-							</ul>
-
-							{/* View All Button */}
-							<motion.button
-								onClick={() => handleViewAll(key)}
-								whileHover={{ scale: 1.05 }}
-								whileTap={{ scale: 0.92 }}
-								className="relative overflow-hidden bg-[#1e3a8a] text-white py-3 font-medium flex items-center justify-center gap-2"
-							>
-								{/* Shimmer effect */}
-								<span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent translate-x-[-100%] hover:translate-x-[100%] transition-transform duration-700" />
-
-								<span className="relative z-10 flex items-center gap-2">
-									View All
-									<motion.span
-										initial={{ x: 0 }}
-										whileHover={{ x: 6 }}
-										transition={{ duration: 0.3 }}
-									>
-										→
-									</motion.span>
-								</span>
-							</motion.button>
-						</motion.div>
-					);
-				})}
-			</div>
-		</div>
-	);
+                {/* Button */}
+                <button className="ev-btn" onClick={() => handleViewAll(key)}>
+                  View All →
+                </button>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default EventsSection;

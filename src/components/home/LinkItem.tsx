@@ -65,7 +65,7 @@ export default function ImportantLinks() {
         className="mx-auto max-w-7xl rounded-3xl border border-white/20 bg-white/60 backdrop-blur-xl shadow-2xl"
       >
         {/* Header */}
-        <div className="rounded-t-3xl bg-[#1e3a8a] py-6 text-center">
+        <div className="rounded-t-3xl bg-[#e5be10] py-6 text-center">
           <h2 className="text-2xl md:text-3xl font-semibold tracking-wide text-white">
             Important Links
           </h2>

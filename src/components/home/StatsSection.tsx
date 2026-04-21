@@ -1,110 +1,83 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Award, Users, BookOpen, Globe, LucideIcon } from 'lucide-react';
 
-interface Stat {
-  icon: LucideIcon;
-  number: string;
-  label: string;
-}
-
-const stats: Stat[] = [
-  // { icon: Award, number: "100+", label: "Years of Excellence" },
-  { icon: Users, number: "50,000+", label: "HAPPY STUDENTS" },
-  { icon: BookOpen, number: "20+", label: "COURSES OFFERED" },
-  { icon: Users, number: "50+", label: "EXPERT TEACHERS" },
-  { icon: Award, number: "20+", label: "AWARDS WON" },
+const stats = [
+  {
+    label: 'Happy Students',
+    end: 50000, suffix: '+',
+    icon: <svg viewBox="0 0 24 24" fill="none" stroke="#e5be10" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" style={{width:20,height:20}}><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>,
+  },
+  {
+    label: 'Courses Offered',
+    end: 20, suffix: '+',
+    icon: <svg viewBox="0 0 24 24" fill="none" stroke="#e5be10" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" style={{width:20,height:20}}><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>,
+  },
+  {
+    label: 'Expert Teachers',
+    end: 50, suffix: '+',
+    icon: <svg viewBox="0 0 24 24" fill="none" stroke="#e5be10" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" style={{width:20,height:20}}><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>,
+  },
+  {
+    label: 'Awards Won',
+    end: 20, suffix: '+',
+    icon: <svg viewBox="0 0 24 24" fill="none" stroke="#e5be10" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" style={{width:20,height:20}}><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>,
+  },
 ];
 
-interface CounterProps {
-  end: number;
-  suffix?: string;
-  duration?: number;
-}
-
-function Counter({ end, suffix = '', duration = 4000 }: CounterProps) {
+function Counter({ end, suffix = '', duration = 2200 }: { end: number; suffix?: string; duration?: number }) {
   const [count, setCount] = useState(0);
-  const [hasStarted, setHasStarted] = useState(false);
-  const counterRef = useRef<HTMLDivElement>(null);
+  const [started, setStarted] = useState(false);
+  const ref = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && !hasStarted) {
-          setHasStarted(true);
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (counterRef.current) {
-      observer.observe(counterRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, [hasStarted]);
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting && !started) setStarted(true); }, { threshold: 0.3 });
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, [started]);
 
   useEffect(() => {
-    if (!hasStarted) return;
-
+    if (!started) return;
     let startTime: number;
-    let animationFrame: number;
-
-    const animate = (currentTime: number) => {
-      if (!startTime) startTime = currentTime;
-      const progress = Math.min((currentTime - startTime) / duration, 1);
-
-      // Easing function for smooth animation
-      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-      setCount(Math.floor(easeOutQuart * end));
-
-      if (progress < 1) {
-        animationFrame = requestAnimationFrame(animate);
-      } else {
-        setCount(end);
-      }
+    const frame = (ts: number) => {
+      if (!startTime) startTime = ts;
+      const p = Math.min((ts - startTime) / duration, 1);
+      const ease = 1 - Math.pow(1 - p, 4);
+      setCount(Math.floor(ease * end));
+      if (p < 1) requestAnimationFrame(frame);
+      else setCount(end);
     };
+    requestAnimationFrame(frame);
+  }, [started, end, duration]);
 
-    animationFrame = requestAnimationFrame(animate);
-
-    return () => cancelAnimationFrame(animationFrame);
-  }, [hasStarted, end, duration]);
-
-  return (
-    <div ref={counterRef}>
-      {count.toLocaleString()}{suffix}
-    </div>
-  );
+  return <span ref={ref}>{count.toLocaleString()}{suffix}</span>;
 }
 
 export default function StatsSection() {
-  const parseNumber = (numStr: string): { value: number; suffix: string } => {
-    const match = numStr.match(/^([\d,]+)(.*)$/);
-    if (match) {
-      const value = parseInt(match[1].replace(/,/g, ''));
-      const suffix = match[2];
-      return { value, suffix };
-    }
-    return { value: 0, suffix: '' };
-  };
-
   return (
-    <section className="py-16 sm:py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-          {stats.map((stat, index) => {
-            const { value, suffix } = parseNumber(stat.number);
-            return (
-              <div key={index} className="text-center group ">
-                <div className="flex justify-center mb-4 transition-colors group-hover:scale-110 transform duration-300">
-                  <stat.icon className="w-8 h-8" />
-                </div>
-                <p className="text-4xl lg:text-5xl font-bold text-blue-900 mb-2 ">
-                  <Counter end={value} suffix={suffix} />
-                </p>
-                <p className="text-black font-medium">{stat.label}</p>
-              </div>
-            );
-          })}
+    <section style={{ background:'linear-gradient(160deg,#fff8ee 0%,#fdf3d8 50%,#fff 100%)', padding:'60px 24px', fontFamily:'Georgia,serif', position:'relative', overflow:'hidden' }}>
+      <div style={{ position:'absolute', width:300, height:300, top:-80, right:-80, borderRadius:'50%', background:'rgba(229,190,16,0.06)', pointerEvents:'none' }} />
+
+      <div style={{ maxWidth:900, margin:'0 auto' }}>
+        <div style={{ textAlign:'center' }}>
+          <div style={{ display:'inline-flex', alignItems:'center', gap:10, marginBottom:14 }}>
+            <div style={{ height:1, width:44, background:'linear-gradient(90deg,transparent,#e5be10)' }} />
+            <span style={{ fontSize:11, fontWeight:700, letterSpacing:'0.15em', textTransform:'uppercase', color:'#9a6040', fontFamily:'sans-serif' }}>By the Numbers</span>
+            <div style={{ height:1, width:44, background:'linear-gradient(90deg,#e5be10,transparent)' }} />
+          </div>
+          <h2 style={{ fontSize:'clamp(26px,4vw,38px)', fontWeight:800, background:'linear-gradient(135deg,#753300 0%,#b36000 50%,#e5be10 100%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', lineHeight:1.1, margin:'0 0 8px' }}>Our Impact in Numbers</h2>
+          <p style={{ fontSize:14, color:'#9a6040', fontFamily:'sans-serif', fontWeight:400 }}>Decades of excellence measured in milestones</p>
+        </div>
+
+        <div style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:0, border:'1.5px solid rgba(229,190,16,0.35)', borderRadius:16, overflow:'hidden', marginTop:36 }}>
+          {stats.map((s, i) => (
+            <div key={i} style={{ padding:'32px 20px', textAlign:'center', borderRight: i < stats.length-1 ? '1px solid rgba(229,190,16,0.2)' : 'none', background:'rgba(229,190,16,0.03)', display:'flex', flexDirection:'column', alignItems:'center', gap:10, transition:'background 0.25s' }}
+              onMouseEnter={e => (e.currentTarget.style.background = 'rgba(229,190,16,0.08)')}
+              onMouseLeave={e => (e.currentTarget.style.background = 'rgba(229,190,16,0.03)')}
+            >
+              <div style={{ width:44, height:44, borderRadius:'50%', background:'linear-gradient(135deg,#753300,#9a4a10)', display:'flex', alignItems:'center', justifyContent:'center' }}>{s.icon}</div>
+              <div style={{ fontSize:32, fontWeight:800, color:'#753300', lineHeight:1 }}><Counter end={s.end} suffix={s.suffix} /></div>
+              <div style={{ fontSize:10, fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', color:'#b08060', fontFamily:'sans-serif' }}>{s.label}</div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

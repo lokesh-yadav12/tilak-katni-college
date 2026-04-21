@@ -121,8 +121,8 @@ const QuickLinks: React.FC = () => {
           className="text-center mb-12"
         >
           <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
-            <span className="text-[#1e3a8a]">Quick </span>
-            <span className="text-[#1e3a8a] ">Links</span>
+            <span className="text-[#e5be10]">Quick </span>
+            <span className="text-[#e5be10] ">Links</span>
           </h2>
           {/* <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             Excellent is governed by a board comprising of eminent educationists and administrators.

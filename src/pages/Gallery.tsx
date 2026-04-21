@@ -229,7 +229,7 @@ const Gallery: React.FC = () => {
   return (
     <div className="min-h-screen bg-white  mt-10 md:mt-36">
       {/* Header */}
-      <div className="bg-gradient-to-r from-[#1e3a8a] to-[#1e3a8a]/90 text-white py-20 px-4">
+      <div className="bg-gradient-to-r from-[#e5be10] to-[#e5be10]/90 text-white py-20 px-4">
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 animate-fadeIn">Photo Gallery</h1>
           <div className="w-32 h-1 bg-[#B8860B] mx-auto mb-6 animate-slideIn"></div>
@@ -247,7 +247,7 @@ const Gallery: React.FC = () => {
               onClick={() => setActiveCategory('all')}
               className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 ${
                 activeCategory === 'all'
-                  ? 'bg-[#1e3a8a] text-white shadow-lg'
+                  ? 'bg-[#e5be10] text-white shadow-lg'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
               }`}
             >
@@ -260,7 +260,7 @@ const Gallery: React.FC = () => {
                 onClick={() => setActiveCategory(category.id)}
                 className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 ${
                   activeCategory === category.id
-                    ? 'bg-[#1e3a8a] text-white shadow-lg'
+                    ? 'bg-[#e5be10] text-white shadow-lg'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
@@ -301,7 +301,7 @@ const Gallery: React.FC = () => {
               />
               
               {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1e3a8a]/90 via-[#1e3a8a]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="absolute inset-0 bg-gradient-to-t from-[#e5be10]/90 via-[#e5be10]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <div className="absolute bottom-4 left-4 right-4">
                   <p className="text-white font-semibold text-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                     {image.alt}

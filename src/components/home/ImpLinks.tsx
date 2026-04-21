@@ -54,9 +54,9 @@ const [hoveredId, setHoveredId] = useState<string | null>(null);
         {/* Main Grid View */}
         <div className="mb-20">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-3" style={{ color: '#1e3a8a' }}>Quick Links</h2>
-            <div className="w-24 h-1 mx-auto rounded-full" style={{ background: 'linear-gradient(to right, #1e3a8a, #B8860B)' }}></div>
-            <p className="mt-3" style={{ color: '#1e3a8a' }}>Explore our educational resources</p>
+            <h2 className="text-4xl font-bold mb-3" style={{ color: '#e5be10' }}>Quick Links</h2>
+            <div className="w-24 h-1 mx-auto rounded-full" style={{ background: 'linear-gradient(to right, #e5be10, #B8860B)' }}></div>
+            <p className="mt-3" style={{ color: '#e5be10' }}>Explore our educational resources</p>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
@@ -80,7 +80,7 @@ const [hoveredId, setHoveredId] = useState<string | null>(null);
                       transition-all duration-300
                       ${hoveredId === item.id ? 'rotate-6 scale-110' : 'group-hover:scale-105'}
                     `}
-                    style={{ backgroundColor: hoveredId === item.id ? '#B8860B' : '#1e3a8a' }}
+                    style={{ backgroundColor: hoveredId === item.id ? '#B8860B' : '#e5be10' }}
                     >
                       <img src={item.image} alt={item.title} className="w-16 h-16 object-contain" />
                     </div>
@@ -88,7 +88,7 @@ const [hoveredId, setHoveredId] = useState<string | null>(null);
 
                   <div className="text-center flex-grow flex flex-col justify-center min-h-[60px]">
                     <h3 className="font-bold text-sm mb-1 transition-colors duration-300"
-                        style={{ color: '#1e3a8a' }}>
+                        style={{ color: '#e5be10' }}>
                       {item.title}
                     </h3>
                     <p className="text-xs leading-tight" style={{ color: '#B8860B' }}>
@@ -101,7 +101,7 @@ const [hoveredId, setHoveredId] = useState<string | null>(null);
                     transition-all duration-300
                     ${hoveredId === item.id ? 'opacity-100' : 'opacity-0'}
                   `}
-                  style={{ background: 'linear-gradient(to right, #1e3a8a, #B8860B)' }}
+                  style={{ background: 'linear-gradient(to right, #e5be10, #B8860B)' }}
                   ></div>
                 </div>
               </div>

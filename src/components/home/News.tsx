@@ -106,8 +106,8 @@ const News = () => {
           onClick={() => setActiveTab('webinars')}
           className={`relative pb-4 px-6 font-semibold text-lg transition-all duration-300 ${
             activeTab === 'webinars'
-              ? 'text-[#1e3a8a]'
-              : 'text-gray-500 hover:text-[#1e3a8a]'
+              ? 'text-[#e5be10]'
+              : 'text-gray-500 hover:text-[#e5be10]'
           }`}
         >
           WEBINARS
@@ -119,8 +119,8 @@ const News = () => {
           onClick={() => setActiveTab('news')}
           className={`relative pb-4 px-6 font-semibold text-lg transition-all duration-300 ${
             activeTab === 'news'
-              ? 'text-[#1e3a8a]'
-              : 'text-gray-500 hover:text-[#1e3a8a]'
+              ? 'text-[#e5be10]'
+              : 'text-gray-500 hover:text-[#e5be10]'
           }`}
         >
           NEWS & UPDATES
@@ -132,8 +132,8 @@ const News = () => {
           onClick={() => setActiveTab('events')}
           className={`relative pb-4 px-6 font-semibold text-lg transition-all duration-300 ${
             activeTab === 'events'
-              ? 'text-[#1e3a8a]'
-              : 'text-gray-500 hover:text-[#1e3a8a]'
+              ? 'text-[#e5be10]'
+              : 'text-gray-500 hover:text-[#e5be10]'
           }`}
         >
           OUR EVENTS
@@ -142,7 +142,7 @@ const News = () => {
           )}
         </button>
         <div className="ml-auto pb-4 px-6">
-          <button className="text-[#1e3a8a] hover:text-[#1e3a8a] font-semibold text-sm uppercase tracking-wide transition-colors duration-300 flex items-center gap-2">
+          <button className="text-[#e5be10] hover:text-[#e5be10] font-semibold text-sm uppercase tracking-wide transition-colors duration-300 flex items-center gap-2">
             VIEW ALL
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -187,7 +187,7 @@ const News = () => {
 
                 {/* Content */}
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-gray-800 font-semibold text-sm leading-snug mb-2 line-clamp-3 group-hover:text-[#1e3a8a] transition-colors duration-300">
+                  <h3 className="text-gray-800 font-semibold text-sm leading-snug mb-2 line-clamp-3 group-hover:text-[#e5be10] transition-colors duration-300">
                     {item.title}
                   </h3>
                   {activeTab !== 'news' && (
@@ -215,7 +215,7 @@ const News = () => {
 
       {/* Bottom View All Link */}
       <div className="text-center mt-10">
-        <button className="inline-flex items-center gap-2 bg-gradient-to-r from-[#1e3a8a] to-[#B8860B] text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300">
+        <button className="inline-flex items-center gap-2 bg-gradient-to-r from-[#e5be10] to-[#B8860B] text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300">
           View All {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />

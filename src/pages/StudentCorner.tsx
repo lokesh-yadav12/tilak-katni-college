@@ -113,7 +113,7 @@ const StudentCorner = () => {
             to={item.href}
             className="group flex flex-col items-center justify-center gap-4 py-8 px-4 bg-white border border-gray-200 rounded-xl hover:border-gray-300 hover:bg-gray-50 transition-all"
           >
-            <div className="w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-700 group-hover:bg-[#1e3a8a] group-hover:text-white transition-colors">
+            <div className="w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-700 group-hover:bg-[#e5be10] group-hover:text-white transition-colors">
               <span className="w-7 h-7 [&>svg]:w-7 [&>svg]:h-7 [&>svg]:stroke-current">
                 {item.icon}
               </span>

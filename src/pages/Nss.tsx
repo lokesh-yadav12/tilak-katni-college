@@ -52,7 +52,7 @@ const Nss = () => {
         {/* About */}
         <div className="bg-white border border-gray-200 rounded-2xl p-8">
           <div className="flex items-center gap-3 mb-5">
-            <div className="w-1 h-6 bg-[#1e3a8a] rounded-full" />
+            <div className="w-1 h-6 bg-[#e5be10] rounded-full" />
             <h2 className="text-base font-medium text-gray-900">About NSS</h2>
           </div>
           <p className="text-sm text-gray-600 leading-relaxed">
@@ -76,7 +76,7 @@ const Nss = () => {
             { value: '100+', label: 'Students Teaching' },
             { value: '3', label: 'Programme Officers' },
           ].map((s) => (
-            <div key={s.label} className="bg-[#1e3a8a] rounded-2xl p-5 text-center">
+            <div key={s.label} className="bg-[#e5be10] rounded-2xl p-5 text-center">
               <p className="text-2xl font-medium text-white">{s.value}</p>
               <p className="text-xs text-blue-200 mt-1 leading-tight">{s.label}</p>
             </div>
@@ -86,13 +86,13 @@ const Nss = () => {
         {/* Services */}
         <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden">
           <div className="px-8 py-5 border-b border-gray-100 flex items-center gap-3">
-            <div className="w-1 h-6 bg-[#1e3a8a] rounded-full" />
+            <div className="w-1 h-6 bg-[#e5be10] rounded-full" />
             <h2 className="text-base font-medium text-gray-900">Services</h2>
           </div>
           <div className="divide-y divide-gray-50">
             {services.map((s, i) => (
               <div key={i} className="flex items-start gap-4 px-8 py-4 hover:bg-gray-50 transition-colors">
-                <span className="flex-shrink-0 w-6 h-6 rounded-lg bg-blue-50 text-[#1e3a8a] text-xs font-medium flex items-center justify-center mt-0.5">
+                <span className="flex-shrink-0 w-6 h-6 rounded-lg bg-blue-50 text-[#e5be10] text-xs font-medium flex items-center justify-center mt-0.5">
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <p className="text-sm text-gray-600 leading-relaxed">{s}</p>
@@ -106,7 +106,7 @@ const Nss = () => {
           <div className="bg-white border border-gray-200 rounded-2xl p-6">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-8 bg-blue-50 rounded-xl flex items-center justify-center flex-shrink-0">
-                <svg className="w-4 h-4 text-[#1e3a8a]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <svg className="w-4 h-4 text-[#e5be10]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
                   <circle cx="9" cy="7" r="4"/>
                   <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
@@ -124,7 +124,7 @@ const Nss = () => {
           <div className="bg-white border border-gray-200 rounded-2xl p-6">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-8 bg-blue-50 rounded-xl flex items-center justify-center flex-shrink-0">
-                <svg className="w-4 h-4 text-[#1e3a8a]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <svg className="w-4 h-4 text-[#e5be10]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
                   <path d="M6 12v5c3 3 9 3 12 0v-5"/>
                 </svg>
@@ -141,14 +141,14 @@ const Nss = () => {
         {/* Officers */}
         <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden">
           <div className="px-8 py-5 border-b border-gray-100 flex items-center gap-3">
-            <div className="w-1 h-6 bg-[#1e3a8a] rounded-full" />
+            <div className="w-1 h-6 bg-[#e5be10] rounded-full" />
             <h2 className="text-base font-medium text-gray-900">NSS Programme Officers</h2>
           </div>
           <div className="divide-y divide-gray-50">
             {officers.map((o, i) => (
               <div key={i} className="flex items-center justify-between gap-6 px-8 py-4 hover:bg-gray-50 transition-colors flex-wrap">
                 <div className="flex items-center gap-4">
-                  <div className="w-9 h-9 rounded-full bg-[#1e3a8a] flex items-center justify-center flex-shrink-0">
+                  <div className="w-9 h-9 rounded-full bg-[#e5be10] flex items-center justify-center flex-shrink-0">
                     <span className="text-white text-xs font-medium">
                       {o.name.split(' ').map(n => n[0]).slice(0, 2).join('')}
                     </span>
@@ -160,7 +160,7 @@ const Nss = () => {
                 </div>
                 
                 <a  href={`tel:${o.phone.replace(/\s/g, '')}`}
-                  className="inline-flex items-center gap-1.5 text-xs font-medium text-[#1e3a8a] bg-blue-50 px-3 py-1.5 rounded-lg hover:bg-blue-100 transition-colors flex-shrink-0"
+                  className="inline-flex items-center gap-1.5 text-xs font-medium text-[#e5be10] bg-blue-50 px-3 py-1.5 rounded-lg hover:bg-blue-100 transition-colors flex-shrink-0"
                 >
                   <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.72a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16z"/>

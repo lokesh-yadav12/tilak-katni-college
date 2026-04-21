@@ -40,7 +40,7 @@ const ResearchCell = () => {
         {/* About card */}
         <div className="bg-white border border-gray-200 rounded-2xl p-8 flex gap-6 items-start">
           <div className="flex-shrink-0 w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center">
-            <svg className="w-6 h-6 text-[#1e3a8a]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+            <svg className="w-6 h-6 text-[#e5be10]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
             </svg>
           </div>
@@ -58,7 +58,7 @@ const ResearchCell = () => {
         {/* Stats row */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {stats.map((s) => (
-            <div key={s.label} className="bg-[#1e3a8a] rounded-2xl p-5 text-center">
+            <div key={s.label} className="bg-[#e5be10] rounded-2xl p-5 text-center">
               <p className="text-2xl font-medium text-white">{s.value}</p>
               <p className="text-xs text-blue-200 mt-1 leading-tight">{s.label}</p>
             </div>
@@ -68,13 +68,13 @@ const ResearchCell = () => {
         {/* Functions card */}
         <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden">
           <div className="px-8 py-5 border-b border-gray-100 flex items-center gap-3">
-            <div className="w-1 h-6 bg-[#1e3a8a] rounded-full" />
+            <div className="w-1 h-6 bg-[#e5be10] rounded-full" />
             <h2 className="text-base font-medium text-gray-900">Functions of Research Cell</h2>
           </div>
           <div className="divide-y divide-gray-50">
             {functions.map((fn, i) => (
               <div key={i} className="flex items-start gap-4 px-8 py-4 hover:bg-gray-50 transition-colors">
-                <span className="flex-shrink-0 w-6 h-6 rounded-lg bg-blue-50 text-[#1e3a8a] text-xs font-medium flex items-center justify-center mt-0.5">
+                <span className="flex-shrink-0 w-6 h-6 rounded-lg bg-blue-50 text-[#e5be10] text-xs font-medium flex items-center justify-center mt-0.5">
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <p className="text-sm text-gray-600 leading-relaxed">{fn}</p>
@@ -86,12 +86,12 @@ const ResearchCell = () => {
         {/* Contact strip */}
         <div className="bg-blue-50 border border-blue-100 rounded-2xl px-8 py-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
-            <p className="text-sm font-medium text-[#1e3a8a]">Interested in Research Collaboration?</p>
+            <p className="text-sm font-medium text-[#e5be10]">Interested in Research Collaboration?</p>
             <p className="text-xs text-blue-400 mt-0.5">Reach out to the Research Cell coordinator</p>
           </div>
           
           <article  href="mailto:research@tilakcollege.ac.in"
-            className="inline-flex items-center gap-2 text-sm font-medium text-white bg-[#1e3a8a] px-5 py-2.5 rounded-xl hover:bg-[#1e40af] transition-colors flex-shrink-0"
+            className="inline-flex items-center gap-2 text-sm font-medium text-white bg-[#e5be10] px-5 py-2.5 rounded-xl hover:bg-[#1e40af] transition-colors flex-shrink-0"
           >
             <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>

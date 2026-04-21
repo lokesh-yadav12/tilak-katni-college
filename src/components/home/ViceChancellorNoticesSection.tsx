@@ -75,8 +75,8 @@ export default function ViceChancellorNoticesSection() {
 							{/* Name and Title */}
 							<div>
 								<h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black mb-2 tracking-tight">Dr. Milind Dattatray Dandekar</h2>
-								<div className="flex items-center gap-2 sm:gap-3 text-lg sm:text-xl text-[#1e3a8a] font-semibold mb-2">
-									<div className="w-8 sm:w-12 h-0.5 bg-[#1e3a8a]"></div>
+								<div className="flex items-center gap-2 sm:gap-3 text-lg sm:text-xl text-[#e5be10] font-semibold mb-2">
+									<div className="w-8 sm:w-12 h-0.5 bg-[#e5be10]"></div>
 									<span>Vice-Chancellor</span>
 								</div>
 								{/* <p className="text-black/70 italic text-xs sm:text-sm">
@@ -85,7 +85,7 @@ export default function ViceChancellorNoticesSection() {
 							</div>
 
 							{/* Message */}
-							<div className="relative pl-4 sm:pl-6 border-l-2 border-[#1e3a8a]/50">
+							<div className="relative pl-4 sm:pl-6 border-l-2 border-[#e5be10]/50">
 								<p className="text-base sm:text-lg text-black/80 leading-relaxed">
 									मध्यप्रदेश भोज (मुक्त) विश्वविद्यालय, भोपाल की ओर से आप सभी का
                   हार्दिक अभिनन्दन! कार्यपालिक के रूप में उच्च शिक्षा के प्रति विश्वविद्यालय
@@ -100,7 +100,7 @@ export default function ViceChancellorNoticesSection() {
 							{/* CTA Button */}
 							<Link
 								to="/vice-chancellor-message"
-								className="inline-flex items-center gap-2 sm:gap-3 bg-[#1e3a8a] hover:text-black hover:bg-[#2d4fae] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-sm sm:text-base font-bold transition-all duration-300 group shadow-xl hover:shadow-2xl hover:shadow-blue-500/20 hover:scale-105"
+								className="inline-flex items-center gap-2 sm:gap-3 bg-[#e5be10] hover:text-black hover:bg-[#2d4fae] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-sm sm:text-base font-bold transition-all duration-300 group shadow-xl hover:shadow-2xl hover:shadow-blue-500/20 hover:scale-105"
 							>
 								<span>Continue Reading</span>
 								<ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-2 transition-transform" />
@@ -114,7 +114,7 @@ export default function ViceChancellorNoticesSection() {
 								{/* Main Image Container */}
 								<div className="relative">
 									{/* Quote Icon Decoration */}
-									<div className="absolute -top-4 -left-4 sm:-top-6 sm:-left-6 w-12 h-12 sm:w-16 sm:h-16 bg-[#1e3a8a] rounded-full flex items-center justify-center shadow-2xl z-10">
+									<div className="absolute -top-4 -left-4 sm:-top-6 sm:-left-6 w-12 h-12 sm:w-16 sm:h-16 bg-[#e5be10] rounded-full flex items-center justify-center shadow-2xl z-10">
 										<Quote className="w-6 h-6 sm:w-8 sm:h-8 text-[#B8860B]" fill="currentColor" />
 									</div>
 									

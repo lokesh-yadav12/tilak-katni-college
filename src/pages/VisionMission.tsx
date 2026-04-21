@@ -35,7 +35,7 @@ const VisionMission: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-block bg-gradient-to-r from-[#1e3a8a] to-[#1e3a8a]/80 text-white px-12 py-6 rounded-full mb-8">
+          <div className="inline-block bg-gradient-to-r from-[#e5be10] to-[#e5be10]/80 text-white px-12 py-6 rounded-full mb-8">
             <h2 className="text-4xl font-bold">Vision & Mission</h2>
           </div>
         </div>
@@ -51,11 +51,11 @@ const VisionMission: React.FC = () => {
                   alt="Vision - Students collaborating"
                   className="w-full h-[450px] object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1e3a8a]/60 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#e5be10]/60 to-transparent"></div>
                 <div className="absolute bottom-8 left-8 right-8">
                   <div className="bg-white/95 backdrop-blur-sm p-6 rounded-lg">
                     <Award className="w-12 h-12 text-[#B8860B] mb-3" />
-                    <p className="text-sm font-semibold text-[#1e3a8a]">Excellence in Open & Distance Education</p>
+                    <p className="text-sm font-semibold text-[#e5be10]">Excellence in Open & Distance Education</p>
                   </div>
                 </div>
               </div>
@@ -65,7 +65,7 @@ const VisionMission: React.FC = () => {
             <div className="order-1 lg:order-2">
               <div className="mb-6">
                 <div className="w-16 h-1 bg-[#B8860B] mb-4"></div>
-                <h3 className="text-4xl font-bold text-[#1e3a8a] mb-2">Vision</h3>
+                <h3 className="text-4xl font-bold text-[#e5be10] mb-2">Vision</h3>
               </div>
               <div className="bg-gradient-to-br from-gray-50 to-white p-8 rounded-lg border-l-4 border-[#B8860B] shadow-lg">
                 <p className="text-gray-800 text-lg leading-relaxed font-medium">
@@ -80,7 +80,7 @@ const VisionMission: React.FC = () => {
         <div>
           <div className="text-center mb-12">
             <div className="w-24 h-1 bg-[#B8860B] mx-auto mb-6"></div>
-            <h3 className="text-4xl font-bold text-[#1e3a8a] mb-4">Mission</h3>
+            <h3 className="text-4xl font-bold text-[#e5be10] mb-4">Mission</h3>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto">
               Our strategic roadmap to transform education and empower learners across all segments of society
             </p>
@@ -97,7 +97,7 @@ const VisionMission: React.FC = () => {
                 >
                   <div className="flex items-start gap-4">
                     <div className="flex-shrink-0">
-                      <div className="bg-gradient-to-br from-[#1e3a8a] to-[#1e3a8a]/80 group-hover:from-[#B8860B] group-hover:to-[#B8860B]/80 text-white w-12 h-12 rounded-lg flex items-center justify-center font-bold text-xl transition-colors duration-300">
+                      <div className="bg-gradient-to-br from-[#e5be10] to-[#e5be10]/80 group-hover:from-[#B8860B] group-hover:to-[#B8860B]/80 text-white w-12 h-12 rounded-lg flex items-center justify-center font-bold text-xl transition-colors duration-300">
                         {point.id}
                       </div>
                     </div>
@@ -121,7 +121,7 @@ const VisionMission: React.FC = () => {
                 alt="Integrated Education System"
                 className="w-full h-[250px] object-cover transform group-hover:scale-110 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1e3a8a]/90 to-transparent flex items-end p-6">
+              <div className="absolute inset-0 bg-gradient-to-t from-[#e5be10]/90 to-transparent flex items-end p-6">
                 <p className="text-white font-semibold">Integrated Education System</p>
               </div>
             </div>
@@ -131,7 +131,7 @@ const VisionMission: React.FC = () => {
                 alt="ICT-Enabled Learning"
                 className="w-full h-[250px] object-cover transform group-hover:scale-110 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1e3a8a]/90 to-transparent flex items-end p-6">
+              <div className="absolute inset-0 bg-gradient-to-t from-[#e5be10]/90 to-transparent flex items-end p-6">
                 <p className="text-white font-semibold">ICT-Enabled Learning</p>
               </div>
             </div>
@@ -141,7 +141,7 @@ const VisionMission: React.FC = () => {
                 alt="Global Standards"
                 className="w-full h-[250px] object-cover transform group-hover:scale-110 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1e3a8a]/90 to-transparent flex items-end p-6">
+              <div className="absolute inset-0 bg-gradient-to-t from-[#e5be10]/90 to-transparent flex items-end p-6">
                 <p className="text-white font-semibold">Global Standards</p>
               </div>
             </div>
@@ -150,7 +150,7 @@ const VisionMission: React.FC = () => {
 
         {/* Bottom Quote */}
         <div className="mt-16 text-center">
-          <div className="bg-gradient-to-r from-[#1e3a8a] to-[#1e3a8a]/90 text-white py-12 px-8 rounded-lg shadow-2xl">
+          <div className="bg-gradient-to-r from-[#e5be10] to-[#e5be10]/90 text-white py-12 px-8 rounded-lg shadow-2xl">
             <p className="text-2xl font-bold mb-4 italic">
               "Embrace, Engage, Enlighten, and Empower"
             </p>

@@ -15,7 +15,7 @@ const UniversitySongs: React.FC<UniversitySongSectionProps> = ({
     <section className="py-20 px-4 bg-white">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#e5be10] mb-4">
             {title}
           </h2>
           <div className="w-24 h-1 bg-[#B8860B] mx-auto mb-6"></div>

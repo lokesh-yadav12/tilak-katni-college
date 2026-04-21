@@ -104,7 +104,7 @@ const AdmissionForm = () => {
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8  mt-10 md:mt-36">
       <div className="max-w-5xl mx-auto">
         {/* Header */}
-        <div className="bg-gradient-to-r from-[#1e3a8a] to-[#B8860B] rounded-t-lg shadow-sm overflow-hidden">
+        <div className="bg-gradient-to-r from-[#e5be10] to-[#B8860B] rounded-t-lg shadow-sm overflow-hidden">
           <div className="px-8 py-8 text-center">
             <h1 className="text-3xl font-normal text-white tracking-wide">
               Admission Form
@@ -122,7 +122,7 @@ const AdmissionForm = () => {
                   College & Course Details
                 </h2>
                 <p className="text-sm text-gray-500 mt-1">कॉलेज और पाठ्यक्रम विवरण</p>
-                <div className="mt-3 h-px bg-gradient-to-r from-[#1e3a8a] via-[#B8860B] to-transparent"></div>
+                <div className="mt-3 h-px bg-gradient-to-r from-[#e5be10] via-[#B8860B] to-transparent"></div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -133,7 +133,7 @@ const AdmissionForm = () => {
                     name="program"
                     value={formData.program}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   >
                     <option value="">Select</option>
                     <option value="UG">Under Graduate</option>
@@ -149,7 +149,7 @@ const AdmissionForm = () => {
                     name="courseName"
                     value={formData.courseName}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   >
                     <option value="">-- Select --</option>
                     <option value="BA">BA</option>
@@ -166,7 +166,7 @@ const AdmissionForm = () => {
                     name="year"
                     value={formData.year}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   >
                     <option value="">Select</option>
                     <option value="1">First Year</option>
@@ -183,7 +183,7 @@ const AdmissionForm = () => {
                     name="programEligibility"
                     value={formData.programEligibility}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   >
                     <option value="">Select</option>
                     <option value="12th">12th Pass</option>
@@ -199,7 +199,7 @@ const AdmissionForm = () => {
                     name="regionalCenterName"
                     value={formData.regionalCenterName}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   >
                     <option value="">-- Select --</option>
                     <option value="Center1">Center 1</option>
@@ -215,7 +215,7 @@ const AdmissionForm = () => {
                     name="studyCenterName"
                     value={formData.studyCenterName}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   >
                     <option value="">-- Select --</option>
                     <option value="Study1">Study Center 1</option>
@@ -231,7 +231,7 @@ const AdmissionForm = () => {
                     name="bhojUniversity"
                     value={formData.bhojUniversity}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   >
                     <option value="">Select</option>
                     <option value="Yes">Yes</option>
@@ -248,7 +248,7 @@ const AdmissionForm = () => {
                   Previous Qualification Details
                 </h2>
                 <p className="text-sm text-gray-500 mt-1">योग्यता विवरण</p>
-                <div className="mt-3 h-px bg-gradient-to-r from-[#1e3a8a] via-[#B8860B] to-transparent"></div>
+                <div className="mt-3 h-px bg-gradient-to-r from-[#e5be10] via-[#B8860B] to-transparent"></div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -259,7 +259,7 @@ const AdmissionForm = () => {
                     name="examPassed"
                     value={formData.examPassed}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   >
                     <option value="">Select</option>
                     <option value="10th">10th</option>
@@ -276,7 +276,7 @@ const AdmissionForm = () => {
                     name="universityBoard"
                     value={formData.universityBoard}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   >
                     <option value="">Select</option>
                     <option value="CBSE">CBSE</option>
@@ -293,7 +293,7 @@ const AdmissionForm = () => {
                     name="rollNo"
                     value={formData.rollNo}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   />
                 </div>
                 
@@ -305,7 +305,7 @@ const AdmissionForm = () => {
                     name="passingYear"
                     value={formData.passingYear}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   >
                     <option value="2026">2026</option>
                     <option value="2025">2025</option>
@@ -321,7 +321,7 @@ const AdmissionForm = () => {
                     name="stream12th"
                     value={formData.stream12th}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   >
                     <option value="">Select</option>
                     <option value="Science">Science</option>
@@ -339,7 +339,7 @@ const AdmissionForm = () => {
                     name="maxMarks"
                     value={formData.maxMarks}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   />
                 </div>
                 
@@ -352,7 +352,7 @@ const AdmissionForm = () => {
                     name="obtainMarks"
                     value={formData.obtainMarks}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   />
                 </div>
                 
@@ -378,7 +378,7 @@ const AdmissionForm = () => {
                     name="slm"
                     value={formData.slm}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   >
                     <option value="">Select</option>
                     <option value="Yes">Yes</option>
@@ -394,7 +394,7 @@ const AdmissionForm = () => {
                     name="admissionType"
                     value={formData.admissionType}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   >
                     <option value="Distance Mode Regular">Distance Mode Regular</option>
                     <option value="Regular">Regular</option>
@@ -410,7 +410,7 @@ const AdmissionForm = () => {
                     name="abcId"
                     value={formData.abcId}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   />
                 </div>
                 
@@ -422,7 +422,7 @@ const AdmissionForm = () => {
                     name="medium"
                     value={formData.medium}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   >
                     <option value="">Select</option>
                     <option value="English">English</option>
@@ -439,7 +439,7 @@ const AdmissionForm = () => {
                   Personal Details
                 </h2>
                 <p className="text-sm text-gray-500 mt-1">व्यक्तिगत विवरण</p>
-                <div className="mt-3 h-px bg-gradient-to-r from-[#1e3a8a] via-[#B8860B] to-transparent"></div>
+                <div className="mt-3 h-px bg-gradient-to-r from-[#e5be10] via-[#B8860B] to-transparent"></div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -451,7 +451,7 @@ const AdmissionForm = () => {
                     name="firstName"
                     value={formData.firstName}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   />
                 </div>
                 
@@ -464,7 +464,7 @@ const AdmissionForm = () => {
                     name="lastName"
                     value={formData.lastName}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   />
                 </div>
                 
@@ -477,7 +477,7 @@ const AdmissionForm = () => {
                     name="nameInHindi"
                     value={formData.nameInHindi}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   />
                 </div>
                 
@@ -490,7 +490,7 @@ const AdmissionForm = () => {
                     name="dob"
                     value={formData.dob}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   />
                 </div>
                 
@@ -502,7 +502,7 @@ const AdmissionForm = () => {
                     name="gender"
                     value={formData.gender}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   >
                     <option value="">Select</option>
                     <option value="Male">Male</option>
@@ -519,7 +519,7 @@ const AdmissionForm = () => {
                     name="maritalStatus"
                     value={formData.maritalStatus}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   >
                     <option value="">Select</option>
                     <option value="Single">Single</option>
@@ -536,7 +536,7 @@ const AdmissionForm = () => {
                     name="fatherName"
                     value={formData.fatherName}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   />
                 </div>
                 
@@ -549,7 +549,7 @@ const AdmissionForm = () => {
                     name="husbandName"
                     value={formData.husbandName}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   />
                 </div>
                 
@@ -562,7 +562,7 @@ const AdmissionForm = () => {
                     name="motherName"
                     value={formData.motherName}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   />
                 </div>
                 
@@ -574,7 +574,7 @@ const AdmissionForm = () => {
                     name="category"
                     value={formData.category}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   >
                     <option value="">Select</option>
                     <option value="General">General</option>
@@ -592,7 +592,7 @@ const AdmissionForm = () => {
                     name="nationality"
                     value={formData.nationality}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   >
                     <option value="">Select</option>
                     <option value="Indian">Indian</option>
@@ -608,7 +608,7 @@ const AdmissionForm = () => {
                     name="disability"
                     value={formData.disability}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   >
                     <option value="">Select</option>
                     <option value="No">No</option>
@@ -624,7 +624,7 @@ const AdmissionForm = () => {
                     name="religion"
                     value={formData.religion}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   >
                     <option value="">Select</option>
                     <option value="Hindu">Hindu</option>
@@ -643,7 +643,7 @@ const AdmissionForm = () => {
                     name="area"
                     value={formData.area}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   >
                     <option value="">Select</option>
                     <option value="Urban">Urban</option>
@@ -659,7 +659,7 @@ const AdmissionForm = () => {
                     name="employmentStatus"
                     value={formData.employmentStatus}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   >
                     <option value="">Select</option>
                     <option value="Employed">Employed</option>
@@ -675,7 +675,7 @@ const AdmissionForm = () => {
                     name="employmentType"
                     value={formData.employmentType}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   >
                     <option value="">Select</option>
                     <option value="Government">Government</option>
@@ -693,12 +693,12 @@ const AdmissionForm = () => {
                   Address
                 </h2>
                 <p className="text-sm text-gray-500 mt-1">पते का विवरण</p>
-                <div className="mt-3 h-px bg-gradient-to-r from-[#1e3a8a] via-[#B8860B] to-transparent"></div>
+                <div className="mt-3 h-px bg-gradient-to-r from-[#e5be10] via-[#B8860B] to-transparent"></div>
               </div>
               
               {/* Correspondence Address */}
               <div className="mb-8">
-                <h3 className="text-base font-medium text-gray-700 mb-4 pl-3 border-l-4 border-[#1e3a8a]">Correspondence</h3>
+                <h3 className="text-base font-medium text-gray-700 mb-4 pl-3 border-l-4 border-[#e5be10]">Correspondence</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -709,7 +709,7 @@ const AdmissionForm = () => {
                       name="corrHouseNo"
                       value={formData.corrHouseNo}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                      className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                     />
                   </div>
                   
@@ -722,7 +722,7 @@ const AdmissionForm = () => {
                       name="corrColony"
                       value={formData.corrColony}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                      className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                     />
                   </div>
                   
@@ -735,7 +735,7 @@ const AdmissionForm = () => {
                       name="corrCity"
                       value={formData.corrCity}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                      className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                     />
                   </div>
                   
@@ -747,7 +747,7 @@ const AdmissionForm = () => {
                       name="corrState"
                       value={formData.corrState}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                      className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                     >
                       <option value="Andhra Pradesh">Andhra Pradesh</option>
                       <option value="Maharashtra">Maharashtra</option>
@@ -764,7 +764,7 @@ const AdmissionForm = () => {
                       name="corrDistrict"
                       value={formData.corrDistrict}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                      className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                     />
                   </div>
                   
@@ -777,7 +777,7 @@ const AdmissionForm = () => {
                       name="corrPincode"
                       value={formData.corrPincode}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                      className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                     />
                   </div>
                 </div>
@@ -785,7 +785,7 @@ const AdmissionForm = () => {
               
               {/* Permanent Address */}
               <div>
-                <h3 className="text-base font-medium text-gray-700 mb-4 pl-3 border-l-4 border-[#1e3a8a]">Permanent</h3>
+                <h3 className="text-base font-medium text-gray-700 mb-4 pl-3 border-l-4 border-[#e5be10]">Permanent</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -796,7 +796,7 @@ const AdmissionForm = () => {
                       name="permHouseNo"
                       value={formData.permHouseNo}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                      className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                     />
                   </div>
                   
@@ -809,7 +809,7 @@ const AdmissionForm = () => {
                       name="permColony"
                       value={formData.permColony}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                      className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                     />
                   </div>
                   
@@ -822,7 +822,7 @@ const AdmissionForm = () => {
                       name="permCity"
                       value={formData.permCity}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                      className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                     />
                   </div>
                   
@@ -834,7 +834,7 @@ const AdmissionForm = () => {
                       name="permState"
                       value={formData.permState}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                      className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                     >
                       <option value="Andhra Pradesh">Andhra Pradesh</option>
                       <option value="Maharashtra">Maharashtra</option>
@@ -851,7 +851,7 @@ const AdmissionForm = () => {
                       name="permDistrict"
                       value={formData.permDistrict}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                      className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                     />
                   </div>
                   
@@ -864,7 +864,7 @@ const AdmissionForm = () => {
                       name="permPincode"
                       value={formData.permPincode}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                      className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                     />
                   </div>
                 </div>
@@ -878,7 +878,7 @@ const AdmissionForm = () => {
                   Other Details
                 </h2>
                 <p className="text-sm text-gray-500 mt-1">संपर्क विवरण</p>
-                <div className="mt-3 h-px bg-gradient-to-r from-[#1e3a8a] via-[#B8860B] to-transparent"></div>
+                <div className="mt-3 h-px bg-gradient-to-r from-[#e5be10] via-[#B8860B] to-transparent"></div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -890,7 +890,7 @@ const AdmissionForm = () => {
                     name="mobileNumber"
                     value={formData.mobileNumber}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   />
                 </div>
                 
@@ -903,7 +903,7 @@ const AdmissionForm = () => {
                     name="whatsappNumber"
                     value={formData.whatsappNumber}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   />
                 </div>
                 
@@ -916,7 +916,7 @@ const AdmissionForm = () => {
                     name="altMobileNumber"
                     value={formData.altMobileNumber}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   />
                 </div>
                 
@@ -929,7 +929,7 @@ const AdmissionForm = () => {
                     name="emailId"
                     value={formData.emailId}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   />
                 </div>
                 
@@ -942,7 +942,7 @@ const AdmissionForm = () => {
                     name="loginPassword"
                     value={formData.loginPassword}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   />
                 </div>
                 
@@ -954,7 +954,7 @@ const AdmissionForm = () => {
                     name="alumniUniversity"
                     value={formData.alumniUniversity}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   >
                     <option value="">Select</option>
                     <option value="Yes">Yes</option>
@@ -970,7 +970,7 @@ const AdmissionForm = () => {
                     name="identityProofId"
                     value={formData.identityProofId}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   >
                     <option value="">Select</option>
                     <option value="Aadhar">Aadhar Card</option>
@@ -988,7 +988,7 @@ const AdmissionForm = () => {
                     name="photoIdNo"
                     value={formData.photoIdNo}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   />
                 </div>
                 
@@ -1000,7 +1000,7 @@ const AdmissionForm = () => {
                     name="voterId"
                     value={formData.voterId}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   >
                     <option value="">Select</option>
                     <option value="Yes">Yes</option>
@@ -1017,7 +1017,7 @@ const AdmissionForm = () => {
                   Bank Details
                 </h2>
                 <p className="text-sm text-gray-500 mt-1">बैंक विवरण</p>
-                <div className="mt-3 h-px bg-gradient-to-r from-[#1e3a8a] via-[#B8860B] to-transparent"></div>
+                <div className="mt-3 h-px bg-gradient-to-r from-[#e5be10] via-[#B8860B] to-transparent"></div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -1029,7 +1029,7 @@ const AdmissionForm = () => {
                     name="bankName"
                     value={formData.bankName}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   />
                 </div>
                 
@@ -1042,7 +1042,7 @@ const AdmissionForm = () => {
                     name="accountHolderName"
                     value={formData.accountHolderName}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   />
                 </div>
                 
@@ -1055,7 +1055,7 @@ const AdmissionForm = () => {
                     name="accountNo"
                     value={formData.accountNo}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   />
                 </div>
                 
@@ -1068,7 +1068,7 @@ const AdmissionForm = () => {
                     name="ifscCode"
                     value={formData.ifscCode}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   />
                 </div>
               </div>
@@ -1081,11 +1081,11 @@ const AdmissionForm = () => {
                   Paper Details
                 </h2>
                 <p className="text-sm text-gray-500 mt-1">पेपर विवरण</p>
-                <div className="mt-3 h-px bg-gradient-to-r from-[#1e3a8a] via-[#B8860B] to-transparent"></div>
+                <div className="mt-3 h-px bg-gradient-to-r from-[#e5be10] via-[#B8860B] to-transparent"></div>
               </div>
               <button
                 type="button"
-                className="bg-[#1e3a8a] hover:bg-[#2563eb] text-white px-6 py-2.5 rounded-md font-medium transition-colors mb-6 text-sm"
+                className="bg-[#e5be10] hover:bg-[#2563eb] text-white px-6 py-2.5 rounded-md font-medium transition-colors mb-6 text-sm"
               >
                 Show Paper Details
               </button>
@@ -1108,11 +1108,11 @@ const AdmissionForm = () => {
                   Fee Details
                 </h2>
                 <p className="text-sm text-gray-500 mt-1">शुल्क विवरण</p>
-                <div className="mt-3 h-px bg-gradient-to-r from-[#1e3a8a] via-[#B8860B] to-transparent"></div>
+                <div className="mt-3 h-px bg-gradient-to-r from-[#e5be10] via-[#B8860B] to-transparent"></div>
               </div>
               <button
                 type="button"
-                className="bg-[#1e3a8a] hover:bg-[#2563eb] text-white px-6 py-2.5 rounded-md font-medium transition-colors mb-6 text-sm"
+                className="bg-[#e5be10] hover:bg-[#2563eb] text-white px-6 py-2.5 rounded-md font-medium transition-colors mb-6 text-sm"
               >
                 Show Fee Details
               </button>
@@ -1129,7 +1129,7 @@ const AdmissionForm = () => {
                   <p className="text-gray-600 text-xs mb-2 font-medium">Portal Fee</p>
                   <p className="text-2xl font-semibold text-gray-900">₹0</p>
                 </div>
-                <div className="bg-gradient-to-br from-[#1e3a8a] to-[#B8860B] p-5 rounded-lg">
+                <div className="bg-gradient-to-br from-[#e5be10] to-[#B8860B] p-5 rounded-lg">
                   <p className="text-blue-100 text-xs mb-2 font-medium">Total Fee</p>
                   <p className="text-2xl font-bold text-white">₹0</p>
                 </div>
@@ -1143,7 +1143,7 @@ const AdmissionForm = () => {
                   Enclosures
                 </h2>
                 <p className="text-sm text-gray-500 mt-1">संलग्न</p>
-                <div className="mt-3 h-px bg-gradient-to-r from-[#1e3a8a] via-[#B8860B] to-transparent"></div>
+                <div className="mt-3 h-px bg-gradient-to-r from-[#e5be10] via-[#B8860B] to-transparent"></div>
               </div>
               <div className="space-y-4">
                 <div className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
@@ -1152,13 +1152,13 @@ const AdmissionForm = () => {
                     name="proofDOB"
                     checked={formData.proofDOB}
                     onChange={handleInputChange}
-                    className="mt-0.5 w-4 h-4 text-[#1e3a8a] focus:ring-[#1e3a8a] rounded border-gray-300"
+                    className="mt-0.5 w-4 h-4 text-[#e5be10] focus:ring-[#e5be10] rounded border-gray-300"
                   />
                   <label className="flex-1 text-sm font-medium text-gray-700">
                     Proof for DOB
                   </label>
                   <div className="flex-1">
-                    <input type="file" className="w-full text-xs text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-xs file:font-medium file:bg-[#1e3a8a] file:text-white hover:file:bg-[#2563eb] file:cursor-pointer" />
+                    <input type="file" className="w-full text-xs text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-xs file:font-medium file:bg-[#e5be10] file:text-white hover:file:bg-[#2563eb] file:cursor-pointer" />
                   </div>
                 </div>
                 
@@ -1168,13 +1168,13 @@ const AdmissionForm = () => {
                     name="marksheet"
                     checked={formData.marksheet}
                     onChange={handleInputChange}
-                    className="mt-0.5 w-4 h-4 text-[#1e3a8a] focus:ring-[#1e3a8a] rounded border-gray-300"
+                    className="mt-0.5 w-4 h-4 text-[#e5be10] focus:ring-[#e5be10] rounded border-gray-300"
                   />
                   <label className="flex-1 text-sm font-medium text-gray-700">
                     Marksheet[10+2]/UG Course
                   </label>
                   <div className="flex-1">
-                    <input type="file" className="w-full text-xs text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-xs file:font-medium file:bg-[#1e3a8a] file:text-white hover:file:bg-[#2563eb] file:cursor-pointer" />
+                    <input type="file" className="w-full text-xs text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-xs file:font-medium file:bg-[#e5be10] file:text-white hover:file:bg-[#2563eb] file:cursor-pointer" />
                   </div>
                 </div>
                 
@@ -1184,13 +1184,13 @@ const AdmissionForm = () => {
                     name="domicileCertificate"
                     checked={formData.domicileCertificate}
                     onChange={handleInputChange}
-                    className="mt-0.5 w-4 h-4 text-[#1e3a8a] focus:ring-[#1e3a8a] rounded border-gray-300"
+                    className="mt-0.5 w-4 h-4 text-[#e5be10] focus:ring-[#e5be10] rounded border-gray-300"
                   />
                   <label className="flex-1 text-sm font-medium text-gray-700">
                     Domicile Certificate
                   </label>
                   <div className="flex-1">
-                    <input type="file" className="w-full text-xs text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-xs file:font-medium file:bg-[#1e3a8a] file:text-white hover:file:bg-[#2563eb] file:cursor-pointer" />
+                    <input type="file" className="w-full text-xs text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-xs file:font-medium file:bg-[#e5be10] file:text-white hover:file:bg-[#2563eb] file:cursor-pointer" />
                   </div>
                 </div>
                 
@@ -1200,13 +1200,13 @@ const AdmissionForm = () => {
                     name="casteCertificate"
                     checked={formData.casteCertificate}
                     onChange={handleInputChange}
-                    className="mt-0.5 w-4 h-4 text-[#1e3a8a] focus:ring-[#1e3a8a] rounded border-gray-300"
+                    className="mt-0.5 w-4 h-4 text-[#e5be10] focus:ring-[#e5be10] rounded border-gray-300"
                   />
                   <label className="flex-1 text-sm font-medium text-gray-700">
                     Caste Certificate
                   </label>
                   <div className="flex-1">
-                    <input type="file" className="w-full text-xs text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-xs file:font-medium file:bg-[#1e3a8a] file:text-white hover:file:bg-[#2563eb] file:cursor-pointer" />
+                    <input type="file" className="w-full text-xs text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-xs file:font-medium file:bg-[#e5be10] file:text-white hover:file:bg-[#2563eb] file:cursor-pointer" />
                   </div>
                 </div>
               </div>
@@ -1219,7 +1219,7 @@ const AdmissionForm = () => {
                   MarkSheet Attachment
                 </h2>
                 <p className="text-sm text-gray-500 mt-1">मार्कशीट अटैचमेंट</p>
-                <div className="mt-3 h-px bg-gradient-to-r from-[#1e3a8a] via-[#B8860B] to-transparent"></div>
+                <div className="mt-3 h-px bg-gradient-to-r from-[#e5be10] via-[#B8860B] to-transparent"></div>
               </div>
               <div className="bg-amber-50 border border-amber-200 p-4 rounded-lg mb-6">
                 <p className="text-sm text-gray-700">
@@ -1232,7 +1232,7 @@ const AdmissionForm = () => {
                 </label>
                 <input
                   type="file"
-                  className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-medium file:bg-[#1e3a8a] file:text-white hover:file:bg-[#2563eb] file:cursor-pointer"
+                  className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-medium file:bg-[#e5be10] file:text-white hover:file:bg-[#2563eb] file:cursor-pointer"
                 />
                 <p className="text-xs text-gray-500 mt-2">अधिकतम 300 KB तक की अपलोड कर सकते हैं</p>
               </div>
@@ -1245,7 +1245,7 @@ const AdmissionForm = () => {
                   Declaration
                 </h2>
                 <p className="text-sm text-gray-500 mt-1">घोषणा</p>
-                <div className="mt-3 h-px bg-gradient-to-r from-[#1e3a8a] via-[#B8860B] to-transparent"></div>
+                <div className="mt-3 h-px bg-gradient-to-r from-[#e5be10] via-[#B8860B] to-transparent"></div>
               </div>
               <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
                 <p className="text-sm text-gray-700 mb-4">
@@ -1257,7 +1257,7 @@ const AdmissionForm = () => {
                     name="declaration"
                     checked={formData.declaration}
                     onChange={handleInputChange}
-                    className="mt-0.5 w-4 h-4 text-[#1e3a8a] focus:ring-[#1e3a8a] rounded border-gray-300"
+                    className="mt-0.5 w-4 h-4 text-[#e5be10] focus:ring-[#e5be10] rounded border-gray-300"
                   />
                   <label className="text-sm text-gray-700 leading-relaxed">
                     I hereby declare that the information filled by us, is true and complete as per my knowledge. If any information provided by us, is found false or incorrect then Student will be disqualified by the University
@@ -1283,13 +1283,13 @@ const AdmissionForm = () => {
                     value={formData.captcha}
                     onChange={handleInputChange}
                     placeholder="Enter the code above"
-                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#1e3a8a] focus:ring-1 focus:ring-[#1e3a8a] focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-[#e5be10] focus:ring-1 focus:ring-[#e5be10] focus:outline-none transition-colors"
                   />
                 </div>
                 <div className="flex gap-4">
                   <button
                     type="submit"
-                    className="flex-1 bg-[#1e3a8a] hover:scale-105 transition-all duration-300 text-white py-3 rounded-md font-medium"
+                    className="flex-1 bg-[#e5be10] hover:scale-105 transition-all duration-300 text-white py-3 rounded-md font-medium"
                   >
                     Submit
                   </button>

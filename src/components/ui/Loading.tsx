@@ -102,7 +102,7 @@ const DPSLoading: React.FC<DPSLoadingProps> = ({
 				<div
 					className={`${currentSize.container} relative rounded-full`}
 					style={{
-						background: 'conic-gradient(from 0deg, transparent 0%, #1e3a8a 50%, transparent 100%)',
+						background: 'conic-gradient(from 0deg, transparent 0%, #e5be10 50%, transparent 100%)',
 						animation: 'rotate-smooth 3s linear infinite',
 						padding: '2px',
 					}}
@@ -130,7 +130,7 @@ const DPSLoading: React.FC<DPSLoadingProps> = ({
 			<div className="text-center space-y-3 max-w-md">
 				<div className="relative">
 					<h1
-						className={`${currentSize.text} font-bold text-[#1e3a8a] tracking-wider`}
+						className={`${currentSize.text} font-bold text-[#e5be10] tracking-wider`}
 						style={{
 							// color: '#ffffff',
 							letterSpacing: '0.1em',
@@ -139,7 +139,7 @@ const DPSLoading: React.FC<DPSLoadingProps> = ({
 						Govt Tilak college
 					</h1>
 					<div
-						className="absolute -bottom-2 left-1/2 -translate-x-1/2 h-px bg-gradient-to-r from-transparent via-[#1e3a8a] to-transparent"
+						className="absolute -bottom-2 left-1/2 -translate-x-1/2 h-px bg-gradient-to-r from-transparent via-[#e5be10] to-transparent"
 						style={{ 
 							width: '50%',
 							animation: 'expand 2s ease-in-out infinite alternate',
@@ -159,7 +159,7 @@ const DPSLoading: React.FC<DPSLoadingProps> = ({
 					{[0, 1, 2].map((index) => (
 						<div
 							key={index}
-							className="w-2 h-2 rounded-full bg-[#1e3a8a]"
+							className="w-2 h-2 rounded-full bg-[#e5be10]"
 							style={{
 								// background: '#ffffff',
 								animation: `bounce-dot 1.4s ease-in-out ${index * 0.16}s infinite`,
@@ -176,7 +176,7 @@ const DPSLoading: React.FC<DPSLoadingProps> = ({
 							<div
 								className="h-full rounded-full transition-all duration-300 ease-out"
 								style={{
-									background: 'linear-gradient(90deg, #1e3a8a, #1e3a8a)',
+									background: 'linear-gradient(90deg, #e5be10, #e5be10)',
 									width: `${progress}%`,
 								}}
 							/>

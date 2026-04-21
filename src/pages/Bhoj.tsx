@@ -5,7 +5,7 @@ const Bhoj = () => {
     <div className="min-h-screen bg-gray-50">
 
       {/* Hero Banner */}
-      <div className="relative bg-[#1e3a8a] py-16 flex items-center justify-center overflow-hidden">
+      <div className="relative bg-[#e5be10] py-16 flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 opacity-10"
           style={{
             backgroundImage: `repeating-linear-gradient(45deg, #fff 0, #fff 1px, transparent 0, transparent 50%)`,
@@ -31,12 +31,12 @@ const Bhoj = () => {
                 }}
               />
               {/* Fallback placeholder if image fails */}
-              <div className="hidden w-full h-full bg-[#1e3a8a] rounded-xl items-center justify-center">
+              <div className="hidden w-full h-full bg-[#e5be10] rounded-xl items-center justify-center">
                 <span className="text-white text-4xl font-bold">BU</span>
               </div>
             </div>
             <div className="text-center">
-              <p className="text-xs font-medium text-[#1e3a8a] uppercase tracking-widest">Est. 1991</p>
+              <p className="text-xs font-medium text-[#e5be10] uppercase tracking-widest">Est. 1991</p>
               <p className="text-xs text-gray-400 mt-1">Bhopal, Madhya Pradesh</p>
             </div>
           </div>
@@ -45,7 +45,7 @@ const Bhoj = () => {
           <div className="flex-1">
             {/* Accent line + heading */}
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-1 h-8 bg-[#1e3a8a] rounded-full" />
+              <div className="w-1 h-8 bg-[#e5be10] rounded-full" />
               <h2 className="text-xl font-medium text-gray-900">
                 Madhya Pradesh Bhoj (Open) University
               </h2>
@@ -79,7 +79,7 @@ const Bhoj = () => {
                   className="flex flex-col px-4 py-2.5 bg-white border border-gray-200 rounded-xl"
                 >
                   <span className="text-[11px] text-gray-400 uppercase tracking-wider">{stat.label}</span>
-                  <span className="text-sm font-medium text-[#1e3a8a] mt-0.5">{stat.value}</span>
+                  <span className="text-sm font-medium text-[#e5be10] mt-0.5">{stat.value}</span>
                 </div>
               ))}
             </div>
@@ -101,7 +101,7 @@ const Bhoj = () => {
                 key={org}
                 className="flex items-start gap-3 p-3 rounded-xl bg-gray-50 border border-gray-100"
               >
-                <div className="w-2 h-2 mt-1.5 rounded-full bg-[#1e3a8a] flex-shrink-0" />
+                <div className="w-2 h-2 mt-1.5 rounded-full bg-[#e5be10] flex-shrink-0" />
                 <span className="text-sm text-gray-700 leading-snug">{org}</span>
               </div>
             ))}
@@ -114,7 +114,7 @@ const Bhoj = () => {
            <a href="https://www.bhojvirtualuniversity.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm font-medium text-[#1e3a8a] border border-[#1e3a8a] px-5 py-2.5 rounded-xl hover:bg-[#1e3a8a] hover:text-white transition-colors"
+            className="inline-flex items-center gap-2 text-sm font-medium text-[#e5be10] border border-[#e5be10] px-5 py-2.5 rounded-xl hover:bg-[#e5be10] hover:text-white transition-colors"
           >
             Visit Official Website
             <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">

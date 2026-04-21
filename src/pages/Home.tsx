@@ -24,13 +24,13 @@ const Home = () => {
       {/* NO FLOATING BUTTON COMPONENT HERE! It's already in App.tsx */}
       <HeroSection />
       <About/>
-      <div className='flex flex-col px-10 gap-10'>
+      <div className='flex flex-col gap-10'>
         <ChancellorNoticesSection/>
         {/* <ViceChancellorNoticesSection/> */}
       </div>
       <StatsSection />
       <StarSection/>
-      <QuickLinks/>
+      {/* <QuickLinks/> */}
       <Mission/>
       <TestimonialsSection />
         {/* <ImpLinks/> */}
