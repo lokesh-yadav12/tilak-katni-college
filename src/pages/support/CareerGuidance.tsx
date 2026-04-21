@@ -52,7 +52,7 @@ const FadeIn: React.FC<{ children: React.ReactNode; delay?: string }> = ({ child
 
 const CareerGuidance = () => {
   return (
-    <div className="min-h-screen bg-gray-50 pt-16 sm:pt-24 pb-20">
+    <div className="min-h-screen bg-gray-50 pt-0 sm:pt-0 pb-20">
 
       {/* Hero Banner */}
       <div className="relative bg-[#753300] overflow-hidden">

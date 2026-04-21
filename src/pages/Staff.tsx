@@ -249,7 +249,7 @@ const Staff = () => {
     >
       {/* ── Hero ── */}
       <div
-        className="relative py-14 mt-6 sm:py-20 flex flex-col items-center justify-center overflow-hidden text-center px-4"
+        className="relative py-14 sm:py-20 flex flex-col items-center justify-center overflow-hidden text-center px-4"
         style={{ background: 'linear-gradient(135deg,#753300 0%,#9a4a10 100%)' }}
       >
         <div className="absolute inset-0 opacity-10"
