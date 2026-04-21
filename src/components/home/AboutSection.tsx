@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-
+import img1 from '../../assets/images/hero1.png';
+import img2 from '../../assets/images/hero2.png';
+import img3 from '../../assets/images/hero3.png';
+import img4 from '../../assets/images/hero4.png';
+import img5 from '../../assets/images/hero5.png';
 const BROWN = '#753300';
 const GOLD = '#e5be10';
 const DARK = '#3a1a00';
@@ -24,27 +28,27 @@ const stats = [
 // Replace these URLs with actual college photos as needed
 const galleryImages = [
   {
-    url: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&q=80',
+    url: img1,
     label: 'Main Building',
     span: 'large', // occupies 2 columns
   },
   {
-    url: 'https://images.unsplash.com/photo-1562774053-701939374585?w=600&q=80',
+    url: img2,
     label: 'Campus Grounds',
     span: 'small',
   },
   {
-    url: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&q=80',
+    url: img3,
     label: 'Science Block',
     span: 'small',
   },
   {
-    url: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=600&q=80',
+    url: img4,
     label: 'Library',
     span: 'small',
   },
   {
-    url: 'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?w=600&q=80',
+    url: img5,
     label: 'Sports Track',
     span: 'small',
   },
