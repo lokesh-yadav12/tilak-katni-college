@@ -272,46 +272,114 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Mobile menu */}
-        {isMobileMenuOpen && (
-          <div className="lg:hidden shadow-xl" style={{ background: '#fff', borderTop: '2px solid rgba(229,190,16,0.3)', maxHeight: 'calc(100vh - 56px)', overflowY: 'auto' }}>
-            {/* Follow us */}
-            <div className="flex items-center gap-2 px-4 py-3" style={{ background: 'rgba(229,190,16,0.06)', borderBottom: '1px solid rgba(229,190,16,0.15)' }}>
-              <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#b08060', marginRight: 4, fontFamily: 'Georgia,serif' }}>Follow Us</span>
-              {socialLinks.map((s) => (
-                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className="hdr-social" title={s.label}>{s.icon}</a>
-              ))}
-              <a href="/admission" className="ml-auto px-4 py-1.5 rounded-full font-semibold text-xs" style={{ background: 'linear-gradient(135deg,#753300,#9a4a10)', color: '#e5be10', textDecoration: 'none', fontFamily: 'Georgia,serif' }}>
-                🎓 Apply
-              </a>
-            </div>
-            {/* Links */}
-            <div className="px-3 py-3 space-y-0.5">
-              {navLinks.map((link) => (
-                <div key={link.label}>
-                  {link.hasDropdown ? (
-                    <div>
-                      <button onClick={() => setActiveDropdown(activeDropdown === link.label ? null : link.label)} className="hdr-mob-item">
-                        <span>{link.label}</span>
-                        <ChevronDown className="w-4 h-4 flex-shrink-0" style={{ transition: 'transform 0.2s', transform: activeDropdown === link.label ? 'rotate(180deg)' : 'rotate(0deg)', color: '#e5be10' }} />
-                      </button>
-                      {activeDropdown === link.label && (
-                        <div className="pl-3 pt-0.5 pb-1 space-y-0.5">
-                          {link.dropdownItems?.map((item) => (
-                            <Link key={item.label} to={item.href || '#'} onClick={() => setIsMobileMenuOpen(false)} className="hdr-mob-sub">{item.label}</Link>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  ) : (
-                    <Link to={link.href || '#'} onClick={() => setIsMobileMenuOpen(false)} className="hdr-mob-item" style={{ display: 'flex' }}>{link.label}</Link>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
-    </>
-  );
+				{/* ── MOBILE MENU ── */}
+				{isMobileMenuOpen && (
+					<div className="lg:hidden bg-white border-t border-gray-100 max-h-[calc(100vh-108px)] overflow-y-clip">
+						{/* Mobile Quick Links grid */}
+						{/* <div className="px-4 pt-4 pb-3 border-b border-gray-100 bg-gray-50">
+							<p className="text-[11px] font-semibold text-gray-400 uppercase tracking-widest mb-3">Quick Links</p>
+							<div className="grid grid-cols-3 gap-2">
+								{quickLinks.map((ql) => (
+									<Link
+										key={ql.label}
+										to={ql.href}
+										onClick={() => setIsMobileMenuOpen(false)}
+										className="flex flex-col items-center gap-1.5 p-2.5 rounded-xl bg-white border border-gray-100 active:bg-blue-50 transition-colors"
+									>
+										<div
+											className="w-9 h-9 rounded-xl flex items-center justify-center"
+											style={{ background: ql.bg, color: ql.color }}
+										>
+											{ql.icon}
+										</div>
+										<span className="text-[10px] font-semibold text-gray-600 text-center leading-tight">{ql.label}</span>
+									</Link>
+								))}
+							</div>
+						</div> */}
+
+						{/* Mobile Social Icons */}
+						<div className="px-4 py-3 border-b border-gray-100 bg-gray-50 flex items-center gap-2">
+							<span className="text-[11px] font-semibold text-gray-400 uppercase tracking-widest mr-1">
+								Follow Us
+							</span>
+							{socialLinks.map((s) => (
+								<a
+									key={s.label}
+									href={s.href}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="social-icon"
+									title={s.label}
+								>
+									{s.icon}
+								</a>
+							))}
+						</div>
+
+						{/* Mobile Nav Links */}
+						<div className="px-3 py-3 space-y-0.5">
+							{navLinks.map((link) => (
+								<div key={link.label}>
+									{link.hasDropdown ? (
+										<div>
+											<button
+												onClick={() =>
+													setActiveDropdown(activeDropdown === link.label ? null : link.label)
+												}
+												className="mobile-nav-item"
+											>
+												<span>{link.label}</span>
+												<ChevronDown
+													className="w-4 h-4 transition-transform flex-shrink-0"
+													style={{
+														transform:
+															activeDropdown === link.label
+																? 'rotate(180deg)'
+																: 'rotate(0deg)',
+													}}
+												/>
+											</button>
+											{activeDropdown === link.label && (
+												<div className="pl-3 pt-0.5 pb-1 space-y-0.5">
+													{link.dropdownItems?.map((item) => (
+														<Link
+															key={item.label}
+															to={item.href || "/"}
+															onClick={() => setIsMobileMenuOpen(false)}
+															className="mobile-nav-sub-item"
+														>
+															{item.label}
+														</Link>
+													))}
+												</div>
+											)}
+										</div>
+									) : (
+										<Link
+											to={link.href || '#'}
+											onClick={() => setIsMobileMenuOpen(false)}
+											className="mobile-nav-item"
+											style={{ display: 'flex' }}
+										>
+											{link.label}
+										</Link>
+									)}
+								</div>
+							))}
+						</div>
+					</div>
+				)}
+			</nav>
+
+			{/*
+			  ── NAVBAR SPACER ──
+			  Add this right after <Header /> in your layout/page file.
+			  Adjust heights to match your actual rendered nav height:
+			    Desktop: ticker(48px) + logo row(72px) + nav bar(44px) = 164px
+			    Mobile:  ticker(48px) + logo row(60px) = 108px
+			*/}
+			{/* <div className="lg:h-[164px] h-[108px]" aria-hidden="true" /> */}
+		</>
+	);
 }
