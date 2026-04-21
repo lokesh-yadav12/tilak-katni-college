@@ -37,6 +37,12 @@ import CareerGuidance from './pages/support/CareerGuidance';
 import Club from './pages/support/Club';
 import Hostel from './pages/support/Hostel';
 import ProgrammePage from './pages/programmes/ProgrammePage';
+import Antirag from './pages/committee/Antirag';
+import Enterprenurship from './pages/committee/Enterprenurship';
+import Grievance from './pages/committee/Grievance';
+import Complaint from './pages/committee/Complaint';
+import Statutory from './pages/committee/Statutory';
+import Planning from './pages/committee/Planning';
 
 const Home = lazy(() => import('./pages/Home'));
 // const Legacy = lazy(() => import('./pages/Legacy'));
@@ -103,6 +109,14 @@ function App() {
 					<Route path="/staff" element={<Staff />} />
 					<Route path="/study-center/bhoj" element={<Bhoj />} />
 					<Route path="/study-center/ignou" element={<Ignou />} />
+
+					<Route path="/committee/anti-ragging" element={<Antirag />} />
+					<Route path="/committee/entrepreneurship" element={<Enterprenurship />} />
+					<Route path="/committee/grievance" element={<Grievance />} />
+					<Route path="/committee/internal-complaint" element={<Complaint />} />
+					<Route path="/committee/statutory" element={<Statutory />} />
+					<Route path="/committee/planning" element={<Planning />} />
+
 					<Route path="/activity/nss" element={<Nss />} />	
 					<Route path="/activity/ncc" element={<Ncc />} />
 					<Route path="/activity/sports" element={<Sports />} />
