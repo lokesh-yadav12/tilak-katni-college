@@ -90,7 +90,7 @@ const ResearchCell = () => {
             <p className="text-xs text-blue-400 mt-0.5">Reach out to the Research Cell coordinator</p>
           </div>
           
-          <article  href="mailto:research@tilakcollege.ac.in"
+          <a  href="mailto:research@tilakcollege.ac.in"
             className="inline-flex items-center gap-2 text-sm font-medium text-white bg-[#1e3a8a] px-5 py-2.5 rounded-xl hover:bg-[#1e40af] transition-colors flex-shrink-0"
           >
             <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -98,7 +98,7 @@ const ResearchCell = () => {
               <polyline points="22,6 12,13 2,6"/>
             </svg>
             Contact Us
-          </article>
+          </a>
         </div>
 
       </div>

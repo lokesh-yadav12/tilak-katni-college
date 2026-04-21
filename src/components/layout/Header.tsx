@@ -1005,7 +1005,7 @@ export default function Header() {
 													{link.dropdownItems?.map((item) => (
 														<Link
 															key={item.label}
-															to={item.href}
+															to={item.href || "/"}
 															onClick={() => setIsMobileMenuOpen(false)}
 															className="mobile-nav-sub-item"
 														>
