@@ -54,6 +54,53 @@ function Counter({ end, suffix = '', duration = 2200 }: { end: number; suffix?: 
 export default function StatsSection() {
   return (
     <section style={{ background:'linear-gradient(160deg,#fff8ee 0%,#fdf3d8 50%,#fff 100%)', padding:'60px 24px', fontFamily:'Georgia,serif', position:'relative', overflow:'hidden' }}>
+      <style>{`
+        .stats-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          border: 1.5px solid rgba(229,190,16,0.35);
+          border-radius: 16px;
+          overflow: hidden;
+          margin-top: 36px;
+        }
+        @media (min-width: 640px) {
+          .stats-grid {
+            grid-template-columns: repeat(4, 1fr);
+          }
+        }
+        .stats-cell {
+          padding: 32px 20px;
+          text-align: center;
+          background: rgba(229,190,16,0.03);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 10px;
+          transition: background 0.25s;
+          border-right: 1px solid rgba(229,190,16,0.2);
+          border-bottom: 1px solid rgba(229,190,16,0.2);
+        }
+        .stats-cell:nth-child(2n) {
+          border-right: none;
+        }
+        .stats-cell:nth-child(3),
+        .stats-cell:nth-child(4) {
+          border-bottom: none;
+        }
+        @media (min-width: 640px) {
+          .stats-cell {
+            border-right: 1px solid rgba(229,190,16,0.2);
+            border-bottom: none;
+          }
+          .stats-cell:nth-child(2n) {
+            border-right: 1px solid rgba(229,190,16,0.2);
+          }
+          .stats-cell:last-child {
+            border-right: none;
+          }
+        }
+        .stats-cell:hover { background: rgba(229,190,16,0.08); }
+      `}</style>
       <div style={{ position:'absolute', width:300, height:300, top:-80, right:-80, borderRadius:'50%', background:'rgba(229,190,16,0.06)', pointerEvents:'none' }} />
 
       <div style={{ maxWidth:900, margin:'0 auto' }}>
@@ -67,12 +114,9 @@ export default function StatsSection() {
           <p style={{ fontSize:14, color:'#9a6040', fontFamily:'sans-serif', fontWeight:400 }}>Decades of excellence measured in milestones</p>
         </div>
 
-        <div style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:0, border:'1.5px solid rgba(229,190,16,0.35)', borderRadius:16, overflow:'hidden', marginTop:36 }}>
+        <div className="stats-grid">
           {stats.map((s, i) => (
-            <div key={i} style={{ padding:'32px 20px', textAlign:'center', borderRight: i < stats.length-1 ? '1px solid rgba(229,190,16,0.2)' : 'none', background:'rgba(229,190,16,0.03)', display:'flex', flexDirection:'column', alignItems:'center', gap:10, transition:'background 0.25s' }}
-              onMouseEnter={e => (e.currentTarget.style.background = 'rgba(229,190,16,0.08)')}
-              onMouseLeave={e => (e.currentTarget.style.background = 'rgba(229,190,16,0.03)')}
-            >
+            <div key={i} className="stats-cell">
               <div style={{ width:44, height:44, borderRadius:'50%', background:'linear-gradient(135deg,#753300,#9a4a10)', display:'flex', alignItems:'center', justifyContent:'center' }}>{s.icon}</div>
               <div style={{ fontSize:32, fontWeight:800, color:'#753300', lineHeight:1 }}><Counter end={s.end} suffix={s.suffix} /></div>
               <div style={{ fontSize:10, fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', color:'#b08060', fontFamily:'sans-serif' }}>{s.label}</div>

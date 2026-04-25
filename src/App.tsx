@@ -31,7 +31,6 @@ import Sports from './pages/Sports';
 import Ncc from './pages/Ncc';
 import Library from './pages/Library';
 import Gtcataglance from './pages/Gtcataglance';
-import Iqac from './pages/Iqac';
 import Staff from './pages/Staff';
 import CareerGuidance from './pages/support/CareerGuidance';
 import Club from './pages/support/Club';
@@ -46,6 +45,7 @@ import Planning from './pages/committee/Planning';
 import Photogallery from './pages/Photogallery';
 import Mediagallery from './pages/Mediagallery';
 import Videogallery from './pages/Videogallery';
+import IQACPage from './pages/college/IQACpage';
 
 const Home = lazy(() => import('./pages/Home'));
 // const Legacy = lazy(() => import('./pages/Legacy'));
@@ -103,7 +103,7 @@ function App() {
 					<Route path="/vision-mission" element={<Mission />} />
 					<Route path="/academic-calendar" element={<AcademicCalendar />} />
 					<Route path="/stars" element={<Stars />} />
-					<Route path="/iqac" element={<Iqac />} />
+					<Route path="/iqac" element={<IQACPage />} />
 					<Route path="/values" element={<Values />} />
 					<Route path="/library" element={<Library />} />
 					<Route path="/gtc-at-a-glance" element={<Gtcataglance />} />

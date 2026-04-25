@@ -5,6 +5,7 @@ import img2 from '../../assets/images/hero2.png';
 import img3 from '../../assets/images/hero3.png';
 import img4 from '../../assets/images/hero4.png';
 import img5 from '../../assets/images/hero5.png';
+
 const BROWN = '#753300';
 const GOLD = '#e5be10';
 const DARK = '#3a1a00';
@@ -24,34 +25,12 @@ const stats = [
   { val: 'NAAC', label: 'Accredited' },
 ];
 
-// Gallery images using Unsplash (free, no auth required)
-// Replace these URLs with actual college photos as needed
 const galleryImages = [
-  {
-    url: img1,
-    label: 'Main Building',
-    span: 'large', // occupies 2 columns
-  },
-  {
-    url: img2,
-    label: 'Campus Grounds',
-    span: 'small',
-  },
-  {
-    url: img3,
-    label: 'Science Block',
-    span: 'small',
-  },
-  {
-    url: img4,
-    label: 'Library',
-    span: 'small',
-  },
-  {
-    url: img5,
-    label: 'Sports Track',
-    span: 'small',
-  },
+  { url: img1, label: 'Main Building', span: 'large' },
+  { url: img2, label: 'Campus Grounds', span: 'small' },
+  { url: img3, label: 'Science Block', span: 'small' },
+  { url: img4, label: 'Library', span: 'small' },
+  { url: img5, label: 'Sports Track', span: 'small' },
 ];
 
 export default function AboutSection() {
@@ -79,6 +58,85 @@ export default function AboutSection() {
         .about-lightbox img { max-width:90vw; max-height:85vh; border-radius:12px; box-shadow:0 30px 80px rgba(0,0,0,0.5); }
         .about-lightbox-close { position:fixed; top:24px; right:28px; background:rgba(255,255,255,0.15); border:1.5px solid rgba(255,255,255,0.3); color:#fff; font-size:22px; width:42px; height:42px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background 0.2s; }
         .about-lightbox-close:hover { background:rgba(255,255,255,0.25); }
+
+        /* Stats bar: 2x2 on mobile, 4-col on larger */
+        .about-stats-bar {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          border: 1.5px solid rgba(229,190,16,0.35);
+          border-radius: 16px;
+          overflow: hidden;
+          margin-bottom: 40px;
+        }
+        @media (min-width: 540px) {
+          .about-stats-bar {
+            grid-template-columns: repeat(4, 1fr);
+          }
+        }
+        .about-stat-cell {
+          padding: 20px 12px;
+          text-align: center;
+          background: rgba(229,190,16,0.04);
+          border-right: 1px solid rgba(229,190,16,0.2);
+          border-bottom: 1px solid rgba(229,190,16,0.2);
+        }
+        .about-stat-cell:nth-child(2n) {
+          border-right: none;
+        }
+        .about-stat-cell:nth-child(3),
+        .about-stat-cell:nth-child(4) {
+          border-bottom: none;
+        }
+        @media (min-width: 540px) {
+          .about-stat-cell {
+            border-right: 1px solid rgba(229,190,16,0.2);
+            border-bottom: none;
+          }
+          .about-stat-cell:nth-child(2n) {
+            border-right: 1px solid rgba(229,190,16,0.2);
+          }
+          .about-stat-cell:last-child {
+            border-right: none;
+          }
+        }
+
+        /* Gallery: desktop 2-row mosaic */
+        .about-gallery-desktop {
+          display: none;
+        }
+        @media (min-width: 640px) {
+          .about-gallery-desktop {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: 200px 160px;
+            gap: 10px;
+            border-radius: 16px;
+            overflow: hidden;
+          }
+        }
+
+        /* Gallery: mobile — vertical stack */
+        .about-gallery-mobile {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 8px;
+          border-radius: 16px;
+          overflow: hidden;
+        }
+        .about-gallery-mobile .about-gallery-item:first-child {
+          grid-column: 1 / -1;
+          height: 200px;
+        }
+        .about-gallery-mobile .about-gallery-item {
+          height: 130px;
+          position: relative;
+          overflow: hidden;
+        }
+        @media (min-width: 640px) {
+          .about-gallery-mobile {
+            display: none;
+          }
+        }
       `}</style>
 
       {/* Decorative blobs */}
@@ -127,23 +185,15 @@ export default function AboutSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          style={{ display: 'flex', gap: 0, border: `1.5px solid rgba(229,190,16,0.35)`, borderRadius: 16, overflow: 'hidden', marginBottom: 40 }}
         >
-          {stats.map((s, i) => (
-            <div
-              key={s.label}
-              style={{
-                flex: 1,
-                padding: '20px 12px',
-                textAlign: 'center',
-                borderRight: i < stats.length - 1 ? '1px solid rgba(229,190,16,0.2)' : 'none',
-                background: 'rgba(229,190,16,0.04)',
-              }}
-            >
-              <div style={{ fontSize: 30, fontWeight: 800, color: BROWN, lineHeight: 1, marginBottom: 4 }}>{s.val}</div>
-              <div style={{ fontFamily: 'sans-serif', fontSize: 10, fontWeight: 600, color: MUTED, letterSpacing: '0.08em', textTransform: 'uppercase' }}>{s.label}</div>
-            </div>
-          ))}
+          <div className="about-stats-bar">
+            {stats.map((s, i) => (
+              <div key={s.label} className="about-stat-cell">
+                <div style={{ fontSize: 30, fontWeight: 800, color: BROWN, lineHeight: 1, marginBottom: 4 }}>{s.val}</div>
+                <div style={{ fontFamily: 'sans-serif', fontSize: 10, fontWeight: 600, color: MUTED, letterSpacing: '0.08em', textTransform: 'uppercase' }}>{s.label}</div>
+              </div>
+            ))}
+          </div>
         </motion.div>
 
         {/* Image Gallery */}
@@ -158,17 +208,8 @@ export default function AboutSection() {
             ✦ Campus Gallery
           </div>
 
-          {/* Grid layout */}
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(4, 1fr)',
-              gridTemplateRows: '200px 160px',
-              gap: 10,
-              borderRadius: 16,
-              overflow: 'hidden',
-            }}
-          >
+          {/* Desktop mosaic gallery */}
+          <div className="about-gallery-desktop">
             {/* Large featured image */}
             <div
               className="about-gallery-item"
@@ -218,7 +259,7 @@ export default function AboutSection() {
               </div>
             ))}
 
-            {/* Bottom row 4 images */}
+            {/* Bottom row */}
             {[3, 4].map((idx, colIdx) => (
               <div
                 key={idx}
@@ -245,6 +286,33 @@ export default function AboutSection() {
             ))}
           </div>
 
+          {/* Mobile gallery — 2-col grid, first image full-width */}
+          <div className="about-gallery-mobile">
+            {galleryImages.map((img, idx) => (
+              <div
+                key={idx}
+                className="about-gallery-item"
+                onClick={() => setLightboxImg(img.url)}
+              >
+                <img src={img.url} alt={img.label} className="about-gallery-img" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                <div
+                  className="about-gallery-overlay"
+                  style={{
+                    position: 'absolute', inset: 0,
+                    background: 'linear-gradient(0deg,rgba(58,26,0,0.65) 0%,transparent 60%)',
+                    opacity: 0.7,
+                    transition: 'opacity 0.3s',
+                    display: 'flex', alignItems: 'flex-end', padding: '10px 12px',
+                  }}
+                >
+                  <span style={{ fontFamily: 'sans-serif', fontSize: 10, fontWeight: 700, color: '#fff', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                    {img.label}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+
           <p style={{ fontFamily: 'sans-serif', fontSize: 11, color: MUTED, textAlign: 'center', marginTop: 10, fontStyle: 'italic' }}>
             Click any image to view full size · Replace URLs with actual college photos
           </p>
@@ -257,7 +325,6 @@ export default function AboutSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          {/* Badge */}
           <div
             style={{
               display: 'inline-flex',
@@ -279,7 +346,7 @@ export default function AboutSection() {
             ✦ Est. 1958
           </div>
 
-          <h3 style={{ fontSize: 'clamp(22px,3vw,32px)', fontWeight: 800, color: DARK, margin: '0 0 6px' }}>
+          <h3 style={{ fontSize: 'clamp(20px,3vw,32px)', fontWeight: 800, color: DARK, margin: '0 0 6px' }}>
             Govt. Tilak P.G. College, Katni
           </h3>
           <p style={{ fontFamily: 'sans-serif', fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: GOLD, margin: '0 0 20px' }}>
@@ -303,7 +370,7 @@ export default function AboutSection() {
               borderRadius: '0 12px 12px 0',
             }}
           >
-            <p style={{ fontSize: 16, fontStyle: 'italic', color: DARK, fontWeight: 600, lineHeight: 1.7, margin: 0 }}>
+            <p style={{ fontSize: 'clamp(13px,2vw,16px)', fontStyle: 'italic', color: DARK, fontWeight: 600, lineHeight: 1.7, margin: 0 }}>
               "Perfection in one's work is true yoga." — The guiding motto of Govt. Tilak P.G. College, inspiring excellence in every endeavour since 1958.
             </p>
           </div>
