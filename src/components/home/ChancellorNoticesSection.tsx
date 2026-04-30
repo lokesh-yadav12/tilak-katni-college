@@ -38,15 +38,17 @@ export default function ChancellorSection() {
         }
         @media (min-width: 768px) {
           .chancellor-grid {
-            grid-template-columns: 1fr 420px;
+            grid-template-columns: 1fr 560px;
           }
         }
         .chancellor-text-col {
           padding: 36px 24px;
+          order: 2;
         }
         @media (min-width: 768px) {
           .chancellor-text-col {
             padding: 52px 48px;
+            order: 1;
           }
         }
         .chancellor-img-col {
@@ -54,10 +56,12 @@ export default function ChancellorSection() {
           position: relative;
           background: linear-gradient(160deg,${DARK},${BROWN});
           overflow: hidden;
+          order: 1;
         }
         @media (min-width: 768px) {
           .chancellor-img-col {
             min-height: 480px;
+            order: 2;
           }
         }
         .chancellor-section-padding {

@@ -106,17 +106,17 @@ const AllInfoPage: React.FC = () => {
           width: 100%; text-align: left; background: none; border: none;
           padding: 12px 16px; cursor: pointer; display: flex; align-items: center;
           gap: 10px; font-family: sans-serif; font-size: 13px; font-weight: 500;
-          color: rgba(253,248,238,0.6); border-bottom: 1px solid rgba(229,190,16,0.1);
+          color: ${TEXT}; border-bottom: 1px solid rgba(117,51,0,0.07);
           transition: background 0.2s, color 0.2s, padding-left 0.2s;
           position: relative;
         }
         .ai-sidebar-btn:last-child { border-bottom: none; }
-        .ai-sidebar-btn:hover { background: rgba(229,190,16,0.08); color: ${GOLD}; padding-left: 20px; }
+        .ai-sidebar-btn:hover { background: rgba(229,190,16,0.08); color: ${BROWN}; padding-left: 20px; }
         .ai-sidebar-btn.active {
           background: rgba(229,190,16,0.12);
-          color: ${GOLD};
+          color: ${BROWN};
           font-weight: 700;
-          border-left: 3px solid ${GOLD};
+          border-left: 3px solid ${BROWN};
           padding-left: 13px;
         }
         .ai-content-row {
@@ -212,27 +212,27 @@ const AllInfoPage: React.FC = () => {
           >
             <div
               style={{
-                background:`linear-gradient(170deg,${DARK},#2a0e00)`,
+                background:'#fff',
                 borderRadius:16,
                 overflow:'hidden',
-                border:'1.5px solid rgba(229,190,16,0.2)',
-                boxShadow:'0 8px 32px rgba(58,26,0,0.25)',
+                border:'1.5px solid rgba(117,51,0,0.12)',
+                boxShadow:'0 2px 12px rgba(117,51,0,0.06)',
               }}
             >
               {/* Sidebar header */}
               <div
                 style={{
                   padding:'16px 16px 14px',
-                  background:`linear-gradient(90deg,${BROWN},${BROWN2})`,
+                  background:'linear-gradient(135deg,#fff8ee,#fdf3d8)',
+                  borderBottom:'1.5px solid rgba(117,51,0,0.1)',
                   position:'relative', overflow:'hidden',
                 }}
               >
-                <div style={{ position:'absolute', top:0, left:0, right:0, height:2, background:`linear-gradient(90deg,${GOLD},${BROWN2})` }} />
-                <div style={{ position:'absolute', top:-16, right:-16, width:60, height:60, background:'rgba(229,190,16,0.1)', borderRadius:'50%' }} />
-                <div style={{ fontFamily:'sans-serif', fontSize:8, fontWeight:700, letterSpacing:'0.16em', textTransform:'uppercase', color:'rgba(229,190,16,0.7)', marginBottom:4 }}>
+                <div style={{ position:'absolute', top:0, left:0, right:0, height:2, background:`linear-gradient(90deg,${GOLD},transparent)` }} />
+                <div style={{ fontFamily:'sans-serif', fontSize:8, fontWeight:700, letterSpacing:'0.16em', textTransform:'uppercase', color:MUTED, marginBottom:4 }}>
                   Navigation
                 </div>
-                <div style={{ fontFamily:"'Playfair Display', Georgia, serif", fontSize:16, fontWeight:700, color:GOLD, position:'relative', zIndex:1 }}>
+                <div style={{ fontFamily:"'Playfair Display', Georgia, serif", fontSize:16, fontWeight:700, color:BROWN, position:'relative', zIndex:1 }}>
                   Sections
                 </div>
               </div>
@@ -255,8 +255,8 @@ const AllInfoPage: React.FC = () => {
                       {sec.icon && <span style={{ fontSize:16, flexShrink:0 }}>{sec.icon}</span>}
                       <span style={{ flex:1, textAlign:'left' }}>{sec.label}</span>
                       {isActive && (
-                        <svg viewBox="0 0 8 12" width="7" height="12" fill={GOLD}>
-                          <path d="M1.5 1l5 5-5 5" stroke={GOLD} strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                        <svg viewBox="0 0 8 12" width="7" height="12" fill={BROWN}>
+                          <path d="M1.5 1l5 5-5 5" stroke={BROWN} strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                       )}
                     </button>
@@ -272,14 +272,17 @@ const AllInfoPage: React.FC = () => {
               transition={{ delay:0.5 }}
               style={{
                 marginTop:16,
-                background:`rgba(229,190,16,0.08)`,
-                border:`1px solid rgba(229,190,16,0.25)`,
-                borderRadius:12,
+                background:'#fff',
+                border:'1.5px solid rgba(117,51,0,0.12)',
+                borderRadius:14,
                 padding:'14px 16px',
+                boxShadow:'0 2px 12px rgba(117,51,0,0.06)',
               }}
             >
               <div style={{ display:'flex', gap:10, alignItems:'flex-start' }}>
-                <span style={{ fontSize:18 }}>ℹ️</span>
+                <div style={{ width:34, height:34, borderRadius:10, background:'rgba(229,190,16,0.15)', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
+                  <span style={{ fontSize:16 }}>ℹ️</span>
+                </div>
                 <div>
                   <div style={{ fontFamily:'sans-serif', fontSize:12, fontWeight:700, color:BROWN, marginBottom:4 }}>Need Help?</div>
                   <p style={{ fontFamily:'sans-serif', fontSize:11, color:MUTED, lineHeight:1.6, margin:0 }}>
@@ -287,6 +290,62 @@ const AllInfoPage: React.FC = () => {
                   </p>
                 </div>
               </div>
+            </motion.div>
+
+            {/* Quick nav box */}
+            <motion.div
+              initial={{ opacity:0, y:10 }}
+              animate={{ opacity:1, y:0 }}
+              transition={{ delay:0.6 }}
+              style={{
+                marginTop:16,
+                background:'#fff',
+                border:'1.5px solid rgba(117,51,0,0.12)',
+                borderRadius:14,
+                overflow:'hidden',
+                boxShadow:'0 2px 12px rgba(117,51,0,0.06)',
+              }}
+            >
+              {/* Header */}
+              <div style={{ padding:'12px 16px', borderBottom:'1px solid rgba(117,51,0,0.1)', display:'flex', alignItems:'center', gap:8 }}>
+                <div style={{ width:6, height:6, borderRadius:'50%', background:GOLD, flexShrink:0 }} />
+                <span style={{ fontFamily:'sans-serif', fontSize:10, fontWeight:700, letterSpacing:'0.14em', textTransform:'uppercase', color:MUTED }}>
+                  Quick Navigate
+                </span>
+              </div>
+              {(['administration','academics','admissions'] as DepartmentType[]).map((key) => {
+                const dept = allInfoData[key as DepartmentType];
+                const isCurrentDept = department === key;
+                return (
+                  <button
+                    key={key}
+                    onClick={() => { window.scrollTo({ top:0, behavior:'smooth' }); navigate(`/all-info/${key}`); }}
+                    style={{
+                      width:'100%', textAlign:'left',
+                      background: isCurrentDept ? 'rgba(229,190,16,0.1)' : 'none',
+                      border:'none', borderBottom:'1px solid rgba(117,51,0,0.07)',
+                      borderLeft: isCurrentDept ? `3px solid ${BROWN}` : '3px solid transparent',
+                      padding:'11px 14px', cursor:'pointer', display:'flex', alignItems:'center',
+                      gap:10, fontFamily:'sans-serif', fontSize:13,
+                      fontWeight: isCurrentDept ? 700 : 500,
+                      color: isCurrentDept ? BROWN : TEXT,
+                      transition:'background 0.2s, color 0.2s',
+                    }}
+                    onMouseEnter={e => { if (!isCurrentDept) { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(229,190,16,0.07)'; (e.currentTarget as HTMLButtonElement).style.color = BROWN; } }}
+                    onMouseLeave={e => { if (!isCurrentDept) { (e.currentTarget as HTMLButtonElement).style.background = 'none'; (e.currentTarget as HTMLButtonElement).style.color = TEXT; } }}
+                  >
+                    <span style={{ fontSize:15 }}>
+                      {key === 'administration' ? '🏛️' : key === 'academics' ? '📚' : '📝'}
+                    </span>
+                    <span style={{ flex:1 }}>{dept?.title || key}</span>
+                    {isCurrentDept && (
+                      <svg viewBox="0 0 8 12" width="7" height="12">
+                        <path d="M1.5 1l5 5-5 5" stroke={BROWN} strokeWidth="1.8" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    )}
+                  </button>
+                );
+              })}
             </motion.div>
           </motion.div>
 
