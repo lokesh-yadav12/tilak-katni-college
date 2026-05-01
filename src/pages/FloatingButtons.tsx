@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { X, MessageSquare, UserCircle, Phone, Mail, ExternalLink } from "lucide-react";
+import { X, ExternalLink } from "lucide-react";
 import AdmissionEnquiry from "@/components/home/AdmissionEnquiry";
 
 const quickLinks = [
@@ -196,7 +196,6 @@ const FloatingButtons = () => {
           transition: background 0.35s ease, backdrop-filter 0.35s ease;
         }
         .ql-overlay--open {
-          background: rgba(60, 20, 0, 0.55);
           backdrop-filter: blur(8px);
         }
         .ql-overlay--close {
@@ -209,7 +208,6 @@ const FloatingButtons = () => {
         .ql-panel {
           width: 100%;
           max-width: 540px;
-          background: var(--cream);
           border-radius: 24px;
           overflow: hidden;
           box-shadow:
@@ -217,7 +215,6 @@ const FloatingButtons = () => {
             0 0 0 1px rgba(229, 190, 16, 0.3);
           transform-origin: center bottom;
           transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
-          /* Ensure it's scrollable on very small screens */
           max-height: 90vh;
           overflow-y: auto;
         }
@@ -234,9 +231,7 @@ const FloatingButtons = () => {
         .ql-header {
           background: linear-gradient(135deg, var(--brown) 0%, var(--brown-light) 60%, #b36000 100%);
           padding: 20px 24px 18px;
-          position: relative;
           overflow: hidden;
-          /* Sticky so header stays visible when grid scrolls */
           position: sticky;
           top: 0;
           z-index: 2;
@@ -322,7 +317,6 @@ const FloatingButtons = () => {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
           gap: 1px;
-          background: rgba(117, 51, 0, 0.08);
         }
 
         /* ── ITEM ── */
@@ -332,7 +326,7 @@ const FloatingButtons = () => {
           align-items: center;
           gap: 8px;
           padding: 18px 10px 14px;
-          background: var(--cream);
+          background: #ffffff;
           text-decoration: none;
           position: relative;
           transition: background 0.2s, transform 0.2s;
@@ -404,86 +398,83 @@ const FloatingButtons = () => {
           letter-spacing: 0.05em;
         }
 
-        /* ── FLOATING TRIGGER BUTTON ── */
+        /* ── VERTICAL PILL TRIGGER BUTTON ── */
         .ql-trigger-btn {
           position: fixed;
-          bottom: 28px;
-          right: 24px;
+          bottom: 50%;
+          right: 0;
+          transform: translateY(50%);
           z-index: 40;
-          width: 60px;
-          height: 60px;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          gap: 8px;
         }
-        @media (min-width: 1024px) {
-          .ql-trigger-btn {
-            bottom: 32px;
-            right: 32px;
-          }
-        }
-        .ql-trigger-ring {
-          position: absolute;
-          inset: 0;
-          border-radius: 50%;
-          background: rgba(229, 190, 16, 0.25);
-          animation: ql-pulse 2.5s ease-out infinite;
-        }
-        @keyframes ql-pulse {
-          0%   { transform: scale(1); opacity: 0.7; }
-          70%  { transform: scale(1.6); opacity: 0; }
-          100% { transform: scale(1.6); opacity: 0; }
-        }
+
         .ql-trigger-core {
           position: relative;
-          width: 100%;
-          height: 100%;
-          border-radius: 50%;
-          background: linear-gradient(135deg, var(--brown) 0%, var(--brown-light) 50%, #9a4500 100%);
-          border: 3px solid var(--gold);
+          width: auto;
+          height: auto;
+          border-radius: 12px 0 0 12px;
+          background: linear-gradient(180deg, var(--brown) 0%, var(--brown-light) 55%, #9a4500 100%);
+          border: 2px solid var(--gold);
+          border-right: none;
           display: flex;
           align-items: center;
           justify-content: center;
           color: var(--gold);
           cursor: pointer;
-          box-shadow: 0 8px 24px rgba(117,51,0,0.4);
-          transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s;
+          box-shadow: -4px 0 20px rgba(117,51,0,0.45), inset 0 1px 0 rgba(229,190,16,0.2);
+          padding: 22px 11px;
+          transition: padding 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+          writing-mode: vertical-rl;
+          text-orientation: mixed;
         }
+
         .ql-trigger-core:hover {
-          transform: scale(1.1);
-          box-shadow: 0 12px 32px rgba(117,51,0,0.5), 0 0 0 4px rgba(229,190,16,0.2);
+          padding: 22px 15px;
+          box-shadow: -8px 0 28px rgba(117,51,0,0.6), 0 0 0 2px rgba(229,190,16,0.3), inset 0 1px 0 rgba(229,190,16,0.3);
+          background: linear-gradient(180deg, var(--brown-light) 0%, #b36000 55%, var(--brown) 100%);
         }
-        .ql-trigger-core svg {
-          transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
-        }
-        .ql-trigger-core.open svg {
-          transform: rotate(180deg);
-        }
-        .ql-tooltip {
-          position: absolute;
-          right: calc(100% + 14px);
-          top: 50%;
-          transform: translateY(-50%);
-          background: var(--brown);
+
+        .ql-trigger-label {
+          font-size: 11px;
+          font-weight: 800;
+          letter-spacing: 0.2em;
           color: var(--gold);
-          padding: 6px 14px;
-          border-radius: 8px;
-          font-size: 12px;
-          font-weight: 600;
           white-space: nowrap;
-          border: 1px solid rgba(229,190,16,0.3);
-          opacity: 0;
-          pointer-events: none;
-          transition: opacity 0.2s;
-          letter-spacing: 0.04em;
+          font-family: Georgia, 'Times New Roman', serif;
+          text-transform: uppercase;
+          /* rotate so text reads bottom → top */
+          transform: rotate(180deg);
+          display: flex;
+          align-items: center;
+          gap: 6px;
         }
-        .ql-tooltip::after {
+
+        .ql-trigger-label-dot {
+          width: 5px;
+          height: 5px;
+          background: var(--gold);
+          border-radius: 50%;
+          display: inline-block;
+          flex-shrink: 0;
+          opacity: 0.7;
+        }
+
+        /* Gold shimmer line on the pill */
+        .ql-trigger-core::before {
           content: '';
           position: absolute;
-          left: 100%;
-          top: 50%;
-          transform: translateY(-50%);
-          border: 6px solid transparent;
-          border-left-color: var(--brown);
+          top: 12px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 2px;
+          height: 30px;
+          background: linear-gradient(180deg, transparent, rgba(229,190,16,0.5), transparent);
+          border-radius: 2px;
+          pointer-events: none;
         }
-        .ql-trigger-btn:hover .ql-tooltip { opacity: 1; }
 
         /* ── ENQUIRY MODAL ── */
         .modal-overlay {
@@ -534,19 +525,22 @@ const FloatingButtons = () => {
         @keyframes scaleIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
       `}</style>
 
-      {/* ── FLOATING TRIGGER BUTTON (all screen sizes) ── */}
+      {/* ── VERTICAL PILL FLOATING TRIGGER BUTTON ── */}
       <div className="ql-trigger-btn">
-        {!isMenuOpen && <div className="ql-trigger-ring" />}
         <div
-          className={`ql-trigger-core ${isMenuOpen ? "open" : ""}`}
+          className="ql-trigger-core"
           onClick={() => setIsMenuOpen(true)}
           role="button"
           tabIndex={0}
           onKeyDown={(e) => e.key === "Enter" && setIsMenuOpen(true)}
+          aria-label="Open Quick Links"
         >
-          {isMenuOpen ? <X size={26} /> : <MessageSquare size={24} />}
+          <span className="ql-trigger-label">
+            <span className="ql-trigger-label-dot" />
+            Quick Links
+            <span className="ql-trigger-label-dot" />
+          </span>
         </div>
-        {!isMenuOpen && <div className="ql-tooltip">Quick Links</div>}
       </div>
 
       {/* ── QUICK LINKS POPUP ── */}

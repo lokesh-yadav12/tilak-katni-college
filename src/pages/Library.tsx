@@ -646,7 +646,7 @@ export default function Library() {
   const active = pages[activeId];
 
   return (
-    <div style={{ background: 'linear-gradient(160deg,#fff8ee 0%,#fdf3d8 50%,#fff 100%)', minHeight: '100vh', fontFamily: 'Georgia,serif' }}>
+    <div style={{ background: '#ffffff', minHeight: '100vh', fontFamily: 'Georgia,serif' }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&display=swap');
 

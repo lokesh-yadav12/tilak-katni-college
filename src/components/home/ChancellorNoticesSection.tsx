@@ -15,7 +15,7 @@ export default function ChancellorSection() {
     <section
       style={{
         padding: '72px 24px',
-        background: 'linear-gradient(160deg,#fff8ee 0%,#fdf3d8 50%,#fff 100%)',
+        background: '#ffffff',
         fontFamily: 'Georgia, serif',
         position: 'relative',
         overflow: 'hidden',
@@ -75,9 +75,9 @@ export default function ChancellorSection() {
       `}</style>
 
       {/* Decorative background elements */}
-      <div style={{ position:'absolute', top:0, left:0, right:0, height:3, background:`linear-gradient(90deg,transparent,${GOLD},${BROWN},${GOLD},transparent)` }} />
+      {/* <div style={{ position:'absolute', top:0, left:0, right:0, height:3, background:`linear-gradient(90deg,transparent,${GOLD},${BROWN},${GOLD},transparent)` }} />
       <div style={{ position:'absolute', width:500, height:500, top:-180, right:-180, borderRadius:'50%', background:'rgba(229,190,16,0.05)', pointerEvents:'none' }} />
-      <div style={{ position:'absolute', width:300, height:300, bottom:-80, left:-80, borderRadius:'50%', background:'rgba(117,51,0,0.04)', pointerEvents:'none' }} />
+      <div style={{ position:'absolute', width:300, height:300, bottom:-80, left:-80, borderRadius:'50%', background:'rgba(117,51,0,0.04)', pointerEvents:'none' }} /> */}
 
       <div style={{ maxWidth: 1040, margin: '0 auto' }}>
 

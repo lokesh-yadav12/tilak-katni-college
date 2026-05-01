@@ -107,7 +107,7 @@ const items: CornerItem[] = [
 
 const StudentCorner = () => {
   return (
-    <div style={{ fontFamily: 'Georgia, serif', background: 'linear-gradient(160deg,#fff8ee 0%,#fdf3d8 50%,#fff 100%)', minHeight: '100vh', padding: '52px 24px 72px' }}>
+    <div style={{ fontFamily: 'Georgia, serif', background: '#ffffff', minHeight: '100vh', padding: '52px 24px 72px' }}>
       <style>{`
         .sc-card { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; padding:28px 16px 22px; background:${CREAM}; border:1.5px solid rgba(229,190,16,0.28); border-radius:16px; text-decoration:none; transition:border-color 0.25s,box-shadow 0.25s,background 0.25s; }
         .sc-card:hover { border-color:rgba(117,51,0,0.45); box-shadow:0 6px 28px rgba(117,51,0,0.10); background:#fff8ee; }

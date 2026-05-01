@@ -27,7 +27,7 @@ const stats = [
 
 const ResearchCell = () => {
   return (
-    <div style={{ fontFamily: 'Georgia, serif', background: 'linear-gradient(160deg,#fff8ee 0%,#fdf3d8 50%,#fff 100%)', padding: '52px 20px 72px', minHeight: '100vh' }}>
+    <div style={{ fontFamily: 'Georgia, serif', background: '#ffffff', padding: '52px 20px 72px', minHeight: '100vh' }}>
       <style>{`
         .rc-fn-item { display:flex; align-items:flex-start; gap:16px; padding:14px 24px; border-bottom:1px solid rgba(229,190,16,0.12); transition:background .2s; }
         .rc-fn-item:last-child { border-bottom:none; }

@@ -40,7 +40,7 @@ const EventsSection: React.FC = () => {
   return (
     <section
       style={{
-        background: 'linear-gradient(160deg,#fff8ee 0%,#fdf3d8 50%,#fff 100%)',
+        background: '#ffffff',
         padding: '72px 32px 80px',
         position: 'relative',
         overflow: 'hidden',
@@ -121,8 +121,8 @@ const EventsSection: React.FC = () => {
       `}</style>
 
       {/* Decorative blobs */}
-      <div style={{ position:'absolute', width:360, height:360, top:-100, right:-100, borderRadius:'50%', background:'rgba(229,190,16,0.06)', pointerEvents:'none' }} />
-      <div style={{ position:'absolute', width:220, height:220, bottom:-60, left:-70, borderRadius:'50%', background:'rgba(117,51,0,0.05)', pointerEvents:'none' }} />
+      {/* <div style={{ position:'absolute', width:360, height:360, top:-100, right:-100, borderRadius:'50%', background:'rgba(229,190,16,0.06)', pointerEvents:'none' }} />
+      <div style={{ position:'absolute', width:220, height:220, bottom:-60, left:-70, borderRadius:'50%', background:'rgba(117,51,0,0.05)', pointerEvents:'none' }} /> */}
 
       <div style={{ maxWidth: 1120, margin: '0 auto' }}>
 

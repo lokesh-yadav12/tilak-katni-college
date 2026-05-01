@@ -47,7 +47,7 @@ const FileIcon = () => (
 
 export default function AcademicCalendar() {
   return (
-    <div style={{ fontFamily: 'Georgia, serif', background: 'linear-gradient(160deg,#fff8ee 0%,#fdf3d8 50%,#fff 100%)', minHeight: '100vh', padding: '60px 24px 80px' }}>
+    <div style={{ fontFamily: 'Georgia, serif', background: '#ffffff', minHeight: '100vh', padding: '60px 24px 80px' }}>
       <style>{`
         .ac-card { background: ${CREAM}; border: 1.5px solid rgba(229,190,16,0.3); border-radius: 16px; overflow: hidden; transition: border-color 0.25s, box-shadow 0.25s; }
         .ac-card:hover { border-color: rgba(117,51,0,0.45); box-shadow: 0 6px 28px rgba(117,51,0,0.10); }

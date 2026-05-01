@@ -75,7 +75,7 @@ const StarSection: React.FC = () => {
   );
 
   return (
-    <section style={{ background: 'linear-gradient(160deg,#fff8ee 0%,#fdf3d8 50%,#fff 100%)', padding: '80px 0', position: 'relative', overflow: 'hidden', fontFamily: 'Georgia, serif' }}>
+    <section style={{ background: '#ffffff', padding: '80px 0', position: 'relative', overflow: 'hidden', fontFamily: 'Georgia, serif' }}>
       <style>{`
         .sl-item { display:flex; align-items:center; gap:10px; padding:9px 12px; border-radius:12px; cursor:pointer; border:1px solid transparent; transition:background 0.18s,border-color 0.18s; margin-bottom:3px; }
         .sl-item:hover { background:rgba(229,190,16,0.12); border-color:rgba(229,190,16,0.3); }
@@ -168,8 +168,8 @@ const StarSection: React.FC = () => {
       `}</style>
 
       {/* Decorative BG */}
-      <div style={{ position: 'absolute', width: 400, height: 400, top: -100, right: -100, borderRadius: '50%', background: 'rgba(229,190,16,0.07)', pointerEvents: 'none' }} />
-      <div style={{ position: 'absolute', width: 260, height: 260, bottom: -60, left: -80, borderRadius: '50%', background: 'rgba(117,51,0,0.05)', pointerEvents: 'none' }} />
+      {/* <div style={{ position: 'absolute', width: 400, height: 400, top: -100, right: -100, borderRadius: '50%', background: 'rgba(229,190,16,0.07)', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', width: 260, height: 260, bottom: -60, left: -80, borderRadius: '50%', background: 'rgba(117,51,0,0.05)', pointerEvents: 'none' }} /> */}
 
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
 

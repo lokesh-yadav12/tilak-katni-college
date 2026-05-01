@@ -39,7 +39,7 @@ export default function AboutSection() {
   return (
     <section
       style={{
-        background: 'linear-gradient(160deg,#fff8ee 0%,#fdf3d8 50%,#fff 100%)',
+        background: '#ffffff',
         padding: '60px 24px 80px',
         fontFamily: 'Georgia, serif',
         position: 'relative',
@@ -140,8 +140,8 @@ export default function AboutSection() {
       `}</style>
 
       {/* Decorative blobs */}
-      <div style={{ position:'absolute', width:400, height:400, top:-100, right:-100, borderRadius:'50%', background:'rgba(229,190,16,0.07)', pointerEvents:'none' }} />
-      <div style={{ position:'absolute', width:260, height:260, bottom:-60, left:-80, borderRadius:'50%', background:'rgba(117,51,0,0.05)', pointerEvents:'none' }} />
+      {/* <div style={{ position:'absolute', width:400, height:400, top:-100, right:-100, borderRadius:'50%', background:'rgba(229,190,16,0.07)', pointerEvents:'none' }} />
+      <div style={{ position:'absolute', width:260, height:260, bottom:-60, left:-80, borderRadius:'50%', background:'rgba(117,51,0,0.05)', pointerEvents:'none' }} /> */}
 
       <div style={{ maxWidth: 900, margin: '0 auto' }}>
 

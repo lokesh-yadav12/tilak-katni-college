@@ -86,7 +86,7 @@ const Gtcataglance = () => {
   };
 
   return (
-    <div style={{ fontFamily: 'Georgia, serif', background: 'linear-gradient(160deg,#fff8ee 0%,#fdf3d8 50%,#fff 100%)', padding: '52px 20px 72px' }}>
+    <div style={{ fontFamily: 'Georgia, serif', background: '#ffffff', padding: '52px 20px 72px' }}>
       <style>{`
         .gtc-thumb { position:relative; border-radius:12px; overflow:hidden; border:1.5px solid rgba(229,190,16,0.35); aspect-ratio:4/3; background:#f5ede0; cursor:pointer; transition:border-color .25s,box-shadow .25s; }
         .gtc-thumb:hover { border-color:rgba(117,51,0,.5); box-shadow:0 8px 32px rgba(117,51,0,.15); }

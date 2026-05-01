@@ -58,8 +58,8 @@ export default function TestimonialsSection() {
       `}</style>
 
       {/* Decorative */}
-      <div style={{ position:'absolute', width:350, height:350, top:-100, right:-100, borderRadius:'50%', background:'rgba(229,190,16,0.07)', pointerEvents:'none' }} />
-      <div style={{ position:'absolute', width:220, height:220, bottom:-60, left:-70, borderRadius:'50%', background:'rgba(0,0,0,0.15)', pointerEvents:'none' }} />
+      {/* <div style={{ position:'absolute', width:350, height:350, top:-100, right:-100, borderRadius:'50%', background:'rgba(229,190,16,0.07)', pointerEvents:'none' }} />
+      <div style={{ position:'absolute', width:220, height:220, bottom:-60, left:-70, borderRadius:'50%', background:'rgba(0,0,0,0.15)', pointerEvents:'none' }} /> */}
 
       <div style={{ maxWidth:1100, margin:'0 auto' }}>
         {/* Header */}

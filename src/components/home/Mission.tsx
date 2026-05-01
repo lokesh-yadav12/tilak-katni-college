@@ -85,7 +85,7 @@ export default function Mission() {
   return (
     <section
       style={{
-        background: 'linear-gradient(160deg,#fff8ee 0%,#fdf3d8 50%,#fff 100%)',
+        background: '#ffffff',
         padding: '60px 24px 80px',
         fontFamily: 'Georgia, serif',
         position: 'relative',
@@ -103,7 +103,7 @@ export default function Mission() {
         .mv-bullet-row:last-child { border-bottom:none; }
       `}</style>
 
-      <div
+      {/* <div
         style={{
           position: 'absolute',
           width: 400,
@@ -126,7 +126,7 @@ export default function Mission() {
           background: 'rgba(117,51,0,0.05)',
           pointerEvents: 'none',
         }}
-      />
+      /> */}
 
       <div style={{ maxWidth: 860, margin: '0 auto' }}>
         {/* Header */}

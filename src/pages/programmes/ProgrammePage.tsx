@@ -139,7 +139,7 @@ const ProgrammePage: React.FC = () => {
   const hasContent  = !!about;
 
   return (
-    <div className="min-h-screen bg-[#fdf8ee] pt-0 sm:pt-0 pb-20">
+    <div className="min-h-screen bg-[#ffffff] pt-0 sm:pt-0 pb-20">
 
       {/* Hero */}
       <div className="relative bg-[#753300] overflow-hidden">

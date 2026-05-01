@@ -95,7 +95,7 @@ const AllInfoPage: React.FC = () => {
     <div
       style={{
         minHeight: '100vh',
-        background: 'linear-gradient(160deg,#fff8ee 0%,#fdf3d8 50%,#fff 100%)',
+        background: '#ffffff',
         fontFamily: 'Georgia, serif',
       }}
     >

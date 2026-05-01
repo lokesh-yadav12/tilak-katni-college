@@ -53,7 +53,7 @@ function Counter({ end, suffix = '', duration = 2200 }: { end: number; suffix?: 
 
 export default function StatsSection() {
   return (
-    <section style={{ background:'linear-gradient(160deg,#fff8ee 0%,#fdf3d8 50%,#fff 100%)', padding:'60px 24px', fontFamily:'Georgia,serif', position:'relative', overflow:'hidden' }}>
+    <section style={{ background:'#ffffff', padding:'60px 24px', fontFamily:'Georgia,serif', position:'relative', overflow:'hidden' }}>
       <style>{`
         .stats-grid {
           display: grid;
