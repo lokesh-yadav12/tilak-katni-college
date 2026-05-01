@@ -45,8 +45,37 @@ export default function CollegeHighlights() {
     <section style={{ background: `linear-gradient(135deg,#3a1a00 0%,${BROWN} 60%,${BROWN2} 100%)`, position:'relative', overflow:'hidden', fontFamily:'Georgia,serif' }}>
       <style>{`
         .hl-gold-bar { height:3px; background:linear-gradient(90deg,#753300,#e5be10,#753300); }
-        .hl-cell { position:relative; padding:48px 32px; text-align:center; display:flex; flex-direction:column; align-items:center; gap:16px; border-right:1px solid rgba(229,190,16,0.2); transition:background 0.3s; overflow:hidden; flex:1; }
-        .hl-cell:last-child { border-right:none; }
+        .hl-grid {
+          display: flex;
+          flex-direction: column;
+          margin-top: 32px;
+        }
+        @media (min-width: 640px) {
+          .hl-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+          }
+        }
+        .hl-cell {
+          position:relative;
+          padding:48px 32px;
+          text-align:center;
+          display:flex;
+          flex-direction:column;
+          align-items:center;
+          gap:16px;
+          border-bottom:1px solid rgba(229,190,16,0.2);
+          transition:background 0.3s;
+          overflow:hidden;
+        }
+        @media (min-width: 640px) {
+          .hl-cell {
+            border-bottom: none;
+            border-right: 1px solid rgba(229,190,16,0.2);
+          }
+          .hl-cell:last-child { border-right:none; }
+        }
+        .hl-cell:last-child { border-bottom: none; }
         .hl-cell:hover { background:rgba(229,190,16,0.06); }
         .hl-bg { position:absolute; inset:0; background-size:cover; background-position:center; opacity:0.12; filter:saturate(0.4); transition:opacity 0.3s; }
         .hl-cell:hover .hl-bg { opacity:0.22; }
@@ -65,7 +94,7 @@ export default function CollegeHighlights() {
         <p style={{ fontSize:14, color:'rgba(253,248,238,0.65)', fontFamily:'sans-serif', fontWeight:400 }}>What makes Govt. Tilak P.G. College stand apart</p>
       </div>
 
-      <div style={{ display:'flex', marginTop:32 }}>
+      <div className="hl-grid">
         {highlights.map((item, idx) => (
           <motion.div
             key={item.title}

@@ -66,9 +66,9 @@ const EventsSection: React.FC = () => {
           border-color: rgba(229,190,16,0.65);
         }
         .ev2-item {
-          padding: 11px 18px;
+          padding: 16px 24px;
           border-bottom: 1px solid rgba(229,190,16,0.1);
-          font-size: 12.5px;
+          font-size: 16px;
           color: ${TEXT};
           font-family: sans-serif;
           line-height: 1.55;
@@ -83,7 +83,7 @@ const EventsSection: React.FC = () => {
         .ev2-item:hover {
           background: rgba(229,190,16,0.09);
           color: ${BROWN};
-          padding-left: 22px;
+          padding-left: 26px;
         }
         .ev2-item-dot {
           width: 6px; height: 6px; border-radius: 50%;
@@ -98,8 +98,8 @@ const EventsSection: React.FC = () => {
           background: linear-gradient(90deg,${BROWN},${BROWN2});
           color: ${GOLD};
           border: none;
-          padding: 11px 16px;
-          font-size: 10.5px;
+          padding: 14px 20px;
+          font-size: 14px;
           font-weight: 700;
           letter-spacing: 0.1em;
           text-transform: uppercase;
@@ -114,7 +114,7 @@ const EventsSection: React.FC = () => {
           gap: 6px;
         }
         .ev2-btn:hover { opacity: 0.88; letter-spacing: 0.14em; }
-        .ev2-scroll { max-height: 260px; overflow-y: auto; }
+        .ev2-scroll { max-height: 360px; overflow-y: auto; }
         .ev2-scroll::-webkit-scrollbar { width: 4px; }
         .ev2-scroll::-webkit-scrollbar-track { background: transparent; }
         .ev2-scroll::-webkit-scrollbar-thumb { background: rgba(229,190,16,0.35); border-radius: 2px; }
@@ -160,7 +160,7 @@ const EventsSection: React.FC = () => {
         </motion.div>
 
         {/* ── Cards grid ── */}
-        <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(300px,1fr))', gap:24 }}>
+        <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:28 }}>
           {(Object.keys(allInfoData) as DepartmentType[]).map((key, idx) => {
             const dept = allInfoData[key]!;
 
@@ -178,7 +178,7 @@ const EventsSection: React.FC = () => {
                 {/* Card header */}
                 <div
                   style={{
-                    padding: '16px 18px 14px',
+                    padding: '20px 22px 16px',
                     background: `linear-gradient(135deg,${DARK},${BROWN})`,
                     position: 'relative',
                     overflow: 'hidden',
@@ -201,10 +201,10 @@ const EventsSection: React.FC = () => {
                       </svg>
                     </div>
                     <div>
-                      <div style={{ fontSize:8, fontWeight:700, letterSpacing:'0.14em', textTransform:'uppercase', color:'rgba(229,190,16,0.65)', fontFamily:'sans-serif', marginBottom:2 }}>
+                      <div style={{ fontSize:9, fontWeight:700, letterSpacing:'0.14em', textTransform:'uppercase', color:'rgba(229,190,16,0.65)', fontFamily:'sans-serif', marginBottom:2 }}>
                         ✦ {key}
                       </div>
-                      <div style={{ fontSize:14, fontWeight:700, color:GOLD, fontFamily:'sans-serif', lineHeight:1.3 }}>
+                      <div style={{ fontSize:17, fontWeight:700, color:GOLD, fontFamily:'sans-serif', lineHeight:1.3 }}>
                         {dept.title}
                       </div>
                     </div>

@@ -89,6 +89,82 @@ const StarSection: React.FC = () => {
         .sm-overlay { position:fixed; inset:0; background:rgba(60,20,0,0.6); backdrop-filter:blur(8px); z-index:50; display:flex; align-items:center; justify-content:center; padding:16px; }
         .sm-close { margin-left:auto; width:34px; height:34px; border-radius:50%; background:rgba(229,190,16,0.15); border:1.5px solid rgba(229,190,16,0.35); color:#e5be10; display:flex; align-items:center; justify-content:center; cursor:pointer; flex-shrink:0; transition:background 0.18s,transform 0.22s; }
         .sm-close:hover { background:rgba(229,190,16,0.3); transform:rotate(90deg); }
+
+        /* Stars layout */
+        .stars-layout {
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+        }
+        @media (min-width: 900px) {
+          .stars-layout {
+            display: grid;
+            grid-template-columns: 190px 1fr 190px;
+            align-items: start;
+          }
+        }
+
+        /* Hide sidebar list on mobile */
+        .stars-sidebar-left {
+          display: none;
+        }
+        @media (min-width: 900px) {
+          .stars-sidebar-left {
+            display: block;
+          }
+        }
+
+        /* Hide right panel on mobile */
+        .stars-sidebar-right {
+          display: none;
+        }
+        @media (min-width: 900px) {
+          .stars-sidebar-right {
+            display: block;
+          }
+        }
+
+        /* Mobile carousel: hide side cards on small screens */
+        .star-side-card {
+          display: none;
+        }
+        @media (min-width: 540px) {
+          .star-side-card {
+            display: block;
+          }
+        }
+
+        /* Modal body grid */
+        .modal-fields-grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
+        @media (min-width: 480px) {
+          .modal-fields-grid {
+            grid-template-columns: 1fr 1fr;
+          }
+        }
+
+        /* Modal max width */
+        .modal-inner {
+          background: #fff;
+          border-radius: 24px;
+          width: 100%;
+          max-width: 640px;
+          max-height: 90vh;
+          overflow-y: auto;
+          box-shadow: 0 32px 80px rgba(117,51,0,0.35), 0 0 0 1.5px rgba(229,190,16,0.3);
+        }
+
+        /* Mobile star list (visible only on mobile as horizontal scroll) */
+        .mobile-star-dots {
+          display: flex;
+          justify-content: center;
+          gap: 7px;
+          margin-top: 20px;
+          flex-wrap: wrap;
+        }
       `}</style>
 
       {/* Decorative BG */}
@@ -104,7 +180,7 @@ const StarSection: React.FC = () => {
             <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#9a6040' }}>Hall of Fame</span>
             <div style={{ height: 1, width: 44, background: 'linear-gradient(90deg,#e5be10,transparent)' }} />
           </div>
-          <h2 style={{ fontSize: 52, fontWeight: 800, background: 'linear-gradient(135deg,#753300 0%,#b36000 50%,#e5be10 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', lineHeight: 1.1, marginBottom: 10 }}>
+          <h2 style={{ fontSize: 'clamp(36px,6vw,52px)', fontWeight: 800, background: 'linear-gradient(135deg,#753300 0%,#b36000 50%,#e5be10 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', lineHeight: 1.1, marginBottom: 10 }}>
             GTC Stars
           </h2>
           <p style={{ fontSize: 15, color: '#9a6040', maxWidth: 420, margin: '0 auto', lineHeight: 1.6 }}>
@@ -113,10 +189,10 @@ const StarSection: React.FC = () => {
         </motion.div>
 
         {/* 3-column layout */}
-        <div style={{ display: 'grid', gridTemplateColumns: '190px 1fr 190px', gap: 24, alignItems: 'start' }}>
+        <div className="stars-layout">
 
-          {/* LEFT sidebar */}
-          <div>
+          {/* LEFT sidebar — desktop only */}
+          <div className="stars-sidebar-left">
             <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#b08060', marginBottom: 10, paddingLeft: 12 }}>All Stars</p>
             <div style={{ maxHeight: 380, overflowY: 'auto', paddingRight: 2 }}>
               {stars.map((star, i) => (
@@ -133,13 +209,15 @@ const StarSection: React.FC = () => {
 
           {/* CENTER */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            {/* Card row — flex, overflow hidden to clip sides */}
+            {/* Card row */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, width: '100%' }}>
               <button className="s-nav" onClick={goPrev} aria-label="Previous"><ChevronLeft size={20} /></button>
 
               {/* Clipped strip */}
               <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, overflow: 'hidden', minHeight: 340 }}>
-                <SideCard star={stars[prevIdx]} onClick={goPrev} origin="right center" />
+                <div className="star-side-card">
+                  <SideCard star={stars[prevIdx]} onClick={goPrev} origin="right center" />
+                </div>
 
                 {/* Center card */}
                 <div style={{ flex: 1, minWidth: 0, maxWidth: 230 }}>
@@ -179,23 +257,46 @@ const StarSection: React.FC = () => {
                   </AnimatePresence>
                 </div>
 
-                <SideCard star={stars[nextIdx]} onClick={goNext} origin="left center" />
+                <div className="star-side-card">
+                  <SideCard star={stars[nextIdx]} onClick={goNext} origin="left center" />
+                </div>
               </div>
 
               <button className="s-nav" onClick={goNext} aria-label="Next"><ChevronRight size={20} /></button>
             </div>
 
             {/* Dots */}
-            <div style={{ display: 'flex', justifyContent: 'center', gap: 7, marginTop: 20 }}>
+            <div className="mobile-star-dots">
               {stars.map((_, i) => (
                 <button key={i} className={`s-dot ${i === activeIndex ? 's-dot-active' : ''}`} style={{ width: i === activeIndex ? 28 : 6 }} onClick={() => { setDirection(i > activeIndex ? 1 : -1); setActiveIndex(i); }} />
               ))}
             </div>
             <p style={{ marginTop: 12, fontSize: 12, color: '#9a6040', fontStyle: 'italic', textAlign: 'center' }}>Click the center card to view full details</p>
+
+            {/* Mobile achievement panel — shown below carousel on small screens */}
+            <div className="stars-sidebar-right" style={{ display: 'none' }} />
+            <div style={{ width: '100%', marginTop: 16 }}>
+              <div style={{ display: 'block' }}>
+                <style>{`@media (min-width: 900px) { .mobile-only-panel { display: none !important; } }`}</style>
+                <div className="mobile-only-panel">
+                  <AnimatePresence mode="wait">
+                    <motion.div key={activeIndex} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.28 }}>
+                      <div style={{ background: '#fdf8ee', border: '1px solid rgba(229,190,16,0.22)', borderRadius: 14, padding: 16 }}>
+                        <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#b08060', marginBottom: 8 }}>Achievement Snapshot</div>
+                        <p style={{ fontSize: 12, color: '#4a2000', lineHeight: 1.6, display: '-webkit-box', WebkitLineClamp: 4, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
+                          {stars[activeIndex].achievement}
+                        </p>
+                        <button className="rp-btn" onClick={() => setSelectedStar(stars[activeIndex])}>Read Full Story →</button>
+                      </div>
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* RIGHT panel */}
-          <div>
+          {/* RIGHT panel — desktop only */}
+          <div className="stars-sidebar-right">
             <AnimatePresence mode="wait">
               <motion.div key={activeIndex} initial={{ opacity: 0, x: 16 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -16 }} transition={{ duration: 0.28 }}>
                 <div style={{ background: 'linear-gradient(135deg,#753300,#9a4a10)', borderRadius: 14, padding: 18, color: '#fdf8ee', marginBottom: 12, position: 'relative', overflow: 'hidden' }}>
@@ -226,7 +327,7 @@ const StarSection: React.FC = () => {
       <AnimatePresence>
         {selectedStar && (
           <motion.div key="ov" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.22 }} className="sm-overlay" onClick={() => setSelectedStar(null)}>
-            <motion.div key="md" initial={{ scale: 0.9, opacity: 0, y: 20 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.9, opacity: 0, y: 20 }} transition={{ type: 'spring', stiffness: 300, damping: 28 }} style={{ background: '#fff', borderRadius: 24, width: '100%', maxWidth: 640, maxHeight: '90vh', overflowY: 'auto', boxShadow: '0 32px 80px rgba(117,51,0,0.35), 0 0 0 1.5px rgba(229,190,16,0.3)' }} onClick={(e) => e.stopPropagation()}>
+            <motion.div key="md" initial={{ scale: 0.9, opacity: 0, y: 20 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.9, opacity: 0, y: 20 }} transition={{ type: 'spring', stiffness: 300, damping: 28 }} className="modal-inner" onClick={(e) => e.stopPropagation()}>
               {/* Modal header */}
               <div style={{ background: 'linear-gradient(135deg,#753300 0%,#9a4a10 60%,#b36000 100%)', padding: 26, position: 'relative', overflow: 'hidden' }}>
                 <div style={{ position: 'absolute', top: -40, right: -40, width: 150, height: 150, background: 'rgba(229,190,16,0.1)', borderRadius: '50%' }} />
@@ -244,20 +345,22 @@ const StarSection: React.FC = () => {
                 </div>
               </div>
               {/* Modal body */}
-              <div style={{ padding: '22px 26px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-                {[{ label: 'Session', value: selectedStar.session }, { label: "Father's Name", value: selectedStar.fatherName }].map(f => (
-                  <div key={f.label} style={{ background: '#fdf8ee', border: '1px solid rgba(229,190,16,0.2)', borderRadius: 14, padding: '13px 15px' }}>
-                    <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#b08060', marginBottom: 5 }}>{f.label}</div>
-                    <div style={{ fontSize: 14, fontWeight: 600, color: '#3a1a00' }}>{f.value}</div>
+              <div style={{ padding: '22px 26px' }}>
+                <div className="modal-fields-grid">
+                  {[{ label: 'Session', value: selectedStar.session }, { label: "Father's Name", value: selectedStar.fatherName }].map(f => (
+                    <div key={f.label} style={{ background: '#fdf8ee', border: '1px solid rgba(229,190,16,0.2)', borderRadius: 14, padding: '13px 15px' }}>
+                      <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#b08060', marginBottom: 5 }}>{f.label}</div>
+                      <div style={{ fontSize: 14, fontWeight: 600, color: '#3a1a00' }}>{f.value}</div>
+                    </div>
+                  ))}
+                  <div style={{ background: '#fdf8ee', border: '1px solid rgba(229,190,16,0.2)', borderRadius: 14, padding: '13px 15px', gridColumn: '1/-1' }}>
+                    <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#b08060', marginBottom: 5 }}>Programme</div>
+                    <div style={{ fontSize: 14, fontWeight: 600, color: '#3a1a00' }}>{selectedStar.class}</div>
                   </div>
-                ))}
-                <div style={{ background: '#fdf8ee', border: '1px solid rgba(229,190,16,0.2)', borderRadius: 14, padding: '13px 15px', gridColumn: '1/-1' }}>
-                  <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#b08060', marginBottom: 5 }}>Programme</div>
-                  <div style={{ fontSize: 14, fontWeight: 600, color: '#3a1a00' }}>{selectedStar.class}</div>
-                </div>
-                <div style={{ background: 'linear-gradient(135deg,rgba(229,190,16,0.08),rgba(117,51,0,0.04))', border: '1px solid rgba(229,190,16,0.3)', borderLeft: '4px solid #e5be10', borderRadius: 14, padding: '13px 15px', gridColumn: '1/-1' }}>
-                  <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#9a6040', marginBottom: 5 }}>Achievement</div>
-                  <div style={{ fontSize: 14, fontWeight: 500, color: '#4a2000', lineHeight: 1.6 }}>{selectedStar.achievement}</div>
+                  <div style={{ background: 'linear-gradient(135deg,rgba(229,190,16,0.08),rgba(117,51,0,0.04))', border: '1px solid rgba(229,190,16,0.3)', borderLeft: '4px solid #e5be10', borderRadius: 14, padding: '13px 15px', gridColumn: '1/-1' }}>
+                    <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#9a6040', marginBottom: 5 }}>Achievement</div>
+                    <div style={{ fontSize: 14, fontWeight: 500, color: '#4a2000', lineHeight: 1.6 }}>{selectedStar.achievement}</div>
+                  </div>
                 </div>
               </div>
               <div style={{ padding: '14px 26px 20px', display: 'flex', justifyContent: 'center', gap: 7, borderTop: '1px solid rgba(229,190,16,0.15)' }}>

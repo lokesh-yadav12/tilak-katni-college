@@ -127,7 +127,7 @@ const QuickLinksPopup = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
         className={`ql-panel ${isOpen ? "ql-panel--open" : "ql-panel--close"}`}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Decorative top bar */}
+        {/* Header */}
         <div className="ql-header">
           <div className="ql-header-inner">
             <div className="ql-header-ornament" />
@@ -169,13 +169,11 @@ const QuickLinksPopup = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
 
 const FloatingButtons = () => {
   const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
-  const [isPortalOpen, setIsPortalOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <>
       <style>{`
-        /* ── PALETTE ── */
         :root {
           --gold: #e5be10;
           --gold-deep: #c9a800;
@@ -219,6 +217,9 @@ const FloatingButtons = () => {
             0 0 0 1px rgba(229, 190, 16, 0.3);
           transform-origin: center bottom;
           transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+          /* Ensure it's scrollable on very small screens */
+          max-height: 90vh;
+          overflow-y: auto;
         }
         .ql-panel--open {
           transform: scale(1) translateY(0);
@@ -235,6 +236,10 @@ const FloatingButtons = () => {
           padding: 20px 24px 18px;
           position: relative;
           overflow: hidden;
+          /* Sticky so header stays visible when grid scrolls */
+          position: sticky;
+          top: 0;
+          z-index: 2;
         }
         .ql-header::before {
           content: '';
@@ -318,7 +323,6 @@ const FloatingButtons = () => {
           grid-template-columns: repeat(3, 1fr);
           gap: 1px;
           background: rgba(117, 51, 0, 0.08);
-          padding: 0;
         }
 
         /* ── ITEM ── */
@@ -352,9 +356,7 @@ const FloatingButtons = () => {
           background: var(--cream-dark);
           transform: translateY(-2px);
         }
-        .ql-item:hover::before {
-          opacity: 1;
-        }
+        .ql-item:hover::before { opacity: 1; }
         .ql-item-icon {
           width: 48px;
           height: 48px;
@@ -402,11 +404,20 @@ const FloatingButtons = () => {
           letter-spacing: 0.05em;
         }
 
-        /* ── TRIGGER BUTTON ── */
+        /* ── FLOATING TRIGGER BUTTON ── */
         .ql-trigger-btn {
-          position: relative;
+          position: fixed;
+          bottom: 28px;
+          right: 24px;
+          z-index: 40;
           width: 60px;
           height: 60px;
+        }
+        @media (min-width: 1024px) {
+          .ql-trigger-btn {
+            bottom: 32px;
+            right: 32px;
+          }
         }
         .ql-trigger-ring {
           position: absolute;
@@ -432,16 +443,12 @@ const FloatingButtons = () => {
           justify-content: center;
           color: var(--gold);
           cursor: pointer;
-          box-shadow:
-            0 8px 24px rgba(117,51,0,0.4),
-            0 0 0 0 rgba(229,190,16,0);
+          box-shadow: 0 8px 24px rgba(117,51,0,0.4);
           transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s;
         }
         .ql-trigger-core:hover {
           transform: scale(1.1);
-          box-shadow:
-            0 12px 32px rgba(117,51,0,0.5),
-            0 0 0 4px rgba(229,190,16,0.2);
+          box-shadow: 0 12px 32px rgba(117,51,0,0.5), 0 0 0 4px rgba(229,190,16,0.2);
         }
         .ql-trigger-core svg {
           transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
@@ -476,57 +483,9 @@ const FloatingButtons = () => {
           border: 6px solid transparent;
           border-left-color: var(--brown);
         }
-        .ql-trigger-btn:hover .ql-tooltip {
-          opacity: 1;
-        }
+        .ql-trigger-btn:hover .ql-tooltip { opacity: 1; }
 
-        /* ── MOBILE BAR ── */
-        .mobile-bar {
-          position: fixed;
-          bottom: 0; left: 0; right: 0;
-          z-index: 40;
-          background: linear-gradient(90deg, var(--brown) 0%, #8a3a00 50%, var(--brown) 100%);
-          border-top: 2px solid rgba(229,190,16,0.4);
-          box-shadow: 0 -4px 20px rgba(117,51,0,0.3);
-        }
-        .mobile-bar-grid {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 2px;
-          padding: 8px 4px;
-        }
-        .mobile-bar-btn {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 4px;
-          padding: 6px 4px;
-          border-radius: 12px;
-          border: none;
-          background: none;
-          cursor: pointer;
-          transition: background 0.15s;
-        }
-        .mobile-bar-btn:active { background: rgba(229,190,16,0.15); }
-        .mobile-bar-icon {
-          width: 42px;
-          height: 42px;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: transform 0.2s;
-          border: 2px solid rgba(229,190,16,0.3);
-        }
-        .mobile-bar-btn:active .mobile-bar-icon { transform: scale(0.92); }
-        .mobile-bar-label {
-          font-size: 10px;
-          font-weight: 600;
-          color: rgba(253,248,238,0.85);
-          letter-spacing: 0.03em;
-        }
-
-        /* ── MODAL ── */
+        /* ── ENQUIRY MODAL ── */
         .modal-overlay {
           position: fixed;
           inset: 0;
@@ -575,72 +534,23 @@ const FloatingButtons = () => {
         @keyframes scaleIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
       `}</style>
 
-      {/* ── MOBILE BOTTOM BAR ── */}
-      <div className="mobile-bar lg:hidden">
-        <div className="mobile-bar-grid">
-          <button className="mobile-bar-btn" onClick={() => setIsPortalOpen(true)}>
-            <div className="mobile-bar-icon" style={{ background: "linear-gradient(135deg, #753300, #9a4a10)" }}>
-              <UserCircle size={22} color="#e5be10" />
-            </div>
-            <span className="mobile-bar-label">Portal</span>
-          </button>
-
-          <button className="mobile-bar-btn" onClick={() => setIsEnquiryOpen(true)}>
-            <div className="mobile-bar-icon" style={{ background: "linear-gradient(135deg, #7a3800, #b05000)" }}>
-              <MessageSquare size={22} color="#e5be10" />
-            </div>
-            <span className="mobile-bar-label">Enquire</span>
-          </button>
-
-          <button className="mobile-bar-btn" onClick={() => (window.location.href = "tel:+911234567890")}>
-            <div className="mobile-bar-icon" style={{ background: "linear-gradient(135deg, #5c6800, #8a9600)" }}>
-              <Phone size={22} color="#e5be10" />
-            </div>
-            <span className="mobile-bar-label">Call</span>
-          </button>
-
-          <button className="mobile-bar-btn" onClick={() => (window.location.href = "mailto:info@college.ac.in")}>
-            <div className="mobile-bar-icon" style={{ background: "linear-gradient(135deg, #753300, #c06800)" }}>
-              <Mail size={22} color="#e5be10" />
-            </div>
-            <span className="mobile-bar-label">Email</span>
-          </button>
+      {/* ── FLOATING TRIGGER BUTTON (all screen sizes) ── */}
+      <div className="ql-trigger-btn">
+        {!isMenuOpen && <div className="ql-trigger-ring" />}
+        <div
+          className={`ql-trigger-core ${isMenuOpen ? "open" : ""}`}
+          onClick={() => setIsMenuOpen(true)}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => e.key === "Enter" && setIsMenuOpen(true)}
+        >
+          {isMenuOpen ? <X size={26} /> : <MessageSquare size={24} />}
         </div>
+        {!isMenuOpen && <div className="ql-tooltip">Quick Links</div>}
       </div>
 
-      {/* ── DESKTOP FLOATING BUTTON ── */}
-      <div className="hidden lg:block fixed bottom-8 right-8 z-40">
-        <div className="ql-trigger-btn">
-          {!isMenuOpen && <div className="ql-trigger-ring" />}
-          <div
-            className={`ql-trigger-core ${isMenuOpen ? "open" : ""}`}
-            onClick={() => setIsMenuOpen(true)}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => e.key === "Enter" && setIsMenuOpen(true)}
-          >
-            {isMenuOpen ? <X size={26} /> : <MessageSquare size={24} />}
-          </div>
-          {!isMenuOpen && <div className="ql-tooltip">Quick Links</div>}
-        </div>
-      </div>
-
-      {/* ── QUICK LINKS POPUP (Desktop) ── */}
+      {/* ── QUICK LINKS POPUP ── */}
       <QuickLinksPopup isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
-
-      {/* ── PORTAL MODAL ── */}
-      {isPortalOpen && (
-        <div className="modal-overlay" onClick={() => setIsPortalOpen(false)}>
-          <div className="modal-box" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close-btn" onClick={() => setIsPortalOpen(false)} aria-label="Close">
-              <X size={20} />
-            </button>
-            <div className="modal-content">
-              <AdmissionEnquiry onClose={() => setIsPortalOpen(false)} />
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* ── ENQUIRY MODAL ── */}
       {isEnquiryOpen && (

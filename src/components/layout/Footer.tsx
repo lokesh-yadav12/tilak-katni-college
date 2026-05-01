@@ -61,6 +61,50 @@ export default function Footer() {
         .footer-social-btn:hover { background: rgba(229,190,16,0.2); color: ${GOLD}; border-color: rgba(229,190,16,0.5); }
         .footer-contact-row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 14px; }
         .footer-contact-icon { width: 32px; height: 32px; border-radius: 8px; background: rgba(229,190,16,0.12); border: 1px solid rgba(229,190,16,0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+        /* Responsive footer grid */
+        .footer-grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 40px 40px;
+          margin-bottom: 48px;
+        }
+        @media (min-width: 540px) {
+          .footer-grid {
+            grid-template-columns: 1fr 1fr;
+          }
+        }
+        @media (min-width: 900px) {
+          .footer-grid {
+            grid-template-columns: 1.6fr 1fr 1fr 1.2fr;
+          }
+        }
+
+        /* Brand col spans full width on mobile */
+        .footer-brand-col {
+          grid-column: 1 / -1;
+        }
+        @media (min-width: 900px) {
+          .footer-brand-col {
+            grid-column: auto;
+          }
+        }
+
+        /* Bottom bar */
+        .footer-bottom {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          align-items: center;
+          text-align: center;
+        }
+        @media (min-width: 640px) {
+          .footer-bottom {
+            flex-direction: row;
+            justify-content: space-between;
+            text-align: left;
+          }
+        }
       `}</style>
 
       {/* Top gold accent bar */}
@@ -71,18 +115,11 @@ export default function Footer() {
       <div style={{ position:'absolute', width:250, height:250, bottom:-80, left:-80, borderRadius:'50%', background:'rgba(117,51,0,0.15)', pointerEvents:'none' }} />
 
       {/* Main content */}
-      <div style={{  margin: '0 auto', padding: '56px 32px 40px', position: 'relative', zIndex: 1 }}>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1.6fr 1fr 1fr 1.2fr',
-            gap: '48px 40px',
-            marginBottom: 48,
-          }}
-        >
+      <div style={{ margin: '0 auto', padding: '56px 32px 40px', position: 'relative', zIndex: 1 }}>
+        <div className="footer-grid">
 
           {/* ── Col 1: Brand ── */}
-          <div>
+          <div className="footer-brand-col">
             <img src={logo} alt="College Logo" style={{ height: 100, marginBottom: 20, filter: 'brightness(1.1)' }} />
             <p
               style={{
@@ -91,6 +128,7 @@ export default function Footer() {
                 lineHeight: 1.8,
                 color: 'rgba(253,248,238,0.55)',
                 margin: '0 0 24px',
+                maxWidth: 400,
               }}
             >
               Govt. Tilak P.G. College, Katni (M.P.) was established in August 1958. A multi-faculty institution affiliated to Rani Durgawati University Jabalpur — the leading college of Katni district.
@@ -218,7 +256,7 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Map placeholder / location badge */}
+            {/* Location badge */}
             <div
               style={{
                 marginTop: 18,
@@ -243,27 +281,19 @@ export default function Footer() {
         <div style={{ height: 1, background: 'linear-gradient(90deg,transparent,rgba(229,190,16,0.3),transparent)', marginBottom: 28 }} />
 
         {/* Bottom bar */}
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            gap: 12,
-          }}
-        >
+        <div className="footer-bottom">
           <p style={{ fontFamily: 'sans-serif', fontSize: 12, color: 'rgba(253,248,238,0.35)', margin: 0 }}>
             Copyright © 2025 Govt. Tilak P.G. College, Katni. All rights reserved.
           </p>
-          <p style={{ fontFamily: 'sans-serif', fontSize: 12, color: 'rgba(253,248,238,0.35)', margin: 0, display: 'flex', alignItems: 'center', gap: 6 }}>
+          <p style={{ fontFamily: 'sans-serif', fontSize: 12, color: 'rgba(253,248,238,0.35)', margin: 0, display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap', justifyContent: 'center' }}>
             Powered by{' '}
             <a
-              href="https://www.indian-tech.com/"
+              href="https://elite8digital.in/"
               style={{ color: 'rgba(229,190,16,0.6)', textDecoration: 'none', transition: 'color 0.2s' }}
               onMouseEnter={e => (e.currentTarget.style.color = GOLD)}
               onMouseLeave={e => (e.currentTarget.style.color = 'rgba(229,190,16,0.6)')}
             >
-              Indian Tech Corporation
+              Elite8 Digital
             </a>
             <span style={{ color: 'rgba(253,248,238,0.2)' }}>·</span>
             Last Updated: 20-Feb-2026
