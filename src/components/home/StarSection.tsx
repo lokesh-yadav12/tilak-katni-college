@@ -31,7 +31,7 @@ const StarSection: React.FC = () => {
   ];
 
   const getPlaceholder = (name: string) =>
-    `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&size=400&background=f5edcf&color=753300&bold=true&format=png`;
+    `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&size=400&background=f5f5f5&color=333333&bold=true&format=png`;
 
   const goNext = () => { setDirection(1); setActiveIndex((i) => (i + 1) % stars.length); };
   const goPrev = () => { setDirection(-1); setActiveIndex((i) => (i - 1 + stars.length) % stars.length); };
@@ -51,25 +51,25 @@ const StarSection: React.FC = () => {
       style={{
         width: 150, flexShrink: 0, cursor: 'pointer',
         background: '#fff', borderRadius: 18, overflow: 'hidden',
-        border: '1.5px solid rgba(229,190,16,0.2)',
-        boxShadow: '0 4px 16px rgba(117,51,0,0.08)',
-        opacity: 0.65,
+        border: '1.5px solid #eeeeee',
+        boxShadow: '0 2px 12px rgba(0,0,0,0.06)',
+        opacity: 0.6,
         transform: 'scale(0.9)',
         transformOrigin: origin,
         transition: 'opacity 0.2s, transform 0.2s',
       }}
       onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.opacity = '0.85'; }}
-      onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.opacity = '0.65'; }}
+      onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.opacity = '0.6'; }}
     >
       <div style={{ height: 110, overflow: 'hidden', position: 'relative' }}>
         <img src={star.image || getPlaceholder(star.name)} alt={star.name} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} onError={(e) => { (e.target as HTMLImageElement).src = getPlaceholder(star.name); }} />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top,rgba(117,51,0,0.3) 0%,transparent 55%)' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top,rgba(0,0,0,0.18) 0%,transparent 55%)' }} />
         <div style={{ position: 'absolute', top: 8, right: 8, width: 26, height: 26, borderRadius: '50%', background: 'linear-gradient(135deg,#e5be10,#c9a800)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11 }}>★</div>
       </div>
       <div style={{ padding: '10px 12px' }}>
-        <div style={{ fontSize: 8, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#753300', background: 'rgba(229,190,16,0.18)', border: '1px solid rgba(229,190,16,0.3)', padding: '1px 7px', borderRadius: 20, display: 'inline-block', marginBottom: 6 }}>GTC Star</div>
-        <div style={{ fontSize: 11, fontWeight: 700, color: '#3a1a00', lineHeight: 1.3, marginBottom: 6, overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>{star.name}</div>
-        <div style={{ borderTop: '1px solid rgba(229,190,16,0.18)', paddingTop: 6, fontSize: 9, color: '#b08060' }}>Session {star.session}</div>
+        <div style={{ fontSize: 8, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#888888', background: 'rgba(229,190,16,0.12)', border: '1px solid rgba(229,190,16,0.25)', padding: '1px 7px', borderRadius: 20, display: 'inline-block', marginBottom: 6 }}>GTC Star</div>
+        <div style={{ fontSize: 11, fontWeight: 700, color: '#1a1a1a', lineHeight: 1.3, marginBottom: 6, overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>{star.name}</div>
+        <div style={{ borderTop: '1px solid #f0f0f0', paddingTop: 6, fontSize: 9, color: '#aaaaaa' }}>Session {star.session}</div>
       </div>
     </div>
   );
@@ -77,99 +77,22 @@ const StarSection: React.FC = () => {
   return (
     <section style={{ background: '#ffffff', padding: '80px 0', position: 'relative', overflow: 'hidden', fontFamily: 'Georgia, serif' }}>
       <style>{`
-        .sl-item { display:flex; align-items:center; gap:10px; padding:9px 12px; border-radius:12px; cursor:pointer; border:1px solid transparent; transition:background 0.18s,border-color 0.18s; margin-bottom:3px; }
-        .sl-item:hover { background:rgba(229,190,16,0.12); border-color:rgba(229,190,16,0.3); }
-        .sl-item-active { background:rgba(117,51,0,0.07); border-color:rgba(229,190,16,0.5) !important; }
-        .s-nav { width:44px; height:44px; border-radius:50%; background:#fff; border:2px solid rgba(229,190,16,0.5); color:#753300; display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 3px 12px rgba(117,51,0,0.13); transition:background 0.18s,color 0.18s,transform 0.18s; flex-shrink:0; }
-        .s-nav:hover { background:#753300; border-color:#753300; color:#e5be10; transform:scale(1.08); }
-        .s-dot { border:none; padding:0; cursor:pointer; border-radius:20px; height:6px; background:rgba(117,51,0,0.18); transition:width 0.3s,background 0.3s; }
-        .s-dot-active { background:linear-gradient(90deg,#753300,#e5be10) !important; }
-        .rp-btn { width:100%; background:linear-gradient(90deg,#753300,#9a4a10); color:#e5be10; border:none; border-radius:10px; padding:9px 0; font-size:11px; font-weight:700; letter-spacing:0.06em; cursor:pointer; margin-top:10px; transition:opacity 0.18s; }
-        .rp-btn:hover { opacity:0.87; }
-        .sm-overlay { position:fixed; inset:0; background:rgba(60,20,0,0.6); backdrop-filter:blur(8px); z-index:50; display:flex; align-items:center; justify-content:center; padding:16px; }
-        .sm-close { margin-left:auto; width:34px; height:34px; border-radius:50%; background:rgba(229,190,16,0.15); border:1.5px solid rgba(229,190,16,0.35); color:#e5be10; display:flex; align-items:center; justify-content:center; cursor:pointer; flex-shrink:0; transition:background 0.18s,transform 0.22s; }
-        .sm-close:hover { background:rgba(229,190,16,0.3); transform:rotate(90deg); }
-
-        /* Stars layout */
-        .stars-layout {
-          display: flex;
-          flex-direction: column;
-          gap: 24px;
-        }
-        @media (min-width: 900px) {
-          .stars-layout {
-            display: grid;
-            grid-template-columns: 190px 1fr 190px;
-            align-items: start;
-          }
-        }
-
-        /* Hide sidebar list on mobile */
-        .stars-sidebar-left {
-          display: none;
-        }
-        @media (min-width: 900px) {
-          .stars-sidebar-left {
-            display: block;
-          }
-        }
-
-        /* Hide right panel on mobile */
-        .stars-sidebar-right {
-          display: none;
-        }
-        @media (min-width: 900px) {
-          .stars-sidebar-right {
-            display: block;
-          }
-        }
-
-        /* Mobile carousel: hide side cards on small screens */
-        .star-side-card {
-          display: none;
-        }
-        @media (min-width: 540px) {
-          .star-side-card {
-            display: block;
-          }
-        }
-
-        /* Modal body grid */
-        .modal-fields-grid {
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: 12px;
-        }
-        @media (min-width: 480px) {
-          .modal-fields-grid {
-            grid-template-columns: 1fr 1fr;
-          }
-        }
-
-        /* Modal max width */
-        .modal-inner {
-          background: #fff;
-          border-radius: 24px;
-          width: 100%;
-          max-width: 640px;
-          max-height: 90vh;
-          overflow-y: auto;
-          box-shadow: 0 32px 80px rgba(117,51,0,0.35), 0 0 0 1.5px rgba(229,190,16,0.3);
-        }
-
-        /* Mobile star list (visible only on mobile as horizontal scroll) */
-        .mobile-star-dots {
-          display: flex;
-          justify-content: center;
-          gap: 7px;
-          margin-top: 20px;
-          flex-wrap: wrap;
-        }
+        .s-nav { width:44px; height:44px; border-radius:50%; background:#fff; border:1.5px solid #dddddd; color:#333333; display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,0.08); transition:background 0.18s,border-color 0.18s,transform 0.18s; flex-shrink:0; }
+        .s-nav:hover { background:#1a1a1a; border-color:#1a1a1a; color:#e5be10; transform:scale(1.08); }
+        .s-dot { border:none; padding:0; cursor:pointer; border-radius:20px; height:5px; background:#dddddd; transition:width 0.3s,background 0.3s; }
+        .s-dot-active { background:#e5be10 !important; }
+        .rp-btn { width:100%; background:#1a1a1a; color:#e5be10; border:none; border-radius:10px; padding:9px 0; font-size:11px; font-weight:700; letter-spacing:0.06em; cursor:pointer; margin-top:10px; transition:background 0.18s; }
+        .rp-btn:hover { background:#333333; }
+        .sm-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.5); backdrop-filter:blur(8px); z-index:50; display:flex; align-items:center; justify-content:center; padding:16px; }
+        .sm-close { margin-left:auto; width:34px; height:34px; border-radius:50%; background:#f5f5f5; border:1.5px solid #dddddd; color:#555555; display:flex; align-items:center; justify-content:center; cursor:pointer; flex-shrink:0; transition:background 0.18s,transform 0.22s; }
+        .sm-close:hover { background:#eeeeee; transform:rotate(90deg); }
+        .star-side-card { display: none; }
+        @media (min-width: 540px) { .star-side-card { display: block; } }
+        .modal-fields-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+        @media (min-width: 480px) { .modal-fields-grid { grid-template-columns: 1fr 1fr; } }
+        .modal-inner { background: #fff; border-radius: 20px; width: 100%; max-width: 640px; max-height: 90vh; overflow-y: auto; box-shadow: 0 32px 80px rgba(0,0,0,0.2); border: 1.5px solid #eeeeee; }
+        .mobile-star-dots { display:flex; justify-content:center; gap:7px; margin-top:20px; flex-wrap:wrap; }
       `}</style>
-
-      {/* Decorative BG */}
-      {/* <div style={{ position: 'absolute', width: 400, height: 400, top: -100, right: -100, borderRadius: '50%', background: 'rgba(229,190,16,0.07)', pointerEvents: 'none' }} />
-      <div style={{ position: 'absolute', width: 260, height: 260, bottom: -60, left: -80, borderRadius: '50%', background: 'rgba(117,51,0,0.05)', pointerEvents: 'none' }} /> */}
 
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
 
@@ -177,149 +100,80 @@ const StarSection: React.FC = () => {
         <motion.div initial={{ opacity: 0, y: -18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} style={{ textAlign: 'center', marginBottom: 52 }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
             <div style={{ height: 1, width: 44, background: 'linear-gradient(90deg,transparent,#e5be10)' }} />
-            <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#9a6040' }}>Hall of Fame</span>
+            <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#aaaaaa', fontFamily: 'sans-serif' }}>Hall of Fame</span>
             <div style={{ height: 1, width: 44, background: 'linear-gradient(90deg,#e5be10,transparent)' }} />
           </div>
-          <h2 style={{ fontSize: 'clamp(36px,6vw,52px)', fontWeight: 800, background: 'linear-gradient(135deg,#753300 0%,#b36000 50%,#e5be10 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', lineHeight: 1.1, marginBottom: 10 }}>
+          <h2 style={{ fontSize: 'clamp(36px,6vw,52px)', fontWeight: 800, color: '#1a1a1a', lineHeight: 1.1, marginBottom: 10 }}>
             GTC Stars
           </h2>
-          <p style={{ fontSize: 15, color: '#9a6040', maxWidth: 420, margin: '0 auto', lineHeight: 1.6 }}>
+          <p style={{ fontSize: 15, color: '#888888', maxWidth: 420, margin: '0 auto', lineHeight: 1.6, fontFamily: 'sans-serif' }}>
             Celebrating the extraordinary journeys of those who made us proud
           </p>
         </motion.div>
 
-        {/* 3-column layout */}
-        <div className="stars-layout">
+        {/* Carousel */}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, width: '100%' }}>
+            <button className="s-nav" onClick={goPrev} aria-label="Previous"><ChevronLeft size={20} /></button>
 
-          {/* LEFT sidebar — desktop only */}
-          <div className="stars-sidebar-left">
-            <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#b08060', marginBottom: 10, paddingLeft: 12 }}>All Stars</p>
-            <div style={{ maxHeight: 380, overflowY: 'auto', paddingRight: 2 }}>
-              {stars.map((star, i) => (
-                <div key={star.id} className={`sl-item ${i === activeIndex ? 'sl-item-active' : ''}`} onClick={() => { setDirection(i > activeIndex ? 1 : -1); setActiveIndex(i); }}>
-                  <img src={star.image || getPlaceholder(star.name)} alt={star.name} style={{ width: 36, height: 36, borderRadius: '50%', objectFit: 'cover', border: '2px solid rgba(229,190,16,0.4)', flexShrink: 0 }} onError={(e) => { (e.target as HTMLImageElement).src = getPlaceholder(star.name); }} />
-                  <div>
-                    <div style={{ fontSize: 12, fontWeight: 700, color: '#3a1a00', lineHeight: 1.3 }}>{star.name}</div>
-                    <div style={{ fontSize: 10, color: '#9a6040' }}>{star.session}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* CENTER */}
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            {/* Card row */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, width: '100%' }}>
-              <button className="s-nav" onClick={goPrev} aria-label="Previous"><ChevronLeft size={20} /></button>
-
-              {/* Clipped strip */}
-              <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, overflow: 'hidden', minHeight: 340 }}>
-                <div className="star-side-card">
-                  <SideCard star={stars[prevIdx]} onClick={goPrev} origin="right center" />
-                </div>
-
-                {/* Center card */}
-                <div style={{ flex: 1, minWidth: 0, maxWidth: 230 }}>
-                  <AnimatePresence mode="wait" custom={direction}>
-                    <motion.div
-                      key={activeIndex}
-                      custom={direction}
-                      variants={slideVariants}
-                      initial="enter"
-                      animate="center"
-                      exit="exit"
-                      transition={{ duration: 0.32, ease: [0.25, 1, 0.5, 1] }}
-                      style={{
-                        background: '#fff', borderRadius: 20, overflow: 'hidden',
-                        border: '2px solid rgba(229,190,16,0.55)',
-                        boxShadow: '0 16px 48px rgba(117,51,0,0.2), 0 0 0 3px rgba(229,190,16,0.15)',
-                        cursor: 'pointer', width: '100%',
-                      }}
-                      onClick={() => setSelectedStar(stars[activeIndex])}
-                      whileHover={{ y: -4 }}
-                    >
-                      <div style={{ height: 210, overflow: 'hidden', position: 'relative' }}>
-                        <img src={stars[activeIndex].image || getPlaceholder(stars[activeIndex].name)} alt={stars[activeIndex].name} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} onError={(e) => { (e.target as HTMLImageElement).src = getPlaceholder(stars[activeIndex].name); }} />
-                        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top,rgba(117,51,0,0.3) 0%,transparent 55%)' }} />
-                        <div style={{ position: 'absolute', top: 10, right: 10, width: 32, height: 32, borderRadius: '50%', background: 'linear-gradient(135deg,#e5be10,#c9a800)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, boxShadow: '0 3px 10px rgba(229,190,16,0.45)' }}>★</div>
-                      </div>
-                      <div style={{ padding: '14px 16px' }}>
-                        <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#753300', background: 'rgba(229,190,16,0.18)', border: '1px solid rgba(229,190,16,0.35)', padding: '2px 8px', borderRadius: 20, display: 'inline-block', marginBottom: 8 }}>✦ GTC Star</div>
-                        <div style={{ fontSize: 14, fontWeight: 700, color: '#3a1a00', lineHeight: 1.35, marginBottom: 4 }}>{stars[activeIndex].name}</div>
-                        {stars[activeIndex].title && <div style={{ fontSize: 11, color: '#9a6040', fontStyle: 'italic', marginBottom: 8 }}>{stars[activeIndex].title}</div>}
-                        <div style={{ borderTop: '1px solid rgba(229,190,16,0.18)', paddingTop: 8, fontSize: 10, color: '#b08060' }}>Session {stars[activeIndex].session}</div>
-                      </div>
-                      <div style={{ background: 'linear-gradient(90deg,rgba(117,51,0,0.04),rgba(229,190,16,0.08))', borderTop: '1px solid rgba(229,190,16,0.15)', padding: '7px 16px', textAlign: 'center', fontSize: 10, color: '#9a6040', letterSpacing: '0.04em' }}>
-                        Tap to view details →
-                      </div>
-                    </motion.div>
-                  </AnimatePresence>
-                </div>
-
-                <div className="star-side-card">
-                  <SideCard star={stars[nextIdx]} onClick={goNext} origin="left center" />
-                </div>
+            <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, overflow: 'hidden', minHeight: 340 }}>
+              <div className="star-side-card">
+                <SideCard star={stars[prevIdx]} onClick={goPrev} origin="right center" />
               </div>
 
-              <button className="s-nav" onClick={goNext} aria-label="Next"><ChevronRight size={20} /></button>
-            </div>
-
-            {/* Dots */}
-            <div className="mobile-star-dots">
-              {stars.map((_, i) => (
-                <button key={i} className={`s-dot ${i === activeIndex ? 's-dot-active' : ''}`} style={{ width: i === activeIndex ? 28 : 6 }} onClick={() => { setDirection(i > activeIndex ? 1 : -1); setActiveIndex(i); }} />
-              ))}
-            </div>
-            <p style={{ marginTop: 12, fontSize: 12, color: '#9a6040', fontStyle: 'italic', textAlign: 'center' }}>Click the center card to view full details</p>
-
-            {/* Mobile achievement panel — shown below carousel on small screens */}
-            <div className="stars-sidebar-right" style={{ display: 'none' }} />
-            <div style={{ width: '100%', marginTop: 16 }}>
-              <div style={{ display: 'block' }}>
-                <style>{`@media (min-width: 900px) { .mobile-only-panel { display: none !important; } }`}</style>
-                <div className="mobile-only-panel">
-                  <AnimatePresence mode="wait">
-                    <motion.div key={activeIndex} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.28 }}>
-                      <div style={{ background: '#fdf8ee', border: '1px solid rgba(229,190,16,0.22)', borderRadius: 14, padding: 16 }}>
-                        <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#b08060', marginBottom: 8 }}>Achievement Snapshot</div>
-                        <p style={{ fontSize: 12, color: '#4a2000', lineHeight: 1.6, display: '-webkit-box', WebkitLineClamp: 4, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
-                          {stars[activeIndex].achievement}
-                        </p>
-                        <button className="rp-btn" onClick={() => setSelectedStar(stars[activeIndex])}>Read Full Story →</button>
-                      </div>
-                    </motion.div>
-                  </AnimatePresence>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* RIGHT panel — desktop only */}
-          <div className="stars-sidebar-right">
-            <AnimatePresence mode="wait">
-              <motion.div key={activeIndex} initial={{ opacity: 0, x: 16 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -16 }} transition={{ duration: 0.28 }}>
-                <div style={{ background: 'linear-gradient(135deg,#753300,#9a4a10)', borderRadius: 14, padding: 18, color: '#fdf8ee', marginBottom: 12, position: 'relative', overflow: 'hidden' }}>
-                  <div style={{ position: 'absolute', top: -30, right: -30, width: 100, height: 100, background: 'rgba(229,190,16,0.1)', borderRadius: '50%' }} />
-                  <div style={{ position: 'relative', zIndex: 1 }}>
-                    <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(229,190,16,0.8)', marginBottom: 7 }}>✦ Featured Star</div>
-                    <div style={{ fontSize: 14, fontWeight: 700, color: '#e5be10', marginBottom: 3, fontFamily: 'Georgia,serif' }}>{stars[activeIndex].name}</div>
-                    <div style={{ fontSize: 11, color: 'rgba(253,248,238,0.65)', fontStyle: 'italic', marginBottom: 10 }}>{stars[activeIndex].title}</div>
-                    <div style={{ borderTop: '1px solid rgba(229,190,16,0.2)', paddingTop: 9, fontSize: 11, color: 'rgba(253,248,238,0.7)' }}>
-                      <span style={{ color: 'rgba(229,190,16,0.75)', fontWeight: 600 }}>Session: </span>{stars[activeIndex].session}
+              {/* Center card */}
+              <div style={{ flex: 1, minWidth: 0, maxWidth: 260 }}>
+                <AnimatePresence mode="wait" custom={direction}>
+                  <motion.div
+                    key={activeIndex}
+                    custom={direction}
+                    variants={slideVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={{ duration: 0.32, ease: [0.25, 1, 0.5, 1] }}
+                    style={{
+                      background: '#fff', borderRadius: 20, overflow: 'hidden',
+                      border: '1.5px solid rgba(229,190,16,0.45)',
+                      boxShadow: '0 12px 40px rgba(0,0,0,0.1), 0 0 0 3px rgba(229,190,16,0.1)',
+                      cursor: 'pointer', width: '100%',
+                    }}
+                    onClick={() => setSelectedStar(stars[activeIndex])}
+                    whileHover={{ y: -4 }}
+                  >
+                    <div style={{ height: 240, overflow: 'hidden', position: 'relative' }}>
+                      <img src={stars[activeIndex].image || getPlaceholder(stars[activeIndex].name)} alt={stars[activeIndex].name} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} onError={(e) => { (e.target as HTMLImageElement).src = getPlaceholder(stars[activeIndex].name); }} />
+                      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top,rgba(0,0,0,0.2) 0%,transparent 55%)' }} />
+                      <div style={{ position: 'absolute', top: 10, right: 10, width: 32, height: 32, borderRadius: '50%', background: 'linear-gradient(135deg,#e5be10,#c9a800)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, boxShadow: '0 3px 10px rgba(229,190,16,0.4)' }}>★</div>
                     </div>
-                  </div>
-                </div>
-                <div style={{ background: '#fdf8ee', border: '1px solid rgba(229,190,16,0.22)', borderRadius: 14, padding: 16 }}>
-                  <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#b08060', marginBottom: 8 }}>Achievement Snapshot</div>
-                  <p style={{ fontSize: 12, color: '#4a2000', lineHeight: 1.6, display: '-webkit-box', WebkitLineClamp: 4, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
-                    {stars[activeIndex].achievement}
-                  </p>
-                  <button className="rp-btn" onClick={() => setSelectedStar(stars[activeIndex])}>Read Full Story →</button>
-                </div>
-              </motion.div>
-            </AnimatePresence>
+                    <div style={{ padding: '16px 18px' }}>
+                      <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#888888', background: 'rgba(229,190,16,0.12)', border: '1px solid rgba(229,190,16,0.28)', padding: '2px 8px', borderRadius: 20, display: 'inline-block', marginBottom: 8, fontFamily: 'sans-serif' }}>✦ GTC Star</div>
+                      <div style={{ fontSize: 15, fontWeight: 700, color: '#1a1a1a', lineHeight: 1.35, marginBottom: 4, fontFamily: 'sans-serif' }}>{stars[activeIndex].name}</div>
+                      {stars[activeIndex].title && <div style={{ fontSize: 11, color: '#888888', fontStyle: 'italic', marginBottom: 8, fontFamily: 'sans-serif' }}>{stars[activeIndex].title}</div>}
+                      <div style={{ borderTop: '1px solid #f0f0f0', paddingTop: 8, fontSize: 10, color: '#aaaaaa', fontFamily: 'sans-serif' }}>Session {stars[activeIndex].session}</div>
+                    </div>
+                    <div style={{ background: '#fafafa', borderTop: '1px solid #eeeeee', padding: '8px 18px', textAlign: 'center', fontSize: 10, color: '#aaaaaa', letterSpacing: '0.04em', fontFamily: 'sans-serif' }}>
+                      Tap to view details →
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+              <div className="star-side-card">
+                <SideCard star={stars[nextIdx]} onClick={goNext} origin="left center" />
+              </div>
+            </div>
+
+            <button className="s-nav" onClick={goNext} aria-label="Next"><ChevronRight size={20} /></button>
           </div>
+
+          {/* Dots */}
+          <div className="mobile-star-dots">
+            {stars.map((_, i) => (
+              <button key={i} className={`s-dot ${i === activeIndex ? 's-dot-active' : ''}`} style={{ width: i === activeIndex ? 28 : 6 }} onClick={() => { setDirection(i > activeIndex ? 1 : -1); setActiveIndex(i); }} />
+            ))}
+          </div>
+          <p style={{ marginTop: 12, fontSize: 12, color: '#aaaaaa', fontStyle: 'italic', textAlign: 'center', fontFamily: 'sans-serif' }}>Click the center card to view full details</p>
         </div>
       </div>
 
@@ -329,17 +183,16 @@ const StarSection: React.FC = () => {
           <motion.div key="ov" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.22 }} className="sm-overlay" onClick={() => setSelectedStar(null)}>
             <motion.div key="md" initial={{ scale: 0.9, opacity: 0, y: 20 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.9, opacity: 0, y: 20 }} transition={{ type: 'spring', stiffness: 300, damping: 28 }} className="modal-inner" onClick={(e) => e.stopPropagation()}>
               {/* Modal header */}
-              <div style={{ background: 'linear-gradient(135deg,#753300 0%,#9a4a10 60%,#b36000 100%)', padding: 26, position: 'relative', overflow: 'hidden' }}>
-                <div style={{ position: 'absolute', top: -40, right: -40, width: 150, height: 150, background: 'rgba(229,190,16,0.1)', borderRadius: '50%' }} />
-                <div style={{ position: 'absolute', bottom: -30, left: 50, width: 90, height: 90, background: 'rgba(229,190,16,0.07)', borderRadius: '50%' }} />
+              <div style={{ background: '#1a1a1a', padding: 26, position: 'relative', overflow: 'hidden' }}>
+                <div style={{ position: 'absolute', top: -40, right: -40, width: 150, height: 150, background: 'rgba(229,190,16,0.07)', borderRadius: '50%' }} />
                 <div style={{ display: 'flex', gap: 18, alignItems: 'flex-start', position: 'relative', zIndex: 1 }}>
-                  <img src={selectedStar.image || getPlaceholder(selectedStar.name)} alt={selectedStar.name} style={{ width: 84, height: 84, borderRadius: 16, objectFit: 'cover', border: '3px solid rgba(229,190,16,0.6)', flexShrink: 0, boxShadow: '0 8px 24px rgba(0,0,0,0.25)' }} onError={(e) => { (e.target as HTMLImageElement).src = getPlaceholder(selectedStar.name); }} />
+                  <img src={selectedStar.image || getPlaceholder(selectedStar.name)} alt={selectedStar.name} style={{ width: 84, height: 84, borderRadius: 16, objectFit: 'cover', border: '2px solid rgba(229,190,16,0.5)', flexShrink: 0, boxShadow: '0 8px 24px rgba(0,0,0,0.3)' }} onError={(e) => { (e.target as HTMLImageElement).src = getPlaceholder(selectedStar.name); }} />
                   <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: 9, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#753300', background: 'linear-gradient(90deg,#e5be10,#f0d040)', padding: '3px 10px', borderRadius: 20, marginBottom: 9 }}>
+                    <div style={{ display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: 9, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#1a1a1a', background: 'linear-gradient(90deg,#e5be10,#f0d040)', padding: '3px 10px', borderRadius: 20, marginBottom: 9, fontFamily: 'sans-serif' }}>
                       <Award size={9} /> GTC Star
                     </div>
                     <div style={{ fontSize: 19, fontWeight: 700, color: '#e5be10', marginBottom: 4, fontFamily: 'Georgia,serif' }}>{selectedStar.name}</div>
-                    {selectedStar.title && <div style={{ fontSize: 12, color: 'rgba(253,248,238,0.65)', fontStyle: 'italic' }}>{selectedStar.title}</div>}
+                    {selectedStar.title && <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.5)', fontStyle: 'italic', fontFamily: 'sans-serif' }}>{selectedStar.title}</div>}
                   </div>
                   <button className="sm-close" onClick={() => setSelectedStar(null)} aria-label="Close"><X size={15} /></button>
                 </div>
@@ -348,23 +201,23 @@ const StarSection: React.FC = () => {
               <div style={{ padding: '22px 26px' }}>
                 <div className="modal-fields-grid">
                   {[{ label: 'Session', value: selectedStar.session }, { label: "Father's Name", value: selectedStar.fatherName }].map(f => (
-                    <div key={f.label} style={{ background: '#fdf8ee', border: '1px solid rgba(229,190,16,0.2)', borderRadius: 14, padding: '13px 15px' }}>
-                      <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#b08060', marginBottom: 5 }}>{f.label}</div>
-                      <div style={{ fontSize: 14, fontWeight: 600, color: '#3a1a00' }}>{f.value}</div>
+                    <div key={f.label} style={{ background: '#fafafa', border: '1px solid #eeeeee', borderRadius: 14, padding: '13px 15px' }}>
+                      <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#aaaaaa', marginBottom: 5, fontFamily: 'sans-serif' }}>{f.label}</div>
+                      <div style={{ fontSize: 14, fontWeight: 600, color: '#1a1a1a', fontFamily: 'sans-serif' }}>{f.value}</div>
                     </div>
                   ))}
-                  <div style={{ background: '#fdf8ee', border: '1px solid rgba(229,190,16,0.2)', borderRadius: 14, padding: '13px 15px', gridColumn: '1/-1' }}>
-                    <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#b08060', marginBottom: 5 }}>Programme</div>
-                    <div style={{ fontSize: 14, fontWeight: 600, color: '#3a1a00' }}>{selectedStar.class}</div>
+                  <div style={{ background: '#fafafa', border: '1px solid #eeeeee', borderRadius: 14, padding: '13px 15px', gridColumn: '1/-1' }}>
+                    <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#aaaaaa', marginBottom: 5, fontFamily: 'sans-serif' }}>Programme</div>
+                    <div style={{ fontSize: 14, fontWeight: 600, color: '#1a1a1a', fontFamily: 'sans-serif' }}>{selectedStar.class}</div>
                   </div>
-                  <div style={{ background: 'linear-gradient(135deg,rgba(229,190,16,0.08),rgba(117,51,0,0.04))', border: '1px solid rgba(229,190,16,0.3)', borderLeft: '4px solid #e5be10', borderRadius: 14, padding: '13px 15px', gridColumn: '1/-1' }}>
-                    <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#9a6040', marginBottom: 5 }}>Achievement</div>
-                    <div style={{ fontSize: 14, fontWeight: 500, color: '#4a2000', lineHeight: 1.6 }}>{selectedStar.achievement}</div>
+                  <div style={{ background: '#fffdf0', border: '1px solid rgba(229,190,16,0.3)', borderLeft: '4px solid #e5be10', borderRadius: 14, padding: '13px 15px', gridColumn: '1/-1' }}>
+                    <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#aaaaaa', marginBottom: 5, fontFamily: 'sans-serif' }}>Achievement</div>
+                    <div style={{ fontSize: 14, fontWeight: 500, color: '#333333', lineHeight: 1.6, fontFamily: 'sans-serif' }}>{selectedStar.achievement}</div>
                   </div>
                 </div>
               </div>
-              <div style={{ padding: '14px 26px 20px', display: 'flex', justifyContent: 'center', gap: 7, borderTop: '1px solid rgba(229,190,16,0.15)' }}>
-                {['#e5be10', '#c9a800', '#753300'].map(c => <div key={c} style={{ width: 8, height: 8, borderRadius: '50%', background: c }} />)}
+              <div style={{ padding: '14px 26px 20px', display: 'flex', justifyContent: 'center', gap: 7, borderTop: '1px solid #eeeeee' }}>
+                {['#e5be10', '#dddddd', '#1a1a1a'].map(c => <div key={c} style={{ width: 8, height: 8, borderRadius: '50%', background: c }} />)}
               </div>
             </motion.div>
           </motion.div>

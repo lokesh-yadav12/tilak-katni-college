@@ -4,30 +4,19 @@ import { useState } from 'react';
 import { allInfoData, DepartmentType } from '@/data/allInfoData';
 
 const GOLD = '#e5be10';
-const BROWN = '#753300';
-const BROWN2 = '#9a4a10';
-const DARK = '#3a1a00';
-const TEXT = '#4a2000';
-const MUTED = '#b08060';
 
 const EventsSection: React.FC = () => {
   const navigate = useNavigate();
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
-  /**
-   * Navigate to AllInfoPage, pre-selecting the correct section and
-   * auto-expanding the linked item via ?section=<key>&item=<itemId>.
-   */
   const handleItemClick = (deptKey: DepartmentType, itemIndex: number) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     const dept = allInfoData[deptKey];
     if (!dept) return;
-
     const link = dept.itemLinks?.[itemIndex];
     if (link) {
       navigate(`/all-info/${deptKey}?section=${link.section}&item=${link.itemId}`);
     } else {
-      // Fallback: just open the department page
       navigate(`/all-info/${deptKey}`);
     }
   };
@@ -52,54 +41,52 @@ const EventsSection: React.FC = () => {
 
         .ev2-card {
           background: #fff;
-          border: 1.5px solid rgba(229,190,16,0.28);
-          border-radius: 20px;
+          border: 1.5px solid #eeeeee;
+          border-radius: 16px;
           overflow: hidden;
           display: flex;
           flex-direction: column;
-          box-shadow: 0 4px 24px rgba(117,51,0,0.07);
+          box-shadow: 0 2px 16px rgba(0,0,0,0.05);
           transition: transform 0.28s, box-shadow 0.28s, border-color 0.28s;
         }
         .ev2-card:hover {
-          transform: translateY(-7px);
-          box-shadow: 0 20px 50px rgba(117,51,0,0.15);
-          border-color: rgba(229,190,16,0.65);
+          transform: translateY(-6px);
+          box-shadow: 0 16px 40px rgba(0,0,0,0.1);
+          border-color: rgba(229,190,16,0.5);
         }
         .ev2-item {
-          padding: 16px 24px;
-          border-bottom: 1px solid rgba(229,190,16,0.1);
-          font-size: 16px;
-          color: ${TEXT};
+          padding: 14px 20px;
+          border-bottom: 1px solid #f0f0f0;
+          font-size: 14px;
+          color: #444444;
           font-family: sans-serif;
           line-height: 1.55;
           display: flex;
           align-items: flex-start;
           gap: 10px;
           cursor: pointer;
-          transition: background 0.2s, color 0.2s, padding-left 0.2s;
-          position: relative;
+          transition: background 0.18s, color 0.18s, padding-left 0.18s;
         }
         .ev2-item:last-child { border-bottom: none; }
         .ev2-item:hover {
-          background: rgba(229,190,16,0.09);
-          color: ${BROWN};
-          padding-left: 26px;
+          background: #fafafa;
+          color: #1a1a1a;
+          padding-left: 24px;
         }
         .ev2-item-dot {
-          width: 6px; height: 6px; border-radius: 50%;
-          background: ${GOLD}; flex-shrink: 0; margin-top: 6px;
-          transition: background 0.2s, transform 0.2s;
+          width: 5px; height: 5px; border-radius: 50%;
+          background: ${GOLD}; flex-shrink: 0; margin-top: 7px;
+          transition: transform 0.18s;
         }
         .ev2-item:hover .ev2-item-dot {
-          background: ${BROWN};
-          transform: scale(1.4);
+          transform: scale(1.5);
         }
         .ev2-btn {
-          background: linear-gradient(90deg,${BROWN},${BROWN2});
+          background: #1a1a1a;
           color: ${GOLD};
           border: none;
-          padding: 14px 20px;
-          font-size: 14px;
+          padding: 13px 20px;
+          font-size: 12px;
           font-weight: 700;
           letter-spacing: 0.1em;
           text-transform: uppercase;
@@ -107,22 +94,18 @@ const EventsSection: React.FC = () => {
           font-family: sans-serif;
           text-align: center;
           width: 100%;
-          transition: opacity 0.2s, letter-spacing 0.2s;
+          transition: background 0.2s, letter-spacing 0.2s;
           display: flex;
           align-items: center;
           justify-content: center;
           gap: 6px;
         }
-        .ev2-btn:hover { opacity: 0.88; letter-spacing: 0.14em; }
-        .ev2-scroll { max-height: 360px; overflow-y: auto; }
-        .ev2-scroll::-webkit-scrollbar { width: 4px; }
+        .ev2-btn:hover { background: #333333; letter-spacing: 0.14em; }
+        .ev2-scroll { max-height: 320px; overflow-y: auto; }
+        .ev2-scroll::-webkit-scrollbar { width: 3px; }
         .ev2-scroll::-webkit-scrollbar-track { background: transparent; }
-        .ev2-scroll::-webkit-scrollbar-thumb { background: rgba(229,190,16,0.35); border-radius: 2px; }
+        .ev2-scroll::-webkit-scrollbar-thumb { background: rgba(229,190,16,0.4); border-radius: 2px; }
       `}</style>
-
-      {/* Decorative blobs */}
-      {/* <div style={{ position:'absolute', width:360, height:360, top:-100, right:-100, borderRadius:'50%', background:'rgba(229,190,16,0.06)', pointerEvents:'none' }} />
-      <div style={{ position:'absolute', width:220, height:220, bottom:-60, left:-70, borderRadius:'50%', background:'rgba(117,51,0,0.05)', pointerEvents:'none' }} /> */}
 
       <div style={{ maxWidth: 1120, margin: '0 auto' }}>
 
@@ -136,7 +119,7 @@ const EventsSection: React.FC = () => {
         >
           <div style={{ display:'inline-flex', alignItems:'center', gap:10, marginBottom:14 }}>
             <div style={{ height:1, width:44, background:'linear-gradient(90deg,transparent,#e5be10)' }} />
-            <span style={{ fontSize:10, fontWeight:700, letterSpacing:'0.18em', textTransform:'uppercase', color:MUTED, fontFamily:'sans-serif' }}>
+            <span style={{ fontSize:10, fontWeight:700, letterSpacing:'0.18em', textTransform:'uppercase', color:'#aaaaaa', fontFamily:'sans-serif' }}>
               Resources &amp; Governance
             </span>
             <div style={{ height:1, width:44, background:'linear-gradient(90deg,#e5be10,transparent)' }} />
@@ -145,25 +128,21 @@ const EventsSection: React.FC = () => {
             fontFamily: "'Playfair Display', Georgia, serif",
             fontSize: 'clamp(28px,4vw,44px)',
             fontWeight: 800,
-            background: `linear-gradient(135deg,${BROWN} 0%,#b36000 50%,${GOLD} 100%)`,
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
+            color: '#1a1a1a',
             lineHeight: 1.1,
             margin: '0 0 12px',
           }}>
             Quick Information
           </h2>
-          <p style={{ fontSize:14, color:'#9a6040', fontFamily:'sans-serif', maxWidth:460, margin:'0 auto', lineHeight:1.65 }}>
+          <p style={{ fontSize:14, color:'#888888', fontFamily:'sans-serif', maxWidth:460, margin:'0 auto', lineHeight:1.65 }}>
             Access important resources about our institute's administration, policies, and governance.
           </p>
         </motion.div>
 
         {/* ── Cards grid ── */}
-        <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:28 }}>
+        <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:24 }}>
           {(Object.keys(allInfoData) as DepartmentType[]).map((key, idx) => {
             const dept = allInfoData[key]!;
-
             return (
               <motion.div
                 key={key}
@@ -178,20 +157,17 @@ const EventsSection: React.FC = () => {
                 {/* Card header */}
                 <div
                   style={{
-                    padding: '20px 22px 16px',
-                    background: `linear-gradient(135deg,${DARK},${BROWN})`,
+                    padding: '18px 20px 14px',
+                    background: '#fafafa',
+                    borderBottom: '1px solid #eeeeee',
                     position: 'relative',
-                    overflow: 'hidden',
                   }}
                 >
-                  <div style={{ position:'absolute', top:-20, right:-20, width:80, height:80, background:'rgba(229,190,16,0.1)', borderRadius:'50%' }} />
-                  <div style={{ position:'absolute', bottom:-12, left:60, width:40, height:40, background:'rgba(229,190,16,0.07)', borderRadius:'50%' }} />
-                  <div style={{ position:'absolute', top:0, left:0, right:0, height:2, background:`linear-gradient(90deg,${GOLD},${BROWN2})` }} />
-
-                  <div style={{ display:'flex', alignItems:'center', gap:10, position:'relative', zIndex:1 }}>
+                  <div style={{ position:'absolute', top:0, left:0, right:0, height:2, background:`linear-gradient(90deg,${GOLD},transparent)` }} />
+                  <div style={{ display:'flex', alignItems:'center', gap:10 }}>
                     <div style={{
-                      width:36, height:36, borderRadius:10,
-                      background:'rgba(229,190,16,0.15)',
+                      width:34, height:34, borderRadius:8,
+                      background:'rgba(229,190,16,0.12)',
                       border:'1px solid rgba(229,190,16,0.3)',
                       display:'flex', alignItems:'center', justifyContent:'center',
                       flexShrink:0,
@@ -201,10 +177,10 @@ const EventsSection: React.FC = () => {
                       </svg>
                     </div>
                     <div>
-                      <div style={{ fontSize:9, fontWeight:700, letterSpacing:'0.14em', textTransform:'uppercase', color:'rgba(229,190,16,0.65)', fontFamily:'sans-serif', marginBottom:2 }}>
-                        ✦ {key}
+                      <div style={{ fontSize:9, fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase', color:'#aaaaaa', fontFamily:'sans-serif', marginBottom:2 }}>
+                        {key}
                       </div>
-                      <div style={{ fontSize:17, fontWeight:700, color:GOLD, fontFamily:'sans-serif', lineHeight:1.3 }}>
+                      <div style={{ fontSize:15, fontWeight:700, color:'#1a1a1a', fontFamily:'sans-serif', lineHeight:1.3 }}>
                         {dept.title}
                       </div>
                     </div>
@@ -229,7 +205,7 @@ const EventsSection: React.FC = () => {
                 {/* View all button */}
                 <button className="ev2-btn" onClick={() => handleViewAll(key)}>
                   <span>View All</span>
-                  <svg viewBox="0 0 16 16" width="12" height="12" fill="currentColor">
+                  <svg viewBox="0 0 16 16" width="11" height="11" fill="currentColor">
                     <path fillRule="evenodd" d="M4 8a.5.5 0 01.5-.5h5.793L8.146 5.354a.5.5 0 11.708-.708l3 3a.5.5 0 010 .708l-3 3a.5.5 0 01-.708-.708L10.293 8.5H4.5A.5.5 0 014 8z" clipRule="evenodd" />
                   </svg>
                 </button>

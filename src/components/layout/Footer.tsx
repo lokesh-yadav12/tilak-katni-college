@@ -111,8 +111,8 @@ export default function Footer() {
       <div style={{ height: 3, background: `linear-gradient(90deg,transparent,${GOLD},${BROWN2},${GOLD},transparent)` }} />
 
       {/* Decorative orbs */}
-      <div style={{ position:'absolute', width:400, height:400, top:-160, right:-160, borderRadius:'50%', background:'rgba(229,190,16,0.04)', pointerEvents:'none' }} />
-      <div style={{ position:'absolute', width:250, height:250, bottom:-80, left:-80, borderRadius:'50%', background:'rgba(117,51,0,0.15)', pointerEvents:'none' }} />
+      {/* <div style={{ position:'absolute', width:400, height:400, top:-160, right:-160, borderRadius:'50%', background:'rgba(229,190,16,0.04)', pointerEvents:'none' }} />
+      <div style={{ position:'absolute', width:250, height:250, bottom:-80, left:-80, borderRadius:'50%', background:'rgba(117,51,0,0.15)', pointerEvents:'none' }} /> */}
 
       {/* Main content */}
       <div style={{ margin: '0 auto', padding: '56px 32px 40px', position: 'relative', zIndex: 1 }}>
