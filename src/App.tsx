@@ -58,32 +58,32 @@ const Home = lazy(() => import('./pages/Home'));
 // const NotFound = lazy(() => import('./pages/NotFound'));
 
 function App() {
-	const [isInitialLoading, setIsInitialLoading] = useState(true);
+	// const [isInitialLoading, setIsInitialLoading] = useState(true);
 
-	const handleInitialLoadingComplete = () => {
-		setIsInitialLoading(false);
-	};
+	// const handleInitialLoadingComplete = () => {
+	// 	setIsInitialLoading(false);
+	// };
 
 	// 🌀 Initial loader before full render
-	if (isInitialLoading) {
-		return (
-			<div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-100 overflow-hidden">
-				<div className="scale-[2]">
-					<DPSLoading duration={2000} onLoadingComplete={handleInitialLoadingComplete} />
-				</div>
-			</div>
-		);
-	}
+	// if (isInitialLoading) {
+	// 	return (
+	// 		<div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-100 overflow-hidden">
+	// 			<div className="scale-[2]">
+	// 				<DPSLoading duration={2000} onLoadingComplete={handleInitialLoadingComplete} />
+	// 			</div>
+	// 		</div>
+	// 	);
+	// }
 
 	return (
 		<Suspense
-			fallback={
-				<div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-100 overflow-hidden">
-					<div className="scale-[2]">
-						<DPSLoading />
-					</div>
-				</div>
-			}
+			// fallback={
+			// 	<div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-100 overflow-hidden">
+			// 		<div className="scale-[2]">
+			// 			<DPSLoading />
+			// 		</div>
+			// 	</div>
+			// }
 		>
 			<ScrollToTop/>
 			<FloatingButtons />
